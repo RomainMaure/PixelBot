@@ -129,4 +129,5 @@ dmypy.json
 .pyre/
 
 # Specific to the project
-/img
+*.jpg
+*.pxo
