@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 echo "===Installing pip3==="
 sudo apt-get install python3-pip
