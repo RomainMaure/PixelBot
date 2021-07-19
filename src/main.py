@@ -17,17 +17,20 @@ CHANGE_BLINK_STATE = 5
 
 
 # General use
-animation = True
+mainLoop = True
 
 FPS = 100
-DIMENSIONS = (800, 480)
+#DIMENSIONS = (800, 480)
 
 ################################## MAIN #######################################
 
 pygame.init()
 
-window = pygame.display.set_mode(DIMENSIONS)
-pygame.display.set_caption("PixelBot")
+infoObject = pygame.display.Info()
+DIMENSIONS = (infoObject.current_w, infoObject.current_h)
+
+window = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+#pygame.display.set_caption("PixelBot")
 
 blink.append(pygame.image.load("../img/blink/blink_1.png").convert_alpha())
 blink.append(pygame.image.load("../img/blink/blink_2.png").convert_alpha())
@@ -42,13 +45,13 @@ blink.remove(blink[len(blink)//2])
 
 clock = pygame.time.Clock()
 
-while animation: 
+while mainLoop: 
 
     clock.tick(FPS)
 
     for event in pygame.event.get():
-        if event.type == QUIT:
-            animation = False
+        if event.type == KEYDOWN and event.key == K_ESCAPE:
+            mainLoop = False
 
     # Blinking
     count_blinking += 1
