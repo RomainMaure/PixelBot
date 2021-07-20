@@ -144,7 +144,7 @@ while mainLoop:
 
         ###
         if emotion_state == len(happy2) - 1:
-                emotion = BLINKING
+            emotion = BLINKING
         ###
 
     ###
