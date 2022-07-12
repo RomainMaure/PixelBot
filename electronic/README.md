@@ -4,7 +4,8 @@
 
 | Component       |    Quantity     |
 | :-------------: | :-------------: |
-| Raspberry Pi    |        1        |
+| Raspberry Pi 4  |        1        |
+| [3.2" HDMI LCD display (Waveshare)](https://www.waveshare.com/3.2inch-hdmi-lcd-h.htm) |        1        |
 | Nema 17 motor   |        2        |
 | A4988 driver    |        2        |
 | Capacitor ($100\mu F$)    |        2        |
