@@ -38,7 +38,7 @@ All part can be printed in PLA except the pinions for which ASA is recomended (t
 | M3 nut    |        6        |
 | M2 washer    |        3        |
 | M3 washer    |        14        |
-| M3 stainless steel bearing balls    |        116        |
+| [M3 stainless steel bearing balls](https://www.amazon.fr/gp/product/B07V9VFZ1W/ref=ppx_yo_dt_b_asin_title_o07_s00?ie=UTF8&th=1)    |        116        |
 
 ## Assembly
 
