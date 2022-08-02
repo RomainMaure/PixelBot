@@ -26,7 +26,7 @@ To avoid all the wiring, it is also possible to use the Raspberry pi hat specifi
 | Component       |    Quantity     |
 | :-------------: | :-------------: |
 | [Power Jack 6.3mm](https://www.lcsc.com/product-detail/AC-DC-Power-Connectors_SOFNG-DC005-T20_C111567.html)  |        1        |
-| [20-pin female header, P=2.54](https://www.lcsc.com/product-detail/Female-Headers_ZHOURI-2-54-2-20_C2977589.html)  |        1        |
+| [20-pin female header, P=2.54mm](https://www.lcsc.com/product-detail/Female-Headers_ZHOURI-2-54-2-20_C2977589.html)  |        1        |
 | [4-pin male header, P=2.54mm](https://www.lcsc.com/product-detail/Pin-Headers_JST-Sales-America-RE-H042TD-1190-LF-SN_C265319.html)  |        2        |
 
 ![PixelBot pi hat pcb](https://github.com/RomainMaure/PixelBot/blob/main/electronic/PixelBot_pi_hat_pcb.PNG)
