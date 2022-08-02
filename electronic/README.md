@@ -29,6 +29,8 @@ To avoid all the wiring, it is also possible to use the Raspberry pi hat specifi
 | [20-pin female header, P=2.54](https://www.lcsc.com/product-detail/Female-Headers_ZHOURI-2-54-2-20_C2977589.html)  |        1        |
 | [4-pin male header, P=2.54mm](https://www.lcsc.com/product-detail/Pin-Headers_JST-Sales-America-RE-H042TD-1190-LF-SN_C265319.html)  |        2        |
 
+![PixelBot pi hat pcb](https://github.com/RomainMaure/PixelBot/blob/main/electronic/PixelBot_pi_hat_pcb.PNG)
+
 ## Motor driver setting
 
 Before powering the motors for the first time, the current limit of the drivers needs to be adjusted. Use the potentiometer of the driver for this purpose. You can follow this nice [tutorial](https://www.youtube.com/watch?v=7spK_BkMJys&t=735s) to see how it can be achieved. In my case, I set a reference voltage of 0.7V on both drivers.
