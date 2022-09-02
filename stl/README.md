@@ -22,19 +22,19 @@ The main advantange of this design is that it offers pan and tilt degrees of fre
 | [Support arm](https://github.com/RomainMaure/PixelBot/blob/main/stl/support_arm.stl)    |        1        |
 | [Payload plate](https://github.com/RomainMaure/PixelBot/blob/main/stl/payload_plate.stl)    |        1        |
 
-All part can be printed in PLA except the pinions for which ASA is recomended (to avoid thermal deformation of the bore due to contact with the motor shaft which heats up after long use).
+All parts can be printed in PLA except the pinions for which ASA is recomended (to avoid thermal deformation of the bore due to contact with the motor shaft which heats up after long use).
 
 ### Ironmongery
 
 | Component       |    Quantity     |
 | :-------------: | :-------------: |
-| M2x8 screw    |        3        |
+| M2x8 screw    |        5        |
 | M2x12 screw    |        6        |
 | M2.5x12 screw    |        4        |
 | M3x8 screw    |        8        |
 | M3x20 screw    |        4        |
 | M3x80 screw    |        1        |
-| M2 nut    |        3        |
+| M2 nut    |        5        |
 | M3 nut    |        6        |
 | M2 washer    |        3        |
 | M3 washer    |        14        |
