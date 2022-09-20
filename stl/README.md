@@ -11,6 +11,7 @@ The main advantange of this design is that it offers pan and tilt degrees of fre
 
 | Component       |    Quantity     |
 | :-------------: | :-------------: |
+| [Enclosure](https://github.com/RomainMaure/PixelBot/blob/main/stl/enclosure.stl) |        1        |
 | [Base plate](https://github.com/RomainMaure/PixelBot/blob/main/stl/base_plate.stl) |        1        |
 | [Pinion](https://github.com/RomainMaure/PixelBot/blob/main/stl/pinion.stl) |        2        |
 | [Pan base gear](https://github.com/RomainMaure/PixelBot/blob/main/stl/pan_base_gear.stl) |        1        |
