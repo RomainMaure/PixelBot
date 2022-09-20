@@ -29,16 +29,20 @@ All parts can be printed in PLA except the pinions for which ASA is recomended (
 
 | Component       |    Quantity     |
 | :-------------: | :-------------: |
+| M2x6 screw    |        4        |
 | M2x8 screw    |        5        |
 | M2x12 screw    |        6        |
 | M2.5x12 screw    |        4        |
-| M3x8 screw    |        8        |
+| M3x8 screw    |        11        |
 | M3x20 screw    |        4        |
 | M3x80 screw    |        1        |
 | M2 nut    |        5        |
 | M3 nut    |        6        |
 | M2 washer    |        3        |
 | M3 washer    |        14        |
+| M2 12+6mm spacer    |        4        |
+| M2x4x3.5 insert    |        4        |
+| M3x6x5 insert    |        3        |
 | [M3 stainless steel bearing balls](https://www.amazon.fr/gp/product/B07V9VFZ1W/ref=ppx_yo_dt_b_asin_title_o07_s00?ie=UTF8&th=1)    |        116        |
 
 ## Assembly
