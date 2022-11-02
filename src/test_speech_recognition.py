@@ -1,5 +1,3 @@
-# pip install SpeechRecognition
-
 import speech_recognition as sr
 import time
 
@@ -23,7 +21,8 @@ with microphone as source:
     said = ""
 
     try:
-        said = recognizer.recognize_google(audio)
+        # Default language is english
+        said = recognizer.recognize_google(audio, language="fr-FR")
         print(said)
     except:
         print("Sorry, I haven't understand you properly, \
@@ -37,7 +36,8 @@ def speechRecognitionCallback(recognizer, audio):
     """
 
     try:
-        detectedSentence = recognizer.recognize_google(audio)
+        # Default language is english
+        detectedSentence = recognizer.recognize_google(audio, language="fr-FR")
     except:
         detectedSentence = ""
 
