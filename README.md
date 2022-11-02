@@ -6,7 +6,7 @@ The main contribution of my thesis is PixelBot: a low-cost and open source socia
 
 https://user-images.githubusercontent.com/63020507/179622875-ae744261-0706-4ae6-9525-2d4f46e056e4.mp4
 
-## What you will find in this repository
+## What you will find inside this repository
 
 - **[stl](https://github.com/RomainMaure/PixelBot/tree/main/stl)**: This folder contains all the parts to be 3D printed as well as a list of all the screws, nuts, washers and other components required to build the robot.
 - **[electronic](https://github.com/RomainMaure/PixelBot/tree/main/electronic)**: This folder contains all the informations related to the electronic of the robot mainly the circuit schematics and the list of the electronic components.
