@@ -27,6 +27,7 @@ sudo pip3 install opencv-python
 sudo pip3 install pyttsx3
 sudo pip3 install SpeechRecognition
 
+# LCD screen rotate ?
 # Activate legacy camera ????
 # Test avec forked ros2 install
 # special step to setup mic on rpi ??

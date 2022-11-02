@@ -31,7 +31,11 @@ TODO
 
 Before running the robot interaction, make sure that each part of the robot is working properly (the motors with the pan/tilt mechanism, the camera, the speaker, the microphone, the LCD display etc).
 
-To do so, you can run individually each script located in the [test scripts](https://github.com/RomainMaure/PixelBot/tree/main/src/test_scripts) folder.
+To do so, you can run individually each script located in the [test scripts](https://github.com/RomainMaure/PixelBot/tree/main/src/test_scripts) folder:
+
+```
+python3 <python_script_name>
+```
 
 ## ROS2 packages
 
