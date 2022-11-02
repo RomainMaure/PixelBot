@@ -17,7 +17,7 @@ You can also install all the dependencies and required software by yourself.
 To do so, on Raspberry Pi imager, select the *Raspberry Pi OS (other)* option. Then choose *Raspberry Pi OS (64-bit)* and write it on your microSD card. After the writing operation, you can plug the microSD card on your Raspberry Pi and start downloading the required dependencies. To do so, you can use the script `install.sh` by running in a terminal:
 
 ```
-chmod +x install.sh
+chmod +x install.sh # necessary ????????
 ./install.sh
 ```
 
