@@ -8,13 +8,20 @@ To setup the Raspberry Pi, you will need a microSD card of at least 32 GB and an
 
 You can setup the Raspberry Pi by using the custom image made for PixelBot. In this image, all the required dependencies are already installed.
 
-To do so, first download the image file (TODO: link to image file), then, on Raspberry Pi imager, select the *Use custom* option. Choose the previously downloaded image, select your storage device and click on *Write*. After the writing operation, you can plug the microSD card on your Raspberry Pi and you are ready to go.
+To do so, first download the image file (TODO: link to image file).
+To save space, the image has been shrinked using [PiSrink](https://github.com/Drewsif/PiShrink) and then compressed using [Gzip](https://www.gzip.org/). You will thus need to unzip the file. If you are using linux, you can use the following command:
+```
+gzip -dk rpi_setup_shrinked.img.gz
+```
+On windows you can use softwares to decompress the file such as [7zip](https://www.7-zip.org/).
+
+Then, on Raspberry Pi imager, select the *Use custom* option. Choose the previously downloaded and uncompressed image, select your storage device and click on *Write*. After the writing operation, you can plug the microSD card on your Raspberry Pi and you are ready to go.
 
 ### Installation from scratch
 
 You can also install all the dependencies and required software by yourself.
 
-To do so, on Raspberry Pi imager, select the *Raspberry Pi OS (other)* option. Then choose *Raspberry Pi OS (64-bit)* and write it on your microSD card. After the writing operation, you can plug the microSD card on your Raspberry Pi and start downloading the required dependencies. To do so, you can use the script `install.sh` by running in a terminal:
+To do so, on Raspberry Pi imager, select the *Raspberry Pi OS (other)* option. Then choose *Raspberry Pi OS (64-bit)* and write it on your microSD card. After the writing operation, you can plug the microSD card on your Raspberry Pi and start downloading the required dependencies. To do so, you can use the script [install.sh](https://github.com/RomainMaure/PixelBot/blob/main/src/install.sh) by running in a terminal:
 
 ```
 chmod +x install.sh
@@ -23,7 +30,7 @@ chmod +x install.sh
 
 Note: The robot has been tested under Raspbian Bullseye. 
 
-### Additional required steps
+### Additional steps
 
 - You might have to rotate the screen on the LCD display, to do so, you can open a terminal and run one of the following commands:
     ```
