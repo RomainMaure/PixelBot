@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 echo "===Installing ROS2 Humble==="
-curl -O https://raw.githubusercontent.com/Ar-Ray-code/rpi-bullseye-ros2/main/install.bash
+curl -O https://raw.githubusercontent.com/RomainMaure/rpi-bullseye-ros2/main/install.bash
 bash install.bash humble aarch64 0.2.0 /opt/ros
 
 echo "===Setting up a ROS2 workspace==="
@@ -28,6 +28,6 @@ sudo pip3 install pyttsx3
 sudo pip3 install SpeechRecognition
 
 # Activate legacy camera ????
-# Test avec forked ros2 install
+# Test avec forked ros2 install -> should be ok now
 # tester si besoin de modifier file audio
 # chmod +x necessary ?
