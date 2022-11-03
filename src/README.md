@@ -17,7 +17,7 @@ You can also install all the dependencies and required software by yourself.
 To do so, on Raspberry Pi imager, select the *Raspberry Pi OS (other)* option. Then choose *Raspberry Pi OS (64-bit)* and write it on your microSD card. After the writing operation, you can plug the microSD card on your Raspberry Pi and start downloading the required dependencies. To do so, you can use the script `install.sh` by running in a terminal:
 
 ```
-chmod +x install.sh # necessary ????????
+chmod +x install.sh
 ./install.sh
 ```
 
@@ -25,7 +25,21 @@ Note: The robot has been tested under Raspbian Bullseye.
 
 ### Additional required steps
 
-TODO
+- You might have to rotate the screen on the LCD display, to do so, you can open a terminal and run one of the following commands:
+    ```
+    # To rotate 90 degrees on the right
+    DISPLAY=:0 xrandr --output HDMI-1 --rotate right
+
+    # To rotate 90 degrees on the left
+    DISPLAY=:0 xrandr --output HDMI-1 --rotate left
+
+    # To rotate 180 degrees
+    DISPLAY=:0 xrandr --output HDMI-1 --rotate inverted
+
+    # To reset the rotation back to normal
+    DISPLAY=:0 xrandr --output HDMI-1 --rotate normal
+    ```
+    For more documentation, check the following [link](https://linuxhint.com/rotate-screen-in-raspberry-pi/).
 
 ## Testing scripts
 
