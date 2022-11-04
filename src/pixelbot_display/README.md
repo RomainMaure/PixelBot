@@ -10,9 +10,9 @@ This package allows to perform facial animations on PixelBot's LCD.
 
 ### License
 
-The whole package is under MIT License, see [LICENSE](https://github.com/RomainMaure/PixelBot/blob/main/LICENSE).
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-This README is based on the project [ros_best_practices](https://github.com/leggedrobotics/ros_best_practices), Copyright 2015-2017, Péter Fankhauser. It is licensed under the BSD 3-Clause Clear License.
+The whole package is under MIT License, see [LICENSE](https://github.com/RomainMaure/PixelBot/blob/main/LICENSE).
 
 **Author: Romain Maure<br />
 Affiliation: [CHILI Lab, EPFL](https://www.epfl.ch/labs/chili/)<br />
@@ -38,7 +38,7 @@ This is research code, expect that it changes often and any fitness for a partic
 
 1) Copy this package in your ROS2 workspace (e.g. `~/ros2_ws/src`).
 
-2) Build the package with ROS:
+2) Build the package with colcon:
     ```
     cd ~/ros2_ws
     colcon build --packages-select pixelbot_display

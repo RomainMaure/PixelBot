@@ -1,5 +1,7 @@
 # PixelBot
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 This repository contains the work undertaken during my master thesis at the Computer Human Interaction for Learning and Instruction (CHILI) laboratory, EPFL.
 
 The main contribution of my thesis is PixelBot: a low-cost and open source social robot which has been co-designed with and for children with the aim to teach them gender equality and respect.
