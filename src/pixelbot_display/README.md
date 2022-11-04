@@ -59,8 +59,6 @@ Display facial animations on the robot's LCD.
 
 #### Services
 
-TODO correct link to message definition
-
 * **`display_emotion`** ([pixelbot_msgs/DisplayEmotion](https://github.com/RomainMaure/PixelBot/blob/main/src/pixelbot_msgs/srv/DisplayEmotion.srv))
 
 	Perform the desired emotion on PixelBot's LCD. For example:
