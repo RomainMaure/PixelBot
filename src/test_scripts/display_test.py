@@ -11,8 +11,7 @@ def load_sequence(sequence_name, number_images, dim):
     sequence = []
 
     for i in range(number_images):
-        sequence.append(pygame.image.load("../../img/" + sequence_name + "/" \
-            + sequence_name + str(i) + ".png").convert_alpha())
+        sequence.append(pygame.image.load("../pixelbot_display/imgs/" + sequence_name + str(i) + ".png").convert_alpha())
 
     sequence = [pygame.transform.scale(img, dim) for img in sequence]
 
