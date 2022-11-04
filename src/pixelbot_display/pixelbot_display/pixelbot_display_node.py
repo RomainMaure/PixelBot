@@ -152,8 +152,6 @@ class Display(Node):
 
             if time.time() - self.start_time > 3:
                 self.current_emotion = self.HAPPY_BACKWARD
-                # self.counter_change_image_of_sequence = 0
-                # self.emotion_sequence_idx = 0
 
         elif self.current_emotion == self.HAPPY_BACKWARD:
             self.play_sequence(self.happy_backward_sequence)

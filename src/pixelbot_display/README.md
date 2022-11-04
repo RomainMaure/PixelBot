@@ -6,7 +6,7 @@ This package allows to perform facial animations on PixelBot's LCD.
 
 **Keywords:** facial animation, human-robot interaction, Pygame
 
-
+![Display example](../../imgs/display_example.png)
 
 ### License
 
@@ -28,7 +28,7 @@ This is research code, expect that it changes often and any fitness for a partic
 #### Dependencies
 
 - [Robot Operating System (ROS2)](https://docs.ros.org/en/humble/index.html) (middleware for robotics).
-- [pixelbot_msgs]() (TODO: correct link) for the custom ROS2 headers.
+- [pixelbot_msgs](https://github.com/RomainMaure/PixelBot/tree/main/src/pixelbot_msgs) for the custom ROS2 headers.
 - [Pygame](https://www.pygame.org/news) (Python game developping library) for the visual animation of the robot's emotions on its LCD.
     ```
 	sudo apt install python3-pygame
@@ -61,7 +61,7 @@ Display facial animations on the robot's LCD.
 
 TODO correct link to message definition
 
-* **`display_emotion`** ([pixelbot_msgs/DisplayEmotion](http://docs.ros.org/en/noetic/api/std_msgs/html/msg/String.html))
+* **`display_emotion`** ([pixelbot_msgs/DisplayEmotion](https://github.com/RomainMaure/PixelBot/blob/main/src/pixelbot_msgs/srv/DisplayEmotion.srv))
 
 	Perform the desired emotion on PixelBot's LCD. For example:
     ```
