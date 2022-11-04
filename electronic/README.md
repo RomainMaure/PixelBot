@@ -17,7 +17,7 @@
 
 ## Circuit schematic (using a breadboard)
 
-![Wiring diagram](https://github.com/RomainMaure/PixelBot/blob/main/electronic/wiring_diagram.png)
+![Wiring diagram](../imgs/wiring_diagram.png)
 
 ## Circuit schematic (using the PixelBot pcb)
 
@@ -29,7 +29,7 @@ To avoid all the wiring, it is also possible to use the Raspberry pi hat specifi
 | [20-pin female header, P=2.54mm](https://www.lcsc.com/product-detail/Female-Headers_ZHOURI-2-54-2-20_C2977589.html)  |        1        |
 | [4-pin male header, P=2.54mm](https://www.lcsc.com/product-detail/Pin-Headers_JST-Sales-America-RE-H042TD-1190-LF-SN_C265319.html)  |        2        |
 
-![PixelBot pi hat pcb](https://github.com/RomainMaure/PixelBot/blob/main/electronic/PixelBot_pi_hat_pcb.PNG)
+![PixelBot pi hat pcb](../imgs/PixelBot_pi_hat_pcb.png)
 
 ## Motor driver setting
 
