@@ -14,7 +14,8 @@ find_package(rosidl_default_generators REQUIRED)
 
 rosidl_generate_interfaces(${PROJECT_NAME}
   "srv/DisplayEmotion.srv"
-  DEPENDENCIES std_msgs # Add packages that above messages depend on, in this case std_msgs for DisplayEmotion.srv
+  "srv/MotorsMovement.srv"
+  DEPENDENCIES std_msgs # Add packages that above messages depend on
 )
 
 if(BUILD_TESTING)
