@@ -180,6 +180,7 @@ class Display(Node):
             self.next_emotion = self.EMOTION_STRING_TO_DEFINE[request.desired_emotion]
             response.success = True
         else:
+            self.get_logger().info("Error: requested emotion does not exist!")
             response.success = False
 
         return response
