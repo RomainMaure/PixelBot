@@ -71,6 +71,23 @@ Allows to control the motors of PixelBot.
     angles: [180, 0, 90, 135]"
     ```
 
+## Troubleshooting
+
+- **i2c permission error**:
+    ```
+    PermissionError: [Errno 13] Permission denied: '/dev/i2c-1'
+    ```
+
+    A quick fix is to run in a terminal:
+    ```
+    sudo chmod a+rw /dev/i2c-1
+    ```
+
+    However this is temporary which will be lost at next boot. To fix it permanently, you can run this command in a terminal and then reboot:
+    ```
+    sudo adduser pixelbot dialout
+    ```
+
 
 ## Bugs & Feature Requests
 
