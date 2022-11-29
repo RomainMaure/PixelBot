@@ -57,7 +57,7 @@ class Motors(Node):
 
         # Perform the requested movements if the arguments are valid
         for body_part, angle in zip(request.body_parts, request.angles):
-            self.kit.servo[self.MOTOR_STRING_TO_DEFINE[body_part]] = angle
+            self.kit.servo[self.MOTOR_STRING_TO_DEFINE[body_part]].angle = angle
 
         response.success = True
         return response
