@@ -15,8 +15,8 @@ setup(
     zip_safe=True,
     maintainer='maure',
     maintainer_email='romain.maure@epfl.ch',
-    description='TODO: Package description',
-    license='TODO: License declaration',
+    description='Package managing the audio capabilities of PixelBot',
+    license='MIT',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
