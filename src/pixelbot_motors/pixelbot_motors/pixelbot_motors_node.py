@@ -34,8 +34,8 @@ class Motors(Node):
         Service handler allowing to perform the desired movemement
         of given motors.
 
-        :param request: See MotorsMovement message definition.
-        :param response: See MotorsMovement message definition.
+        :param request: See MotorsMovement service definition.
+        :param response: See MotorsMovement service definition.
         """
 
         # Check request arguments

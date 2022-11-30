@@ -172,8 +172,8 @@ class Display(Node):
         """
         Service handler allowing to perform a desired emotion.
 
-        :param request: See DisplayEmotion message definition.
-        :param response: See DisplayEmotion message definition.
+        :param request: See DisplayEmotion service definition.
+        :param response: See DisplayEmotion service definition.
         """
 
         if request.desired_emotion in self.EMOTION_STRING_TO_DEFINE.keys():
