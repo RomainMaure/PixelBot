@@ -131,3 +131,5 @@ dmypy.json
 # Specific to the project
 *.jpg
 *.pxo
+*.wav
+*.mp3
