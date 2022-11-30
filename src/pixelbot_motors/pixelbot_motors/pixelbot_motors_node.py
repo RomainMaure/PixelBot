@@ -70,7 +70,7 @@ def main(args=None):
 
     rclpy.spin(motors_node)
 
-    motors_node.destroy_node() ########
+    motors_node.destroy_node()
     rclpy.shutdown()
 
 
