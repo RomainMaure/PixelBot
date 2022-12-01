@@ -4,7 +4,7 @@
 
 This package allows PixelBot to speak. 
 
-**Keywords:**  human-robot interaction, audio communication
+**Keywords:**  human-robot interaction, audio communication, voice synthesis
 
 ### License
 
@@ -27,11 +27,20 @@ This is research code, expect that it changes often and any fitness for a partic
 
 - [Robot Operating System (ROS2)](https://docs.ros.org/en/humble/index.html) (middleware for robotics).
 - [pixelbot_msgs](https://github.com/RomainMaure/PixelBot/tree/main/src/pixelbot_msgs) for the custom ROS2 headers.
-- [Pygame](https://www.pygame.org/news) (Python game developping library) for the visual animation of the robot's emotions on its LCD.
+- [Pyttsx3](https://pypi.org/project/pyttsx3/) and [gTTS](https://pypi.org/project/gTTS/): two text to speech libraries for Python.
     ```
-	sudo apt install python3-pygame
+	sudo pip3 install pyttsx3
+    sudo pip3 install gTTS
+    ```    
+- [Playsound](https://pypi.org/project/playsound/), [Pydub](https://pypi.org/project/pydub/), [PyAudio](https://pypi.org/project/PyAudio/), [FFmpeg](https://ffmpeg.org/), [eSpeak](https://doc.ubuntu-fr.org/espeak) and [Flac](https://doc.ubuntu-fr.org/flac): a set of audio related libraries.
     ```
-    TO COMPLETE
+    sudo pip3 install playsound
+    sudo pip3 install pydub
+    sudo apt install python3-pyaudio
+    sudo apt install ffmpeg
+    sudo apt install espeak
+    sudo apt-get install flac
+    ```
 
 #### Building
 
@@ -58,15 +67,41 @@ Allows PixelBot to speak.
 
 #### Services
 
-TO COMPLETE
+* **`speak`** ([pixelbot_msgs/SetSpeech](https://github.com/RomainMaure/PixelBot/blob/main/src/pixelbot_msgs/srv/SetSpeech.srv))
 
-* **`display_emotion`** ([pixelbot_msgs/DisplayEmotion](https://github.com/RomainMaure/PixelBot/blob/main/src/pixelbot_msgs/srv/DisplayEmotion.srv))
-
-	Perform the desired emotion on PixelBot's LCD. For example:
+	Make PixelBot speak:
     ```
-	ros2 service call /display_emotion pixelbot_msgs/DisplayEmotion "desired_emotion: 'happy'"
+	ros2 service call /speak pixelbot_msgs/SetSpeech "message: 'Bonjour, je m'appelle PixelBot.'"
     ```
 
+* **`change_voice_alteration`** ([pixelbot_msgs/SetVoiceAlteration](https://github.com/RomainMaure/PixelBot/blob/main/src/pixelbot_msgs/srv/SetVoiceAlteration.srv))
+
+	Allows to enable or disable voice alteration (robotic like voice):
+    ```
+    # Enable voice alteration
+	ros2 service call /change_voice_alteration pixelbot_msgs/SetVoiceAlteration "is_voice_altered: true"
+    ```
+    ```
+    # Disable voice alteration
+	ros2 service call /change_voice_alteration pixelbot_msgs/SetVoiceAlteration "is_voice_altered: false"
+    ```
+
+* **`change_language`** ([pixelbot_msgs/SetLanguage](https://github.com/RomainMaure/PixelBot/blob/main/src/pixelbot_msgs/srv/SetLanguage.srv))
+
+	Allows to specify the language to be spoken (french or english):
+    ```
+    # Change to english
+	ros2 service call /change_language pixelbot_msgs/SetLanguage "language: 'english'"
+    ```
+    ```
+    # Change to french
+	ros2 service call /change_language pixelbot_msgs/SetLanguage "language: 'french'"
+    ```
+
+## Troubleshooting
+
+- [gTTS](https://pypi.org/project/gTTS/) is a Python library and CLI tool to interface with Google Translate's text-to-speech API. Internet connectivity is thus required to make it work, as opposed to [Pyttsx3](https://pypi.org/project/pyttsx3/) which can work offline.
+- The speaker needs to turned on manually when starting the activity and turned off after the activity. It also needs to be recharged regurlarly.
 
 ## Bugs & Feature Requests
 
