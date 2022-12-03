@@ -39,7 +39,7 @@ class Audio(Node):
         # Language to use
         self.language = 'fr'
 
-    def speak_callback(self, request):
+    def speak_callback(self, request, response):
         """
         Service handler allowing PixelBot to speak.
 
@@ -64,6 +64,8 @@ class Audio(Node):
         else:
             self.tts_engine.say(request.message)
             self.tts_engine.runAndWait()
+
+        return response
 
     def diode(self, signalArray):
         """
@@ -121,7 +123,7 @@ class Audio(Node):
         # Save the signal
         sc.write('alteredVoice.wav', 22050, np.int16(output))
 
-    def change_voice_alteration_callback(self, request):
+    def change_voice_alteration_callback(self, request, response):
         """
         Service handler to specify if the voice should be altered or not
 
@@ -130,6 +132,8 @@ class Audio(Node):
         """
 
         self.altered_voice = request.is_voice_altered
+
+        return response
 
     def change_language_callback(self, request, response):
         """

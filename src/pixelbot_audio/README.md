@@ -71,7 +71,7 @@ Allows PixelBot to speak.
 
 	Make PixelBot speak:
     ```
-	ros2 service call /speak pixelbot_msgs/SetSpeech "message: 'Bonjour, je m'appelle PixelBot.'"
+	ros2 service call /speak pixelbot_msgs/SetSpeech "message: 'Bonjour, je suis PixelBot.'"
     ```
 
 * **`change_voice_alteration`** ([pixelbot_msgs/SetVoiceAlteration](https://github.com/RomainMaure/PixelBot/blob/main/src/pixelbot_msgs/srv/SetVoiceAlteration.srv))
