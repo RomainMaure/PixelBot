@@ -9,8 +9,8 @@ from gpiozero import Button
 class Buttons(Node):
 
     # Defines
-    RIGHT_BUTTON_PIN = 5
-    LEFT_BUTTON_PIN = 13
+    RIGHT_BUTTON_PIN = 13
+    LEFT_BUTTON_PIN = 5
 
     def __init__(self):
         super().__init__('pixelbot_buttons_node')
