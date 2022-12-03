@@ -26,7 +26,7 @@ All parts can be printed in PLA.
 | M2x6 screw    |        4        |
 | M2x8 screw    |        4        |
 | M2x20 screw    |        8        |
-| M3x8 screw    |        12        |
+| M3x8 screw    |        15        |
 | M3x12 screw    |        8        |
 | M3x30 screw    |        6        |
 | M2 nut    |        8        |
