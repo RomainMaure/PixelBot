@@ -2,6 +2,7 @@ import rclpy
 from rclpy.node import Node
 
 from pixelbot_msgs.srv import DisplayEmotion
+from pixelbot_msgs.srv import DisplayLocation
 
 from ament_index_python import get_package_share_directory
 
@@ -18,8 +19,10 @@ class Display(Node):
     ANGRY_NUMBER_IMAGES = 5
     SAD_NUMBER_IMAGES = 5
     SURPRISE_NUMBER_IMAGES = 6
+    LOCATIONS_NUMBER_IMAGES = 4
     BLINKING, FORWARD, BACKWARD = 0, 1, 2
     AVAILABLE_EMOTIONS = ["happy", "angry", "sad", "surprise"]
+    STRING_LOCATIONS_TO_IDX = {"flat": 0, "ski": 1, "nasa": 2, "judge": 3}
     COUNT_CHANGE_IMAGE_OF_SEQUENCE = 2
     COUNT_TRIGGER_BLINKING_SEQUENCE = 180
 
@@ -32,6 +35,9 @@ class Display(Node):
 
         # Service to perform desired emotion
         self.emotion_srv = self.create_service(DisplayEmotion, 'display_emotion', self.emotion_callback)
+
+        # Service to display desired location
+        self.location_srv = self.create_service(DisplayLocation, 'display_location', self.location_callback)
 
         # Initialize Pygame
         pygame.init()
@@ -67,6 +73,9 @@ class Display(Node):
         self.surprise_forward_sequence = self.load_sequence("surprise", self.SURPRISE_NUMBER_IMAGES, dimensions)
         self.surprise_backward_sequence = list(reversed(self.surprise_forward_sequence))
 
+        # Load location images
+        self.location_sequence = self.load_sequence("locations", self.LOCATIONS_NUMBER_IMAGES, dimensions)
+
         # Initial image on window
         self.window.blit(self.blink_sequence[0], (0, 0))
 
@@ -83,6 +92,7 @@ class Display(Node):
         self.is_performing_emotion = False
         self.counter_trigger_blinking_sequence = 0
         self.start_time = time.time()
+        self.desired_location = None
 
         self.current_emotion_to_emotion_sequence = {("happy", self.FORWARD): self.happy_forward_sequence,
                                                     ("happy", self.BACKWARD): self.happy_backward_sequence,
@@ -157,8 +167,15 @@ class Display(Node):
             self.previous_emotion = self.current_emotion
             self.previous_emotion_type = self.emotion_type
 
+        # Location display
+        if self.desired_location is not None:
+            if time.time() - self.start_time > 8:
+                self.desired_location = None
+                self.counter_trigger_blinking_sequence = 0
+                self.window.blit(self.blink_sequence[0], (0, 0))
+
         # Emotions display 
-        if self.emotion_type == self.BLINKING:
+        elif self.emotion_type == self.BLINKING:
             self.counter_trigger_blinking_sequence += 1
 
             if self.counter_trigger_blinking_sequence == self.COUNT_TRIGGER_BLINKING_SEQUENCE:
@@ -212,6 +229,25 @@ class Display(Node):
             response.success = True
         else:
             self.get_logger().info("Error: requested emotion does not exist!")
+            response.success = False
+
+        return response
+
+    def location_callback(self, request, response):
+        """
+        Service handler allowing to display the desired location.
+
+        :param request: See DisplayLocation service definition.
+        :param response: See DisplayLocation service definition.
+        """
+
+        if request.desired_location in self.STRING_LOCATIONS_TO_IDX.keys():
+            self.desired_location = request.desired_location
+            self.window.blit(self.location_sequence[self.STRING_LOCATIONS_TO_IDX[self.desired_location]], (0, 0))
+            self.start_time = time.time()
+            response.success = True
+        else:
+            self.get_logger().info("Error: requested location does not exist!")
             response.success = False
 
         return response

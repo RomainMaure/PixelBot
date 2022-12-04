@@ -66,6 +66,8 @@ Display facial animations on the robot's LCD.
 	ros2 service call /display_emotion pixelbot_msgs/DisplayEmotion "desired_emotion: 'happy'"
     ```
 
+    Available emotions: "happy", "angry", "sad", "surprise".
+
 
 ## Bugs & Feature Requests
 
