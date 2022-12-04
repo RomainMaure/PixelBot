@@ -52,7 +52,7 @@ is_blinking = False
 count_blinking = 0
 
 # Happy sequence
-HAPPY_NUMBER_IMAGES = 5
+HAPPY_NUMBER_IMAGES = 6
 
 # General use
 FPS = 100
