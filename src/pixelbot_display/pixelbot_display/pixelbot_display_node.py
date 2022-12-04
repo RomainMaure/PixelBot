@@ -14,11 +14,14 @@ class Display(Node):
 
     # Defines
     BLINK_NUMBER_IMAGES = 5
-    HAPPY_NUMBER_IMAGES = 5
-    BLINKING, HAPPY_FORWARD, HAPPY_BACKWARD = 0, 1, 2
+    HAPPY_NUMBER_IMAGES = 6
+    ANGRY_NUMBER_IMAGES = 5
+    SAD_NUMBER_IMAGES = 5
+    SURPRISE_NUMBER_IMAGES = 6
+    BLINKING, FORWARD, BACKWARD = 0, 1, 2
+    AVAILABLE_EMOTIONS = ["happy", "angry", "sad", "surprise"]
     COUNT_CHANGE_IMAGE_OF_SEQUENCE = 2
     COUNT_TRIGGER_BLINKING_SEQUENCE = 180
-    EMOTION_STRING_TO_DEFINE = {"happy": HAPPY_FORWARD}
 
     def __init__(self):
         super().__init__('pixelbot_display_node')
@@ -52,19 +55,43 @@ class Display(Node):
         self.happy_forward_sequence = self.load_sequence("happy", self.HAPPY_NUMBER_IMAGES, dimensions)
         self.happy_backward_sequence = list(reversed(self.happy_forward_sequence))
 
+        # Load angry image sequences
+        self.angry_forward_sequence = self.load_sequence("angry", self.ANGRY_NUMBER_IMAGES, dimensions)
+        self.angry_backward_sequence = list(reversed(self.angry_forward_sequence))
+
+        # Load sad image sequences
+        self.sad_forward_sequence = self.load_sequence("sad", self.SAD_NUMBER_IMAGES, dimensions)
+        self.sad_backward_sequence = list(reversed(self.sad_forward_sequence))
+
+        # Load surprise image sequences
+        self.surprise_forward_sequence = self.load_sequence("surprise", self.SURPRISE_NUMBER_IMAGES, dimensions)
+        self.surprise_backward_sequence = list(reversed(self.surprise_forward_sequence))
+
         # Initial image on window
         self.window.blit(self.blink_sequence[0], (0, 0))
 
         # General purpose variables
         self.should_display = True
-        self.current_emotion = self.BLINKING
-        self.previous_emotion = self.BLINKING
+        self.current_emotion = "blinking"
+        self.previous_emotion = "blinking"
         self.next_emotion = None
+        self.emotion_type = self.BLINKING
+        self.previous_emotion_type = self.BLINKING
+        self.current_sequence = self.blink_sequence
         self.counter_change_image_of_sequence = 0
         self.emotion_sequence_idx = 0
         self.is_performing_emotion = False
         self.counter_trigger_blinking_sequence = 0
         self.start_time = time.time()
+
+        self.current_emotion_to_emotion_sequence = {("happy", self.FORWARD): self.happy_forward_sequence,
+                                                    ("happy", self.BACKWARD): self.happy_backward_sequence,
+                                                    ("angry", self.FORWARD): self.angry_forward_sequence,
+                                                    ("angry", self.BACKWARD): self.angry_backward_sequence,
+                                                    ("sad", self.FORWARD): self.sad_forward_sequence,
+                                                    ("sad", self.BACKWARD): self.sad_backward_sequence,
+                                                    ("surprise", self.FORWARD): self.surprise_forward_sequence,
+                                                    ("surprise", self.BACKWARD): self.surprise_backward_sequence,}
 
     def load_sequence(self, sequence_name, number_images, dim):
         """
@@ -124,13 +151,14 @@ class Display(Node):
                 self.should_display = False
 
         # Reset variables for emotion display
-        if self.previous_emotion != self.current_emotion:
+        if self.previous_emotion != self.current_emotion or self.previous_emotion_type != self.emotion_type:
             self.counter_change_image_of_sequence = 0
             self.emotion_sequence_idx = 0
             self.previous_emotion = self.current_emotion
+            self.previous_emotion_type = self.emotion_type
 
         # Emotions display 
-        if self.current_emotion == self.BLINKING:
+        if self.emotion_type == self.BLINKING:
             self.counter_trigger_blinking_sequence += 1
 
             if self.counter_trigger_blinking_sequence == self.COUNT_TRIGGER_BLINKING_SEQUENCE:
@@ -144,25 +172,28 @@ class Display(Node):
                     self.emotion_sequence_idx = 0
                     self.is_performing_emotion = False
 
-        elif self.current_emotion == self.HAPPY_FORWARD:
+        elif self.emotion_type == self.FORWARD:
+            self.current_sequence = self.current_emotion_to_emotion_sequence[(self.current_emotion, self.FORWARD)]
             if self.counter_change_image_of_sequence == 0 and self.emotion_sequence_idx == 0:
                 self.start_time = time.time()
 
-            self.play_sequence(self.happy_forward_sequence)
+            self.play_sequence(self.current_sequence)
 
             if time.time() - self.start_time > 3:
-                self.current_emotion = self.HAPPY_BACKWARD
+                self.emotion_type = self.BACKWARD
 
-        elif self.current_emotion == self.HAPPY_BACKWARD:
-            self.play_sequence(self.happy_backward_sequence)
+        elif self.emotion_type == self.BACKWARD:
+            self.current_sequence = self.current_emotion_to_emotion_sequence[(self.current_emotion, self.BACKWARD)]
+            self.play_sequence(self.current_sequence)
 
-            if self.emotion_sequence_idx == len(self.happy_backward_sequence) - 1:
-                self.current_emotion = self.BLINKING
+            if self.emotion_sequence_idx == len(self.current_sequence) - 1:
+                self.emotion_type = self.BLINKING
                 self.is_performing_emotion = False
 
         # Emotion requests handling
         if self.next_emotion is not None and not self.is_performing_emotion:
             self.is_performing_emotion = True
+            self.emotion_type = self.FORWARD
             self.current_emotion = self.next_emotion
             self.next_emotion = None
 
@@ -176,8 +207,8 @@ class Display(Node):
         :param response: See DisplayEmotion service definition.
         """
 
-        if request.desired_emotion in self.EMOTION_STRING_TO_DEFINE.keys():
-            self.next_emotion = self.EMOTION_STRING_TO_DEFINE[request.desired_emotion]
+        if request.desired_emotion in self.AVAILABLE_EMOTIONS:
+            self.next_emotion = request.desired_emotion
             response.success = True
         else:
             self.get_logger().info("Error: requested emotion does not exist!")
