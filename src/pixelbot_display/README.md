@@ -6,7 +6,7 @@ This package allows to perform facial animations on PixelBot's LCD.
 
 **Keywords:** facial animation, human-robot interaction, Pygame
 
-![Display example](../../imgs/display_example.png)
+![Display example](../../imgs/emotion_example.png)
 
 ### License
 
