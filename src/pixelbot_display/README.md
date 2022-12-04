@@ -68,6 +68,14 @@ Display facial animations on the robot's LCD.
 
     Available emotions: "happy", "angry", "sad", "surprise".
 
+* **`display_location`** ([pixelbot_msgs/DisplayLocation](https://github.com/RomainMaure/PixelBot/blob/main/src/pixelbot_msgs/srv/DisplayLocation.srv))
+
+	Display the desired location on PixelBot's LCD. For example:
+    ```
+	ros2 service call /display_location pixelbot_msgs/DisplayLocation "desired_location: 'ski'"
+    ```
+
+    Available locations: "flat", "ski", "nasa", "judge".
 
 ## Bugs & Feature Requests
 
