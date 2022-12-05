@@ -3,9 +3,14 @@
 <package format="3">
   <name>pixelbot_interaction</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
+  <description>Package taking care of the educative interaction</description>
   <maintainer email="romain.maure@epfl.ch">maure</maintainer>
-  <license>TODO: License declaration</license>
+  <license>MIT</license>
+
+  <depend>std_msgs</depend>
+  <exec_depend>pixelbot_msgs</exec_depend>
+
+  <exec_depend>ros2launch</exec_depend>
 
   <test_depend>ament_copyright</test_depend>
   <test_depend>ament_flake8</test_depend>
