@@ -9,6 +9,8 @@ from pixelbot_msgs.srv import SetSpeech
 
 from ament_index_python import get_package_share_directory
 
+import time
+
 
 class Interaction(Node):
 
@@ -32,6 +34,7 @@ class Interaction(Node):
                 self.get_logger().info(f'{client.srv_name} service not available, waiting again...')
 
         # Create subscriber to buttons state
+        self.buttons_changed_state = False
         self.right_button_state = 0
         self.left_button_state = 0
         self.buttons_state_subscription = self.create_subscription(UInt8MultiArray,
@@ -46,7 +49,10 @@ class Interaction(Node):
 
     def send_display_emotion_request(self, desired_emotion):
         """
-        
+        Send a request to the display_emotion service server.
+
+        :param desired_emotion: String to specify which emotion
+                                should be displayed.
         """
 
         self.request = DisplayEmotion.Request()
@@ -59,7 +65,10 @@ class Interaction(Node):
 
     def send_display_location_request(self, desired_location):
         """
-        
+        Send a request to the display_location service server.
+
+        :param desired_location: String to specify which location
+                                 should be displayed.
         """
 
         self.request = DisplayLocation.Request()
@@ -72,7 +81,9 @@ class Interaction(Node):
 
     def send_speak_request(self, message):
         """
-        
+        Send a request to the speak service server.
+
+        :param message: String to specify the text to be spoken by PixelBot.
         """
 
         self.request = SetSpeech.Request()
@@ -85,8 +96,14 @@ class Interaction(Node):
 
     def on_buttons_state_update(self, msg):
         """
-        
+        Callback cheching if the buttons were pressed and updating their state.
+
+        :param msg: Message of type UInt8MultiArray containing the state of each button.
         """
+
+        if (self.right_button_state == 0 and msg.data[self.RIGHT_BUTTON] == 1) or \
+           (self.left_button_state == 0 and msg.data[self.LEFT_BUTTON] == 1):
+           self.buttons_changed_state = True
 
         self.right_button_state = msg.data[self.RIGHT_BUTTON]
         self.left_button_state = msg.data[self.LEFT_BUTTON]
@@ -107,7 +124,11 @@ class Interaction(Node):
         # arm movement cli request
 
         _ = self.send_speak_request(self.story[6])
+
         # wait for button state change
+        while not self.buttons_changed_state:
+            time.sleep(1/30)
+        self.buttons_changed_state = False
 
         _ = self.send_speak_request(self.story[7])
         _ = self.send_display_location_request("flat")

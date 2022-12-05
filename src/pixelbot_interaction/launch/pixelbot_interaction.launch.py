@@ -20,4 +20,3 @@ def generate_launch_description():
             executable='pixelbot_interaction_node'
         )
     ])
-    
