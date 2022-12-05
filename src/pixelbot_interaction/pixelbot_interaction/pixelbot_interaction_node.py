@@ -2,6 +2,7 @@ import rclpy
 from rclpy.node import Node
 
 from std_msgs.msg import UInt8MultiArray
+from std_srvs.srv import Empty
 
 from pixelbot_msgs.srv import DisplayEmotion
 from pixelbot_msgs.srv import DisplayLocation
@@ -28,8 +29,12 @@ class Interaction(Node):
         # Create client to make PixelBot speak
         self.speak_cli = self.create_client(SetSpeech, 'speak')
 
+        # Create client to perform arm walking movement
+        self.walking_movement_cli = self.create_client(Empty, 'walking_movement')
+
         # Wait for the clients to be ready
-        for client in [self.display_emotion_cli, self.display_location_cli, self.speak_cli]:
+        for client in [self.display_emotion_cli, self.display_location_cli, \
+                       self.speak_cli, self.walking_movement_cli]:
             while not client.wait_for_service(timeout_sec=1.0):
                 self.get_logger().info(f'{client.srv_name} service not available, waiting again...')
 
@@ -94,6 +99,18 @@ class Interaction(Node):
         
         return self.future.result()
 
+    def send_walking_movement_request(self):
+        """
+        Send a request to the walking_movement service server.
+        """
+
+        self.request = Empty.Request()
+
+        self.future = self.walking_movement_cli.call_async(self.request)
+        rclpy.spin_until_future_complete(self, self.future)
+
+        return self.future.result()
+
     def on_buttons_state_update(self, msg):
         """
         Callback cheching if the buttons were pressed and updating their state.
@@ -131,6 +148,7 @@ class Interaction(Node):
         self.buttons_changed_state = False
 
         _ = self.send_speak_request(self.story[7])
+        _ = self.send_walking_movement_request()
         _ = self.send_display_location_request("flat")
 
         _ = self.send_speak_request(self.story[8])

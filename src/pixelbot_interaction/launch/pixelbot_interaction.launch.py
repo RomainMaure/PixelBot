@@ -16,6 +16,10 @@ def generate_launch_description():
             executable='pixelbot_buttons_node'
         ),
         Node(
+            package='pixelbot_motors',
+            executable='pixelbot_motors_node'
+        ),
+        Node(
             package='pixelbot_interaction',
             executable='pixelbot_interaction_node'
         )

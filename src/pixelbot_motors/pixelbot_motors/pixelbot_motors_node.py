@@ -1,8 +1,12 @@
 import rclpy
 from rclpy.node import Node
 
-from pixelbot_msgs.srv import MotorsMovement
+from std_srvs.srv import Empty
 
+from pixelbot_msgs.srv import MotorsMovement
+from pixelbot_msgs.srv import DisplayEmotion
+
+import time
 from adafruit_servokit import ServoKit
 
 
@@ -21,9 +25,16 @@ class Motors(Node):
         # Service to perform the desired movement of given motors
         self.motors_movement_srv = self.create_service(MotorsMovement, 'motors_movement', self.motors_movement_callback)
 
+        # Service to perform a slow movement of given motors
+        #self.slow_motors_movement_srv = self.create_service(MotorsMovement, 'slow_motors_movement', self.slow_motors_movement_callback)
+
         # Service to perform walking movement
+        self.walking_movement_srv = self.create_service(Empty, 'walking_movement', self.walking_movement_callback)
+
+        # Service to perform hand waving movement !!!!!!!!!!!!
 
         # Service to perform emotion with antennae movements
+        self.emotion_antennae_movement_srv = self.create_service(DisplayEmotion, 'emotion_antennae_movement', self.emotion_antennae_movement_callback)
 
         # Servokit object
         self.kit = ServoKit(channels=16)
@@ -61,6 +72,42 @@ class Motors(Node):
 
         response.success = True
         return response
+
+    def walking_movement_callback(self, request, response):
+        """
+        Service handler allowing to perform a walking gesture.
+        Assume the initial motor position is a 90 degrees i.e.
+        the arms are in a vertical position.
+        """
+
+        start_time = time.time()
+
+        while time.time() - start_time < 8:
+            for angle in range(45):
+                self.kit.servo[self.RIGHT_ARM].angle =  90 + angle
+                self.kit.servo[self.LEFT_ARM].angle = 90 + angle
+                time.sleep(0.01)
+            for angle in range(45):
+                self.kit.servo[self.RIGHT_ARM].angle =  135 - angle
+                self.kit.servo[self.LEFT_ARM].angle = 135 - angle
+                time.sleep(0.01)
+            for angle in range(45):
+                self.kit.servo[self.RIGHT_ARM].angle =  90 - angle
+                self.kit.servo[self.LEFT_ARM].angle = 90 - angle
+                time.sleep(0.01)
+            for angle in range(45):
+                self.kit.servo[self.RIGHT_ARM].angle =  45 + angle
+                self.kit.servo[self.LEFT_ARM].angle = 45 + angle
+                time.sleep(0.01)
+
+        return response
+
+    def emotion_antennae_movement_callback(self, request, response):
+        """
+        
+        """
+
+        pass
 
 
 def main(args=None):
