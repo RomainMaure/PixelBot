@@ -87,9 +87,9 @@ class Motors(Node):
             self.kit.servo[self.RIGHT_ARM].angle = 45
             self.kit.servo[self.LEFT_ARM].angle = 45
             time.sleep(0.5)
-            self.kit.servo[self.RIGHT_ARM].angle = 90
-            self.kit.servo[self.LEFT_ARM].angle = 90
-            time.sleep(0.5)
+
+        self.kit.servo[self.RIGHT_ARM].angle = 90
+        self.kit.servo[self.LEFT_ARM].angle = 90
 
         return response
 
@@ -117,10 +117,55 @@ class Motors(Node):
 
     def emotion_antennae_movement_callback(self, request, response):
         """
-        
+        Service handler performing antennae movements for emotions.
+
+        :param request: See DisplayEmotion service definition.
+        :param response: See DisplayEmotion service definition.
         """
 
-        pass
+        # Check request argument
+        if request.desired_emotion not in ["happy", "angry", "sad", "surprise"]:
+            self.get_logger().info("Error: requested emotion does not exist!")
+            response.success = False
+        
+        # Perform the requested movements if the arguments are valid
+        else:
+            response.success = True
+
+            if request.desired_emotion == "happy":
+                start_time = time.time()
+                while time.time() - start_time < 3:
+                    self.kit.servo[self.RIGHT_ANTENNA].angle = 100
+                    self.kit.servo[self.LEFT_ANTENNA].angle = 100
+                    time.sleep(0.5)
+                    self.kit.servo[self.RIGHT_ANTENNA].angle = 80
+                    self.kit.servo[self.LEFT_ANTENNA].angle = 80
+                    time.sleep(0.5)
+
+            elif request.desired_emotion == "angry":
+                start_time = time.time()
+                while time.time() - start_time < 3:
+                    self.kit.servo[self.RIGHT_ANTENNA].angle = 80
+                    self.kit.servo[self.LEFT_ANTENNA].angle = 100
+                    time.sleep(0.5)
+                    self.kit.servo[self.RIGHT_ANTENNA].angle = 100
+                    self.kit.servo[self.LEFT_ANTENNA].angle = 80
+                    time.sleep(0.5)
+
+            elif request.desired_emotion == "sad":
+                self.kit.servo[self.RIGHT_ANTENNA].angle = 170
+                self.kit.servo[self.LEFT_ANTENNA].angle = 10
+                time.sleep(3)
+
+            elif request.desired_emotion == "surprise":
+                self.kit.servo[self.RIGHT_ANTENNA].angle = 100
+                self.kit.servo[self.LEFT_ANTENNA].angle = 80
+                time.sleep(3)
+
+            self.kit.servo[self.RIGHT_ANTENNA].angle = 90
+            self.kit.servo[self.LEFT_ANTENNA].angle = 90
+
+        return response
 
 
 def main(args=None):

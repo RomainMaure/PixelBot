@@ -85,6 +85,15 @@ Allows to control the motors of PixelBot.
 	ros2 service call /hand_waving std_srvs/srv/Empty 
     ```
 
+* **`emotion_antennae_movement`** ([pixelbot_msgs/DisplayEmotion](https://github.com/RomainMaure/PixelBot/blob/main/src/pixelbot_msgs/srv/DisplayEmotion.srv))
+
+	Perform antennae movements to show emotions. For example:
+    ```
+	ros2 service call /emotion_antennae_movement pixelbot_msgs/DisplayEmotion "desired_emotion: 'happy'"
+    ```
+
+    Available emotions: "happy", "angry", "sad", "surprise".
+
 ## Troubleshooting
 
 - **i2c permission error**:
