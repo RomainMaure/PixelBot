@@ -153,13 +153,13 @@ class Motors(Node):
                     time.sleep(0.5)
 
             elif request.desired_emotion == "sad":
-                self.kit.servo[self.RIGHT_ANTENNA].angle = 170
-                self.kit.servo[self.LEFT_ANTENNA].angle = 10
+                self.kit.servo[self.RIGHT_ANTENNA].angle = 10
+                self.kit.servo[self.LEFT_ANTENNA].angle = 170
                 time.sleep(3)
 
             elif request.desired_emotion == "surprise":
-                self.kit.servo[self.RIGHT_ANTENNA].angle = 100
-                self.kit.servo[self.LEFT_ANTENNA].angle = 80
+                self.kit.servo[self.RIGHT_ANTENNA].angle = 70
+                self.kit.servo[self.LEFT_ANTENNA].angle = 110
                 time.sleep(3)
 
             self.kit.servo[self.RIGHT_ANTENNA].angle = 90
