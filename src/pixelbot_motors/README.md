@@ -78,6 +78,13 @@ Allows to control the motors of PixelBot.
 	ros2 service call /walking_movement std_srvs/srv/Empty 
     ```
 
+* **`hand_waving`** ([std_srvs/Empty](http://docs.ros.org/en/noetic/api/std_srvs/html/srv/Empty.html))
+
+	Perform a hand waving gesture with the right arm. For example:
+    ```
+	ros2 service call /hand_waving std_srvs/srv/Empty 
+    ```
+
 ## Troubleshooting
 
 - **i2c permission error**:

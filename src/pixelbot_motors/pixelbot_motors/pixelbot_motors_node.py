@@ -28,7 +28,8 @@ class Motors(Node):
         # Service to perform walking movement
         self.walking_movement_srv = self.create_service(Empty, 'walking_movement', self.walking_movement_callback)
 
-        # Service to perform hand waving movement !!!!!!!!!!!!
+        # Service to perform hand waving movement
+        self.hand_waving_srv = self.create_service(Empty, 'hand_waving', self.hand_waving_callback)
 
         # Service to perform emotion with antennae movements
         self.emotion_antennae_movement_srv = self.create_service(DisplayEmotion, 'emotion_antennae_movement', self.emotion_antennae_movement_callback)
@@ -39,7 +40,7 @@ class Motors(Node):
     
     def motors_movement_callback(self, request, response):
         """
-        Service handler allowing to perform the desired movemement
+        Service handler performing the desired movemement
         of given motors.
 
         :param request: See MotorsMovement service definition.
@@ -72,14 +73,14 @@ class Motors(Node):
 
     def walking_movement_callback(self, request, response):
         """
-        Service handler allowing to perform a walking gesture.
+        Service handler performing a walking gesture.
         Assume the initial motor position is a 90 degrees i.e.
         the arms are in a vertical position.
         """
 
         start_time = time.time()
 
-        while time.time() - start_time < 5:
+        while time.time() - start_time < 4:
             self.kit.servo[self.RIGHT_ARM].angle = 135
             self.kit.servo[self.LEFT_ARM].angle = 135
             time.sleep(0.5)
@@ -89,6 +90,28 @@ class Motors(Node):
             self.kit.servo[self.RIGHT_ARM].angle = 90
             self.kit.servo[self.LEFT_ARM].angle = 90
             time.sleep(0.5)
+
+        return response
+
+    def hand_waving_callback(self, request, response):
+        """
+        Service handler performing a hand waving gesture with the right arm.
+        Assume the initial motor position is a 90 degrees i.e.
+        the arm is in a vertical position.
+        """
+        
+        self.kit.servo[self.RIGHT_ARM].angle = 165
+        time.sleep(0.5)
+
+        start_time = time.time()
+
+        while time.time() - start_time < 4:
+            self.kit.servo[self.RIGHT_ARM].angle = 175
+            time.sleep(0.5)
+            self.kit.servo[self.RIGHT_ARM].angle = 155
+            time.sleep(0.5)
+
+        self.kit.servo[self.RIGHT_ARM].angle = 90
 
         return response
 
