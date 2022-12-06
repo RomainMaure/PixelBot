@@ -12,10 +12,6 @@ def generate_launch_description():
             executable='pixelbot_audio_node'
         ),
         Node(
-            package='pixelbot_buttons',
-            executable='pixelbot_buttons_node'
-        ),
-        Node(
             package='pixelbot_motors',
             executable='pixelbot_motors_node'
         ),

@@ -1,7 +1,6 @@
 import rclpy
 from rclpy.node import Node
 
-from std_msgs.msg import UInt8MultiArray
 from std_srvs.srv import Empty
 
 from pixelbot_msgs.srv import DisplayEmotion
@@ -10,12 +9,12 @@ from pixelbot_msgs.srv import SetSpeech
 
 from ament_index_python import get_package_share_directory
 
-import time
+from gpiozero import Button
 
 
 class Interaction(Node):
 
-    RIGHT_BUTTON, LEFT_BUTTON = 0, 1
+    RIGHT_BUTTON_PIN, LEFT_BUTTON_PIN = 13, 5
 
     def __init__(self):
         super().__init__('pixelbot_interaction_node')
@@ -38,15 +37,10 @@ class Interaction(Node):
             while not client.wait_for_service(timeout_sec=1.0):
                 self.get_logger().info(f'{client.srv_name} service not available, waiting again...')
 
-        # Create subscriber to buttons state
-        self.buttons_changed_state = False
-        self.right_button_state = 0
-        self.left_button_state = 0
-        self.buttons_state_subscription = self.create_subscription(UInt8MultiArray,
-                                                                   'buttons_state',
-                                                                   self.on_buttons_state_update,
-                                                                   10)
-
+        # Button objects
+        self.right_button = Button(self.RIGHT_BUTTON_PIN)
+        self.left_button = Button(self.LEFT_BUTTON_PIN)
+        
         # Read the story script
         story_script_path = get_package_share_directory('pixelbot_interaction') + "/story/story_script.txt"
         with open(story_script_path, 'r') as story_script:
@@ -111,20 +105,6 @@ class Interaction(Node):
 
         return self.future.result()
 
-    def on_buttons_state_update(self, msg):
-        """
-        Callback cheching if the buttons were pressed and updating their state.
-
-        :param msg: Message of type UInt8MultiArray containing the state of each button.
-        """
-
-        if (self.right_button_state == 0 and msg.data[self.RIGHT_BUTTON] == 1) or \
-           (self.left_button_state == 0 and msg.data[self.LEFT_BUTTON] == 1):
-           self.buttons_changed_state = True
-
-        self.right_button_state = msg.data[self.RIGHT_BUTTON]
-        self.left_button_state = msg.data[self.LEFT_BUTTON]
-
     def interaction(self):
         """
         
@@ -143,9 +123,9 @@ class Interaction(Node):
         _ = self.send_speak_request(self.story[6])
 
         # wait for button state change
-        while not self.buttons_changed_state:
-            time.sleep(1/30)
-        self.buttons_changed_state = False
+        while rclpy.ok():
+            if self.right_button.is_pressed or self.left_button.is_pressed:
+                break
 
         _ = self.send_speak_request(self.story[7])
         _ = self.send_walking_movement_request()
