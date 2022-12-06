@@ -31,9 +31,16 @@ class Interaction(Node):
         # Create client to perform arm walking movement
         self.walking_movement_cli = self.create_client(Empty, 'walking_movement')
 
+        # Create client to perform hand waving movement
+        self.hand_waving_cli = self.create_client(Empty, 'hand_waving') 
+
+        # Create client to perform antennae movements for emotions
+        self.emotion_antennae_movement_cli = self.create_client(DisplayEmotion, 'emotion_antennae_movement')
+
         # Wait for the clients to be ready
         for client in [self.display_emotion_cli, self.display_location_cli, \
-                       self.speak_cli, self.walking_movement_cli]:
+                       self.speak_cli, self.walking_movement_cli, \
+                       self.hand_waving_cli, self.emotion_antennae_movement_cli]:
             while not client.wait_for_service(timeout_sec=1.0):
                 self.get_logger().info(f'{client.srv_name} service not available, waiting again...')
 
@@ -101,6 +108,34 @@ class Interaction(Node):
         self.request = Empty.Request()
 
         self.future = self.walking_movement_cli.call_async(self.request)
+        rclpy.spin_until_future_complete(self, self.future)
+
+        return self.future.result()
+
+    def send_hand_waving_request(self):
+        """
+        Send a request to the hand_waving service server.
+        """
+
+        self.request = Empty.Request()
+
+        self.future = self.hand_waving_cli.call_async(self.request)
+        rclpy.spin_until_future_complete(self, self.future)
+
+        return self.future.result()
+
+    def send_emotion_antennae_movement_request(self, desired_emotion):
+        """
+        Send a request to the emotion_antennae_movement service server.
+
+        :param desired_emotion: String to specify which emotion
+                                should be performed.
+        """
+
+        self.request = DisplayEmotion.Request()
+        self.request.desired_emotion = desired_emotion
+
+        self.future = self.emotion_antennae_movement_cli.call_async(self.request)
         rclpy.spin_until_future_complete(self, self.future)
 
         return self.future.result()
