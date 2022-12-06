@@ -151,35 +151,176 @@ class Interaction(Node):
 
     def interaction(self):
         """
-        
+        Main interaction.
         """
-        
-        # CHECK CALL OR CALL ASYNC
 
-        for line_counter in range(5):
+        # CHECK CALL OR CALL ASYNC and see if need _
+        
+        # Sentence 0
+        _ = self.send_speak_request(self.story[0])
+
+        # Hand waving greeting gesture
+        _ = self.send_hand_waving_request()
+
+        # Sentence 1, 2
+        _ = self.send_speak_request(self.story[1])
+        _ = self.send_speak_request(self.story[2])
+
+        # Show judge location
+        _ = self.send_display_location_request("judge")
+
+        # Sentence 3, 4, 5
+        for line_counter in range(3, 6):
             _ = self.send_speak_request(self.story[line_counter])
 
-        # arm movement cli request
-
-        _ = self.send_speak_request(self.story[5])
-        # arm movement cli request
-
-        _ = self.send_speak_request(self.story[6])
-
-        # wait for button state change
+        # Wait for button state change
         self.wait_for_buttons_to_be_pressed()
 
-        _ = self.send_speak_request(self.story[7])
+        # Sentence 6
+        _ = self.send_speak_request(self.story[6])
+
+        # Walking movement
         _ = self.send_walking_movement_request()
+
+        # Show flat location
         _ = self.send_display_location_request("flat")
 
-        _ = self.send_speak_request(self.story[8])
-        _ = self.send_display_emotion_request("surprise")
+        # Sentence 7
+        _ = self.send_speak_request(self.story[7])
 
-        for line_counter in range(9, 12):
+        # Surprise emotion
+        _ = self.send_display_emotion_request("surprise")
+        _ = self.send_emotion_antennae_movement_request("surprise")
+
+        # Sentence 8, 9, 10
+        for line_counter in range(8, 11):
+            _ = self.send_speak_request(self.story[line_counter])  
+
+        # Wait for button state change
+        self.wait_for_buttons_to_be_pressed()       
+   
+        # Sentence 11, 12
+        _ = self.send_speak_request(self.story[11])
+        _ = self.send_speak_request(self.story[12])
+
+        # Walking movement
+        _ = self.send_walking_movement_request()
+
+        # Show ski station location
+        _ = self.send_display_location_request("ski")
+
+        # Sentence 13, 14, 15, 16, 17, 18, 19
+        for line_counter in range(13, 20):
+            _ = self.send_speak_request(self.story[line_counter]) 
+
+        # Wait for button state change
+        self.wait_for_buttons_to_be_pressed() 
+
+        # Sentence 20, 21
+        _ = self.send_speak_request(self.story[20])
+        _ = self.send_speak_request(self.story[21])
+
+        # Walking movement
+        _ = self.send_walking_movement_request()
+
+        # Show space agency location
+        _ = self.send_display_location_request("nasa")   
+
+        # Sentence 22, 23, 24
+        for line_counter in range(22, 25):
             _ = self.send_speak_request(self.story[line_counter])
 
-        # wait for button state change    
+        # Angry emotion
+        _ = self.send_display_emotion_request("angry")
+        _ = self.send_emotion_antennae_movement_request("angry")  
+
+        # Sentence 25, 26, 27 
+        for line_counter in range(25, 28):
+            _ = self.send_speak_request(self.story[line_counter])
+
+        # Wait for button state change
+        self.wait_for_buttons_to_be_pressed()
+
+        # Sentence 28, 29
+        for line_counter in range(28, 30):
+            _ = self.send_speak_request(self.story[line_counter])
+
+        # Walking movement
+        _ = self.send_walking_movement_request()
+
+        # Show judge location
+        _ = self.send_display_location_request("judge")
+
+        # Sentence 30, 31, 32
+        for line_counter in range(30, 33):
+            _ = self.send_speak_request(self.story[line_counter])
+
+        # Wait for button state change
+        self.wait_for_buttons_to_be_pressed()   
+
+        # Sentence 33, 34, 35
+        for line_counter in range(33, 36):
+            _ = self.send_speak_request(self.story[line_counter])
+
+        # Wait for button state change
+        self.wait_for_buttons_to_be_pressed()
+
+        # Sentence 36, 37
+        _ = self.send_speak_request(self.story[36])
+        _ = self.send_speak_request(self.story[37])
+           
+        # Show flat location
+        _ = self.send_display_location_request("flat") 
+
+        # Sentence 38, 39
+        _ = self.send_speak_request(self.story[38])
+        _ = self.send_speak_request(self.story[39])
+
+        # Wait for button state change
+        self.wait_for_buttons_to_be_pressed()
+        
+        # Sentence 40
+        _ = self.send_speak_request(self.story[40])
+
+        # Show ski station location
+        _ = self.send_display_location_request("ski") 
+
+        # Sentence 41, 42, 43
+        for line_counter in range(41, 44):
+            _ = self.send_speak_request(self.story[line_counter])
+
+        # Wait for button state change
+        self.wait_for_buttons_to_be_pressed()
+
+        # Sentence 44
+        _ = self.send_speak_request(self.story[44])
+
+        # Show space agency location
+        _ = self.send_display_location_request("nasa")
+
+        # Sentence 45, 46, 47
+        for line_counter in range(45, 48):
+            _ = self.send_speak_request(self.story[line_counter])
+
+        # Wait for button state change
+        self.wait_for_buttons_to_be_pressed() 
+
+        # Sentence 48
+        _ = self.send_speak_request(self.story[48])
+
+        # Happy emotion
+        _ = self.send_display_emotion_request("happy")
+        _ = self.send_emotion_antennae_movement_request("happy") 
+
+        # Sentence 49, 50, 51
+        for line_counter in range(49, 52):
+            _ = self.send_speak_request(self.story[line_counter]) 
+
+        # Wait for button state change
+        self.wait_for_buttons_to_be_pressed()
+
+        # Sentence 52
+        _ = self.send_speak_request(self.story[52])      
 
 
 def main(args=None):
