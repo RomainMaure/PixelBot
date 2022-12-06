@@ -25,9 +25,6 @@ class Motors(Node):
         # Service to perform the desired movement of given motors
         self.motors_movement_srv = self.create_service(MotorsMovement, 'motors_movement', self.motors_movement_callback)
 
-        # Service to perform a slow movement of given motors
-        #self.slow_motors_movement_srv = self.create_service(MotorsMovement, 'slow_motors_movement', self.slow_motors_movement_callback)
-
         # Service to perform walking movement
         self.walking_movement_srv = self.create_service(Empty, 'walking_movement', self.walking_movement_callback)
 
@@ -67,23 +64,8 @@ class Motors(Node):
                 return response
 
         # Perform the requested movements if the arguments are valid
-        if request.fast_movement:
-            for body_part, angle in zip(request.body_parts, request.angles):
-                self.kit.servo[self.MOTOR_STRING_TO_DEFINE[body_part]].angle = angle
-        
-        else:
-            motors_position = [self.kit.servo[self.MOTOR_STRING_TO_DEFINE[body_part]].angle for body_part in request.body_parts]
-            while motors_position != request.angles:
-                for i, body_part, desired_angle in zip(range(len(motors_position)), request.body_parts, request.angles):
-                    if motors_position[i] < desired_angle:
-                        self.kit.servo[self.MOTOR_STRING_TO_DEFINE[body_part]].angle = motors_position[i] + 1
-                        motors_position[i] += 1
-                    if motors_position[i] > desired_angle:
-                        self.kit.servo[self.MOTOR_STRING_TO_DEFINE[body_part]].angle = motors_position[i] - 1
-                        motors_position[i] -= 1
-                        
-                time.sleep(0.01)
-
+        for body_part, angle in zip(request.body_parts, request.angles):
+            self.kit.servo[self.MOTOR_STRING_TO_DEFINE[body_part]].angle = angle
 
         response.success = True
         return response
@@ -97,23 +79,16 @@ class Motors(Node):
 
         start_time = time.time()
 
-        while time.time() - start_time < 8:
-            for angle in range(45):
-                self.kit.servo[self.RIGHT_ARM].angle =  90 + angle
-                self.kit.servo[self.LEFT_ARM].angle = 90 + angle
-                time.sleep(0.01)
-            for angle in range(45):
-                self.kit.servo[self.RIGHT_ARM].angle =  135 - angle
-                self.kit.servo[self.LEFT_ARM].angle = 135 - angle
-                time.sleep(0.01)
-            for angle in range(45):
-                self.kit.servo[self.RIGHT_ARM].angle =  90 - angle
-                self.kit.servo[self.LEFT_ARM].angle = 90 - angle
-                time.sleep(0.01)
-            for angle in range(45):
-                self.kit.servo[self.RIGHT_ARM].angle =  45 + angle
-                self.kit.servo[self.LEFT_ARM].angle = 45 + angle
-                time.sleep(0.01)
+        while time.time() - start_time < 5:
+            self.kit.servo[self.RIGHT_ARM].angle = 135
+            self.kit.servo[self.LEFT_ARM].angle = 135
+            time.sleep(0.5)
+            self.kit.servo[self.RIGHT_ARM].angle = 45
+            self.kit.servo[self.LEFT_ARM].angle = 45
+            time.sleep(0.5)
+            self.kit.servo[self.RIGHT_ARM].angle = 90
+            self.kit.servo[self.LEFT_ARM].angle = 90
+            time.sleep(0.5)
 
         return response
 

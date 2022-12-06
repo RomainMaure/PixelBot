@@ -69,10 +69,14 @@ Allows to control the motors of PixelBot.
     # Move quickly all the motors to a given angle position
 	ros2 service call /motors_movement pixelbot_msgs/MotorsMovement "body_parts: ['right_arm', 'left_arm', 'right_antenna', 'left_antenna']
     angles: [180, 0, 90, 135]
-    fast_movement: true"
     ```
 
-    By default, the movement of the motor is slow. If you want to have a fast movement, you have to specify it with the 'fast_movement' argument.
+* **`walking_movement`** ([std_srvs/Empty](http://docs.ros.org/en/noetic/api/std_srvs/html/srv/Empty.html))
+
+	Perform a walking gesture with the arms. For example:
+    ```
+	ros2 service call /walking_movement std_srvs/srv/Empty 
+    ```
 
 ## Troubleshooting
 
