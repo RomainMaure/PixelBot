@@ -140,6 +140,15 @@ class Interaction(Node):
 
         return self.future.result()
 
+    def wait_for_buttons_to_be_pressed(self):
+        """
+        Infinite loop waiting for one of the buttons to be pressed.
+        """
+
+        while rclpy.ok():
+            if self.right_button.is_pressed or self.left_button.is_pressed:
+                break
+
     def interaction(self):
         """
         
@@ -158,9 +167,7 @@ class Interaction(Node):
         _ = self.send_speak_request(self.story[6])
 
         # wait for button state change
-        while rclpy.ok():
-            if self.right_button.is_pressed or self.left_button.is_pressed:
-                break
+        self.wait_for_buttons_to_be_pressed()
 
         _ = self.send_speak_request(self.story[7])
         _ = self.send_walking_movement_request()
