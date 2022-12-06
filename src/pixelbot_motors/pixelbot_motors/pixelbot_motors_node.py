@@ -67,8 +67,23 @@ class Motors(Node):
                 return response
 
         # Perform the requested movements if the arguments are valid
-        for body_part, angle in zip(request.body_parts, request.angles):
-            self.kit.servo[self.MOTOR_STRING_TO_DEFINE[body_part]].angle = angle
+        if request.fast_movement:
+            for body_part, angle in zip(request.body_parts, request.angles):
+                self.kit.servo[self.MOTOR_STRING_TO_DEFINE[body_part]].angle = angle
+        
+        else:
+            motors_position = [self.kit.servo[self.MOTOR_STRING_TO_DEFINE[body_part]].angle for body_part in request.body_parts]
+            while motors_position != request.angles:
+                for i, body_part, desired_angle in zip(range(len(motors_position)), request.body_parts, request.angles):
+                    if motors_position[i] < desired_angle:
+                        self.kit.servo[self.MOTOR_STRING_TO_DEFINE[body_part]].angle = motors_position[i] + 1
+                        motors_position[i] += 1
+                    if motors_position[i] > desired_angle:
+                        self.kit.servo[self.MOTOR_STRING_TO_DEFINE[body_part]].angle = motors_position[i] - 1
+                        motors_position[i] -= 1
+                        
+                time.sleep(0.01)
+
 
         response.success = True
         return response

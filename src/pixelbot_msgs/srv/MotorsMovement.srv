@@ -1,4 +1,5 @@
 string[<=4] body_parts
 uint8[<=4] angles
+bool fast_movement false
 ---
 bool success

@@ -66,10 +66,13 @@ Allows to control the motors of PixelBot.
     angles: [180]"
     ```
     ```
-    # Move all the motors to a given angle position
+    # Move quickly all the motors to a given angle position
 	ros2 service call /motors_movement pixelbot_msgs/MotorsMovement "body_parts: ['right_arm', 'left_arm', 'right_antenna', 'left_antenna']
-    angles: [180, 0, 90, 135]"
+    angles: [180, 0, 90, 135]
+    fast_movement: true"
     ```
+
+    By default, the movement of the motor is slow. If you want to have a fast movement, you have to specify it with the 'fast_movement' argument.
 
 ## Troubleshooting
 
