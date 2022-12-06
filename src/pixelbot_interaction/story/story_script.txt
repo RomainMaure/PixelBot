@@ -1,42 +1,53 @@
-Bonjour, je suis un robot et je m’appelle PixelBote.
-Aujourd’hui, je vais vous raconter une histoire qui m’est arrivée!
-J’ai été créé par des ingénieurs de l’EPFL. Ces ingénieurs m’ont amené dans une ville et ils m’ont donné comme mission d’observer les inégalités entre hommes et femmes dans cette ville.
-Est-ce que vous savez ce qu’est une inégalité entre hommes et femmes?
-Si votre réponse est oui, alors vous pouvez appuyer sur le bouton vert à ma droite.
-Si votre réponse est non, alors vous pouvez appuyer sur le bouton bleu à ma gauche.
-Je vous laisse un peu de temps pour que vous puissiez discuter entre vous. Lorsque vous aurez décidé d’une réponse, vous pourrez appuyer sur l’un des boutons.
+Bonjour, je suis un robot et je m’appelle PixelBot.
+Aujourd’hui, je vais vous raconter une histoire à propos de moi et de la mission qui m’a été confiée. J’espère que vous pourrez m’aider!
+Un jour, un juge d’une autre ville est venu à l’EPFL et a dit aux ingénieurs qu’il avait besoin d’un robot pour une mission délicate. 
+Cette mission est de découvrir s'il y a des inégalités entre les hommes et les femmes dans sa ville.
+Est-ce que vous savez ce qu’est une inégalité entre hommes et femmes? Je vous laisse un peu de temps pour que vous puissiez discuter entre vous.
+Si votre réponse est oui, alors vous pouvez appuyer sur le bouton vert. Si votre réponse est non, alors vous pouvez appuyer sur le bouton bleu.
 Très bien, je reprends mon histoire. Une fois arrivé en ville, je me suis d’abord rendu chez des amis: Hugo et Alice.
 Quand je suis arrivé, j’ai été très surpris car Alice faisait toutes les tâches ménagères alors que Hugo ne faisait rien.
-Est-ce que vous pensez que c’est normal? Je vous laisse un peu de temps pour que vous puissiez discuter entre vous.
-Si vous trouvez cela normal, alors vous pouvez appuyer sur le bouton vert à ma droite.
-Si vous pensez que ce n’est pas normal et que Hugo devrait aider Alice à faire les tâches ménagères, alors vous pouvez appuyer sur le bouton bleu à ma gauche.
-Après ma visite chez Hugo et Alice, je suis partie à la NASA, l’agence spatiale près de la ville.
-Là-bas, j’ai fait la rencontre de Marie. Marie est une ingénieure qui aimerait devenir astronaute pour aller sur la lune!
-Elle est donc allée voir le directeur de l’agence spatiale pour lui demander si elle pouvait devenir astronaute. Mais celui-ci lui a dit qu’elle ne pouvait pas devenir astronaute car c’est une fille!
-J'étais très fâché car Marie est une ingénieure très intelligente et qualifiée, elle a donc toutes les qualités requises pour devenir astronaute!
-Et vous, est-ce que vous trouvez que c’est normal? Je vous laisse un peu de temps pour que vous puissiez discuter entre vous.
-Si vous trouvez que c’est normal que Marie ne puisse pas devenir astronaute parce que c’est une fille, alors vous pouvez appuyer sur le bouton vert à ma droite.
-Si vous trouvez que ce n’est pas normal, vous pouvez appuyer sur le bouton bleu à ma gauche.
-Après ma rencontre avec Marie, j’ai décidé de partir à la station de ski la plus proche.
-Là-bas, j’ai pu observer le métier des sauveteurs. Lorsqu’une personne s’est blessée en haut de la montagne, les sauveteurs sont allés la secourir. 
-Cependant, les garçons n’ont pas beaucoup aidé alors que les filles ont fait la plus grande partie du travail. Les filles auraient bien aimé avoir de l’aide de la part des garçons, cela m’a rendu très triste.
-Lorsqu’elles ont raconté ça au directeur de la station de ski, le directeur était furieux. 
-J’ai donc donné au directeur un robot qui s’appelle G-Maths. G-maths est capable de calculer le salaire de chaque personne en fonction de la quantité de travail qu’ils ont fourni. 
-Grâce à G-Maths, je suis sur que des femmes qui ont le même travail et qui travaillent autant que les hommes reçoivent exactement le même salaire.
-Et vous, est-ce que vous trouvez ça normal que les femmes reçoivent le même salaire que les hommes si leur travail est le même? Je vous laisse un peu de temps pour que vous puissiez discuter entre vous.
-Si vous trouvez que c’est normal que les femmes reçoivent le même salaire que les hommes pour un même travail, alors vous pouvez appuyer sur le bouton vert à ma droite.
-Si vous trouvez que ce n’est pas normal et que les hommes doivent gagner plus d’argent que les femmes, alors vous pouvez appuyer sur le bouton bleu à ma gauche.
-Pour finir, avec toutes les personnes que j’ai rencontrées jusqu’à présent, j’ai décidé de me rendre chez le juge afin de lui décrire toutes les inégalités que j’ai vu.
-J’ai commencé par parler de Alice et Hugo et j’ai expliqué au juge qu’il y avait entre eux une inégalité dans la répartition des tâches ménagères. 
-Les garçons et les filles doivent participer de manière égale aux tâches ménagères.
-J’ai ensuite parlé de Marie et j’ai expliqué au juge qu’elle avait été victime d’une inégalité d’opportunité de carrière professionnelle. 
-Les femmes ont autant de légitimité à avoir un travail important comme celui d’astronaute par exemple.
-Enfin, j’ai parlé au juge de la station de ski et des inégalités de salaires entre les femmes et les hommes. 
-Si le travail est le même, les femmes et les hommes doivent avoir le même salaire.
-Après avoir écouté tous mes arguments, le juge décida de créer de nouvelles lois afin de réduire les inégalités entre hommes et femmes. J'étais très content.
-C’est la fin de mon histoire, merci de m’avoir écouté. 
-Est-ce que vous avez l’impression de mieux comprendre ce que sont les inégalités entre hommes et femmes maintenant? Je vous laisse un peu de temps pour en discuter entre vous.
-Si votre réponse est oui, alors vous pouvez appuyer sur le bouton vert à ma droite.
-Si votre réponse est non, alors vous pouvez appuyer sur le bouton bleu à ma gauche.
+Que pensez-vous de cette situation? Cette situation vous semble-t-elle juste ou non? Je vous laisse un peu de temps pour que vous puissiez en discuter entre vous. 
+Si cette situation vous semble être juste, alors vous pouvez appuyer sur le bouton vert.
+Si vous pensez que cette situation n’est pas juste et que Hugo devrait aussi faire des tâches ménagères, alors vous pouvez appuyer sur le bouton bleu.
+Votre réponse est très intéressante! Laissez-moi vous raconter ce qui s’est passé ensuite.
+Après ma visite chez Hugo et Alice, j’ai décidé de partir à la station de ski la plus proche. 
+Là-bas, j’ai pu observer le métier des sauveteurs. Lorsqu’une personne est blessée en haut d’une montagne, les sauveteurs vont la secourir. 
+Comme je suis un robot, je suis très bon en maths. Le directeur de la station de ski m’a donc demandé de l’aider à calculer le salaire de tous les sauveteurs. 
+Lorsque nous avons comparé le salaire des sauveteurs avec celui que j’ai calculé, nous avons constaté quelque chose de très étrange: les hommes étaient mieux payés que les femmes alors que les femmes et les hommes faisaient exactement le même travail! 
+Lorsque le directeur a appris cela, il est devenu furieux. 
+Que pensez-vous de cette situation? Cette situation vous semble-t-elle juste ou non? Je vous laisse un peu de temps pour que vous puissiez en discuter entre vous. 
+Si vous trouvez cela juste que les hommes soient mieux payés que les femmes alors que leur travail est le même, vous pouvez appuyer sur le bouton vert.
+Si vous trouvez que ce n’est pas juste et que, pour un même travail, le salaire des femmes doit être égal à celui des hommes, alors vous pouvez appuyer sur le bouton bleu.
+Votre réponse est très intéressante! Laissez-moi vous raconter ce qui s’est passé ensuite.
+Après mon passage à la station de ski, j’ai découvert qu’une agence spatiale, affiliée à la NASA, se trouvait près de la ville. Je suis donc allé la visiter.
+Alors que j’allais entrer dans le bâtiment, j’ai remarqué une jeune femme assise sur un banc et avec l’air triste. Cette femme s’appelle Marie. Marie est une scientifique qui aimerait devenir astronaute pour aller sur la lune! 
+Elle est donc allée voir la directrice de l’agence spatiale pour lui demander si elle pouvait devenir astronaute. Mais celle-ci lui a dit qu’elle ne pouvait pas devenir astronaute car c’est une fille!
+J'étais très fâché car Marie est une scientifique très intelligente et qualifiée, elle a donc toutes les qualités requises pour devenir astronaute!
+Et vous, que pensez-vous de cette situation? Cette situation vous semble-t-elle juste ou non? Je vous laisse un peu de temps pour que vous puissiez en discuter entre vous. 
+Si vous trouvez que c’est juste que Marie ne puisse pas devenir astronaute parce que c’est une fille, alors vous pouvez appuyer sur le bouton vert.
+Si vous trouvez que ce n’est pas juste, alors vous pouvez appuyer sur le bouton bleu.
+Vous connaissez maintenant toutes les personnes que j’ai rencontrées pendant ma mission. 
+Le problème est que je ne comprends toujours pas très bien les humains, vous êtes si compliqués! J’ai besoin de votre aide pour savoir ce que je dois dire au juge.
+Est-ce que vous pensez que les cas que nous avons vu précédemment sont des cas d’inégalité entre hommes et femmes ?  
+Si oui, vous pouvez appuyer sur le bouton vert. Si non, vous pouvez appuyer sur le bouton bleu. 
+Je vous laisse un peu de temps pour que vous puissiez en discuter entre vous.
+Très bien, y a-t-il un autre cas d'inégalité entre hommes et femmes qui vous vient à l'esprit et que je pourrais ajouter à mon rapport pour le juge? 
+Si oui, vous pouvez me l’expliquer et appuyer sur le bouton vert. Si non, vous pouvez appuyer sur le bouton bleu. 
+Je vous laisse un peu de temps pour que vous puissiez en discuter entre vous.
+D’accord, merci pour votre réponse. Dans ma mission, je dois aussi trouver des solutions aux inégalités. 
+Est-ce que vous vous souvenez du cas d’Hugo et Alice, qui avaient une répartition inégale des tâches ménagères? Que feriez-vous, si vous étiez Hugo et Alice, pour rendre la situation égale?
+Je vous laisse un peu de temps pour que vous puissiez en discuter entre vous. 
+Une fois que vous avez trouvé une solution, vous pouvez me l’expliquer puis appuyer sur n’importe quel bouton.
+Votre réponse est très intéressante! Maintenant, est-ce que vous vous souvenez du cas de la station de ski, dans laquelle il y avait une inégalité de salaire entre les femmes et les hommes? 
+Que feriez-vous si vous étiez à la place du directeur de la station de ski pour résoudre cette inégalité?
+Je vous laisse un peu de temps pour que vous puissiez en discuter entre vous. 
+Une fois que vous avez trouvé une solution, vous pouvez me l’expliquer puis appuyer sur n’importe quel bouton.
+D’accord, merci pour votre réponse. Pour finir, est-ce que vous vous souvenez du cas de Marie qui a subi une inégalité d’opportunité professionnelle parce que c’est une fille? 
+Que feriez-vous si vous étiez à la place de Marie pour résoudre cette inégalité?
+Je vous laisse un peu de temps pour que vous puissiez en discuter entre vous. 
+Une fois que vous avez trouvé une solution, vous pouvez me l’expliquer puis appuyer sur n’importe quel bouton.
+Merci beaucoup pour vos suggestions ! Le juge va les utiliser pour réduire les inégalités entre les hommes et les femmes. Je suis très heureux! 
+C’est la fin de mon histoire, merci de m’avoir écouté. Est-ce que vous avez l’impression de mieux comprendre ce que sont les inégalités entre hommes et femmes maintenant? 
+Je vous laisse un peu de temps pour en discuter entre vous.
+Si votre réponse est oui, alors vous pouvez appuyer sur le bouton vert. Si votre réponse est non, alors vous pouvez appuyer sur le bouton bleu.
 Au revoir!
-
