@@ -155,6 +155,9 @@ class Interaction(Node):
         """
 
         # CHECK CALL OR CALL ASYNC and see if need _
+        _ = self.wait_for_buttons_to_be_pressed() 
+
+        # Wait for one of the buttons to be pressed to start the activity
         
         # Sentence 0
         _ = self.send_speak_request("Bonjour, je suis un robot et je m’appelle PixelBote.")
