@@ -7,14 +7,13 @@ from pixelbot_msgs.srv import DisplayEmotion
 from pixelbot_msgs.srv import DisplayLocation
 from pixelbot_msgs.srv import SetSpeech
 
-from ament_index_python import get_package_share_directory
-
 from gpiozero import Button
 
 
 class Interaction(Node):
 
     RIGHT_BUTTON_PIN, LEFT_BUTTON_PIN = 13, 5
+    RIGHT_BUTTON, LEFT_BUTTON = 0, 1
 
     def __init__(self):
         super().__init__('pixelbot_interaction_node')
@@ -47,11 +46,11 @@ class Interaction(Node):
         # Button objects
         self.right_button = Button(self.RIGHT_BUTTON_PIN)
         self.left_button = Button(self.LEFT_BUTTON_PIN)
-        
-        # # Read the story script
-        # story_script_path = get_package_share_directory('pixelbot_interaction') + "/story/story_script.txt"
-        # with open(story_script_path, 'r') as story_script:
-        #     self.story = story_script.readlines()
+
+        # Other variables
+        self.student_choice_alice_hugo = None
+        self.student_choice_ski = None
+        self.student_choice_space_agency = None
 
     def send_display_emotion_request(self, desired_emotion):
         """
@@ -146,8 +145,14 @@ class Interaction(Node):
         """
 
         while rclpy.ok():
-            if self.right_button.is_pressed or self.left_button.is_pressed:
+            if self.right_button.is_pressed:
+                button_pressed = self.RIGHT_BUTTON
                 break
+            if self.left_button.is_pressed:
+                button_pressed = self.LEFT_BUTTON
+                break
+
+        return button_pressed
 
     def interaction(self):
         """
@@ -169,16 +174,9 @@ class Interaction(Node):
         # Show judge location
         _ = self.send_display_location_request("judge")
 
-        # Sentence 3, 4, 5
+        # Sentence 3, 4
         _ = self.send_speak_request("Cette mission est de découvrir s'il y a des inégalités entre les hommes et les femmes dans sa ville.")
-        _ = self.send_speak_request("Est-ce que vous savez ce qu’est une inégalité entre hommes et femmes? Je vous laisse un peu de temps pour que vous puissiez discuter entre vous.")
-        _ = self.send_speak_request("Si votre réponse est oui, alors vous pouvez appuyer sur le bouton vert. Si votre réponse est non, alors vous pouvez appuyer sur le bouton bleu.")
-
-        # Wait for button state change
-        self.wait_for_buttons_to_be_pressed()
-
-        # Sentence 6
-        _ = self.send_speak_request("Très bien, je reprends mon histoire. Une fois arrivé en ville, je me suis d’abord rendu chez des amis: Hugo et Alice.")
+        _ = self.send_speak_request("Une fois arrivé en ville, je me suis d’abord rendu chez des amis: Hugo et Alice.")
 
         # Walking movement
         _ = self.send_walking_movement_request()
@@ -186,23 +184,31 @@ class Interaction(Node):
         # Show flat location
         _ = self.send_display_location_request("flat")
 
-        # Sentence 7
-        _ = self.send_speak_request("Quand je suis arrivé, j’ai été très surpris car Alice faisait toutes les tâches ménagères alors que Hugo ne faisait rien.")
+        # Sentence 5
+        _ = self.send_speak_request("Quand je suis arrivé, j’ai été très surpris car Alice faisait toutes les tâches ménagères alors que Hugo était assis sur le canapé.")
 
         # Surprise emotion
         _ = self.send_display_emotion_request("surprise")
         _ = self.send_emotion_antennae_movement_request("surprise")
 
-        # Sentence 8, 9, 10
-        _ = self.send_speak_request("Que pensez-vous de cette situation? Cette situation vous semble-t-elle juste ou non? Je vous laisse un peu de temps pour que vous puissiez en discuter entre vous.") 
-        _ = self.send_speak_request("Si cette situation vous semble être juste, alors vous pouvez appuyer sur le bouton vert.")
-        _ = self.send_speak_request("Si vous pensez que cette situation n’est pas juste et que Hugo devrait aussi faire des tâches ménagères, alors vous pouvez appuyer sur le bouton bleu.") 
-
         # Wait for button state change
-        self.wait_for_buttons_to_be_pressed()       
+        self.student_choice_alice_hugo = self.wait_for_buttons_to_be_pressed()   
+
+        # Sentence 6
+        if self.student_choice_alice_hugo == self.RIGHT_BUTTON:
+            _ = self.send_speak_request("Super, je suis donc allé encourager Alice à en discuter avec Hugo et lui demander son aide.")
+        elif self.student_choice_alice_hugo == self.LEFT_BUTTON:
+            _ = self.send_speak_request("Super, je suis donc allé demander à Hugo de se lever et d’aller aider Alice.") 
+
+        # Sentence 7
+        _ = self.send_speak_request("Merci pour votre aide, Hugo aide désormais Alice à faire les tâches ménagères et Alice est très contente.")
+
+        # Happy emotion
+        _ = self.send_display_emotion_request("happy")
+        _ = self.send_emotion_antennae_movement_request("happy")
+        # congrat song !!!!!!!!!!
    
-        # Sentence 11, 12
-        _ = self.send_speak_request("Votre réponse est très intéressante! Laissez-moi vous raconter ce qui s’est passé ensuite.")
+        # Sentence 8
         _ = self.send_speak_request("Après ma visite chez Hugo et Alice, j’ai décidé de partir à la station de ski la plus proche.")
 
         # Walking movement
@@ -211,20 +217,29 @@ class Interaction(Node):
         # Show ski station location
         _ = self.send_display_location_request("ski")
 
-        # Sentence 13, 14, 15, 16, 17, 18, 19
+        # Sentence 9, 10, 11
         _ = self.send_speak_request("Là-bas, j’ai pu observer le métier des sauveteurs. Lorsqu’une personne est blessée en haut d’une montagne, les sauveteurs vont la secourir.")
         _ = self.send_speak_request("Comme je suis un robot, je suis très bon en maths. Le directeur de la station de ski m’a donc demandé de l’aider à calculer le salaire de tous les sauveteurs.") 
-        _ = self.send_speak_request("Lorsque nous avons comparé le salaire des sauveteurs avec celui que j’ai calculé, nous avons constaté quelque chose de très étrange: les hommes étaient mieux payés que les femmes alors que les femmes et les hommes faisaient exactement le même travail!") 
-        _ = self.send_speak_request("Lorsque le directeur a appris cela, il est devenu furieux.") 
-        _ = self.send_speak_request("Que pensez-vous de cette situation? Cette situation vous semble-t-elle juste ou non? Je vous laisse un peu de temps pour que vous puissiez en discuter entre vous.") 
-        _ = self.send_speak_request("Si vous trouvez cela juste que les hommes soient mieux payés que les femmes alors que leur travail est le même, vous pouvez appuyer sur le bouton vert.") 
-        _ = self.send_speak_request("Si vous trouvez que ce n’est pas juste et que, pour un même travail, le salaire des femmes doit être égal à celui des hommes, alors vous pouvez appuyer sur le bouton bleu.") 
+        _ = self.send_speak_request("Lorsque nous avons comparé le salaire des sauveteurs avec celui que j’ai calculé, nous avons constaté quelque chose de très étrange: les hommes étaient mieux payés que les femmes alors que les femmes et les hommes faisaient exactement le même travail!")
 
         # Wait for button state change
-        self.wait_for_buttons_to_be_pressed() 
+        self.student_choice_ski = self.wait_for_buttons_to_be_pressed() 
 
-        # Sentence 20, 21
-        _ = self.send_speak_request("Votre réponse est très intéressante! Laissez-moi vous raconter ce qui s’est passé ensuite.")
+        # Sentence 12
+        if self.student_choice_ski == self.RIGHT_BUTTON:
+            _ = self.send_speak_request("Super, je suis donc allé voir le directeur pour lui demander d’équilibrer les salaires.")
+        elif self.student_choice_ski == self.LEFT_BUTTON:
+            _ = self.send_speak_request("Super, je suis donc allé en parler à un secouriste homme. Ce secouriste homme est ensuite allé demander au directeur d’équilibrer les salaires.") 
+
+        # Sentence 13
+        _ = self.send_speak_request("Merci pour votre aide, les femmes et les hommes travaillant à la station de ski ont tous le même salaire et sont très contents maintenant!")
+
+        # Happy emotion
+        _ = self.send_display_emotion_request("happy")
+        _ = self.send_emotion_antennae_movement_request("happy")
+        # congrat song !!!!!!!!!!
+
+        # Sentence 14
         _ = self.send_speak_request("Après mon passage à la station de ski, j’ai découvert qu’une agence spatiale, affiliée à la NASA, se trouvait près de la ville. Je suis donc allé la visiter.")
 
         # Walking movement
@@ -233,26 +248,34 @@ class Interaction(Node):
         # Show space agency location
         _ = self.send_display_location_request("nasa")   
 
-        # Sentence 22, 23, 24
+        # Sentence 15, 16, 17
         _ = self.send_speak_request("Alors que j’allais entrer dans le bâtiment, j’ai remarqué une jeune femme assise sur un banc et avec l’air triste. Cette femme s’appelle Marie. Marie est une scientifique qui aimerait devenir astronaute pour aller sur la lune!")
         _ = self.send_speak_request("Elle est donc allée voir la directrice de l’agence spatiale pour lui demander si elle pouvait devenir astronaute. Mais celle-ci lui a dit qu’elle ne pouvait pas devenir astronaute car c’est une fille!")
         _ = self.send_speak_request("J'étais très fâché car Marie est une scientifique très intelligente et qualifiée, elle a donc toutes les qualités requises pour devenir astronaute!")
 
         # Angry emotion
         _ = self.send_display_emotion_request("angry")
-        _ = self.send_emotion_antennae_movement_request("angry")  
-
-        # Sentence 25, 26, 27 
-        _ = self.send_speak_request("Et vous, que pensez-vous de cette situation? Cette situation vous semble-t-elle juste ou non? Je vous laisse un peu de temps pour que vous puissiez en discuter entre vous.")
-        _ = self.send_speak_request("Si vous trouvez que c’est juste que Marie ne puisse pas devenir astronaute parce que c’est une fille, alors vous pouvez appuyer sur le bouton vert.")
-        _ = self.send_speak_request("Si vous trouvez que ce n’est pas juste, alors vous pouvez appuyer sur le bouton bleu.")
+        _ = self.send_emotion_antennae_movement_request("angry") 
 
         # Wait for button state change
-        self.wait_for_buttons_to_be_pressed()
+        self.student_choice_space_agency = self.wait_for_buttons_to_be_pressed()
 
-        # Sentence 28, 29
-        _ = self.send_speak_request("Vous connaissez maintenant toutes les personnes que j’ai rencontrées pendant ma mission.")
-        _ = self.send_speak_request("Le problème est que je ne comprends toujours pas très bien les humains, vous êtes si compliqués! J’ai besoin de votre aide pour savoir ce que je dois dire au juge.")
+        # Sentence 18
+        if self.student_choice_space_agency == self.RIGHT_BUTTON:
+            _ = self.send_speak_request("Super, je suis donc allé voir Marie et je lui ai conseillé de persévérer jusqu’à ce qu’elle réussisse.")
+        elif self.student_choice_space_agency == self.LEFT_BUTTON:
+            _ = self.send_speak_request("Super, je suis donc allé voir la directrice pour lui dire qu’elle avait été un modele de femme courageuse pour Marie. La directrice a alors changé d’avis.") 
+
+        # Sentence 19
+        _ = self.send_speak_request("Merci pour votre aide, Marie a réussi à devenir astronaute et est très contente maintenant!")
+
+        # Happy emotion
+        _ = self.send_display_emotion_request("happy")
+        _ = self.send_emotion_antennae_movement_request("happy")
+        # congrat song !!!!!!!!!!
+
+        # Sentence 20
+        _ = self.send_speak_request("Après toutes ces aventures, je suis retourné voir le juge pour lui faire un résumé de ce que j’ai découvert à propos des inégalités entre hommes et femmes dans la ville.")
 
         # Walking movement
         _ = self.send_walking_movement_request()
@@ -260,81 +283,51 @@ class Interaction(Node):
         # Show judge location
         _ = self.send_display_location_request("judge")
 
-        # Sentence 30, 31, 32
-        _ = self.send_speak_request("Est-ce que vous pensez que les cas que nous avons vu précédemment sont des cas d’inégalité entre hommes et femmes?")
-        _ = self.send_speak_request("Si oui, vous pouvez appuyer sur le bouton vert. Si non, vous pouvez appuyer sur le bouton bleu.")
-        _ = self.send_speak_request("Je vous laisse un peu de temps pour que vous puissiez en discuter entre vous.")
-
-        # Wait for button state change
-        self.wait_for_buttons_to_be_pressed()   
-
-        # Sentence 33, 34, 35
-        _ = self.send_speak_request("Très bien, y a-t-il un autre cas d'inégalité entre hommes et femmes qui vous vient à l'esprit et que je pourrais ajouter à mon rapport pour le juge?")
-        _ = self.send_speak_request("Si oui, vous pouvez me l’expliquer et appuyer sur le bouton vert. Si non, vous pouvez appuyer sur le bouton bleu.")
-        _ = self.send_speak_request("Je vous laisse un peu de temps pour que vous puissiez en discuter entre vous.")
-
-        # Wait for button state change
-        self.wait_for_buttons_to_be_pressed()
-
-        # Sentence 36, 37
-        _ = self.send_speak_request("D’accord, merci pour votre réponse. Dans ma mission, je dois aussi trouver des solutions aux inégalités.")
-        _ = self.send_speak_request("Est-ce que vous vous souvenez du cas d’Hugo et Alice, qui avaient une répartition inégale des tâches ménagères? Que feriez-vous, si vous étiez Hugo et Alice, pour rendre la situation égale?")
+        # Sentence 21
+        _ = self.send_speak_request("Nous avons d’abord vu Alice et Hugo qui avaient une répartition inégale des tâches ménagères.")
            
         # Show flat location
         _ = self.send_display_location_request("flat") 
 
-        # Sentence 38, 39
-        _ = self.send_speak_request("Je vous laisse un peu de temps pour que vous puissiez en discuter entre vous.")
-        _ = self.send_speak_request("Une fois que vous avez trouvé une solution, vous pouvez me l’expliquer puis appuyer sur n’importe quel bouton.")
-
-        # Wait for button state change
-        self.wait_for_buttons_to_be_pressed()
+        # Sentence 22
+        if self.student_choice_alice_hugo == self.RIGHT_BUTTON:
+            _ = self.send_speak_request("Nous avons résolu le problème en encourageant Alice à en discuter avec Hugo et lui demander son aide.")
+        elif self.student_choice_alice_hugo == self.LEFT_BUTTON:
+            _ = self.send_speak_request("Nous avons résolu le problème en demandant à Hugo de se lever et d’aller aider Alice.")
         
-        # Sentence 40
-        _ = self.send_speak_request("Votre réponse est très intéressante! Maintenant, est-ce que vous vous souvenez du cas de la station de ski, dans laquelle il y avait une inégalité de salaire entre les femmes et les hommes?")
+        # Sentence 23
+        _ = self.send_speak_request("Nous nous sommes ensuite rendus à la station de ski où les femmes avaient un salaire inférieur à celui des hommes alors qu’elles faisaient le même travail.")
 
         # Show ski station location
         _ = self.send_display_location_request("ski") 
 
-        # Sentence 41, 42, 43
-        _ = self.send_speak_request("Que feriez-vous si vous étiez à la place du directeur de la station de ski pour résoudre cette inégalité?")
-        _ = self.send_speak_request("Je vous laisse un peu de temps pour que vous puissiez en discuter entre vous.")
-        _ = self.send_speak_request("Une fois que vous avez trouvé une solution, vous pouvez me l’expliquer puis appuyer sur n’importe quel bouton.")
+        # Sentence 24
+        if self.student_choice_ski == self.RIGHT_BUTTON:
+            _ = self.send_speak_request("Nous avons résolu le problème en demandant au directeur d’équilibrer les salaires.")
+        elif self.student_choice_ski == self.LEFT_BUTTON:
+            _ = self.send_speak_request("Nous avons parlé du problème à un secouriste homme qui est ensuite allé demander au directeur d’équilibrer les salaires.")
 
-
-        # Wait for button state change
-        self.wait_for_buttons_to_be_pressed()
-
-        # Sentence 44
-        _ = self.send_speak_request("D’accord, merci pour votre réponse. Pour finir, est-ce que vous vous souvenez du cas de Marie qui a subi une inégalité d’opportunité professionnelle parce que c’est une fille?")
+        # Sentence 25
+        _ = self.send_speak_request("Pour finir nous nous sommes rendus à l’agence spatiale dont la directrice refusait que Marie devienne astronaute parce que c’est une fille.")
 
         # Show space agency location
         _ = self.send_display_location_request("nasa")
 
-        # Sentence 45, 46, 47
-        _ = self.send_speak_request("Que feriez-vous si vous étiez à la place de Marie pour résoudre cette inégalité?")
-        _ = self.send_speak_request("Je vous laisse un peu de temps pour que vous puissiez en discuter entre vous.")
-        _ = self.send_speak_request("Une fois que vous avez trouvé une solution, vous pouvez me l’expliquer puis appuyer sur n’importe quel bouton.")
+        # Sentence 26
+        if self.student_choice_space_agency == self.RIGHT_BUTTON:
+            _ = self.send_speak_request("Nous avons résolu le problème en conseillant à Marie de persévérer jusqu’à ce qu’elle réussisse.")
+        elif self.student_choice_space_agency == self.LEFT_BUTTON:
+            _ = self.send_speak_request("Nous avons résolu le problème en expliquant à la directrice qu’elle avait été un modele de femme courageuse pour Marie. Cela a fait changer l’avis de la directrice.")
 
-        # Wait for button state change
-        self.wait_for_buttons_to_be_pressed() 
-
-        # Sentence 48
-        _ = self.send_speak_request("Merci beaucoup pour vos suggestions ! Le juge va les utiliser pour réduire les inégalités entre les hommes et les femmes. Je suis très heureux!")
+        # Sentence 27
+        _ = self.send_speak_request("Le juge vous remercie pour toutes vos suggestions. Il va les utiliser pour réduire les inégalités entre les hommes et les femmes. Je suis très heureux!")
 
         # Happy emotion
         _ = self.send_display_emotion_request("happy")
         _ = self.send_emotion_antennae_movement_request("happy") 
+        # congrat song
 
-        # Sentence 49, 50, 51
-        _ = self.send_speak_request("C’est la fin de mon histoire, merci de m’avoir écouté. Est-ce que vous avez l’impression de mieux comprendre ce que sont les inégalités entre hommes et femmes maintenant?")
-        _ = self.send_speak_request("Je vous laisse un peu de temps pour en discuter entre vous.")
-        _ = self.send_speak_request("Si votre réponse est oui, alors vous pouvez appuyer sur le bouton vert. Si votre réponse est non, alors vous pouvez appuyer sur le bouton bleu.")
-
-        # Wait for button state change
-        self.wait_for_buttons_to_be_pressed()
-
-        # Sentence 52
+        # Sentence 28
         _ = self.send_speak_request("Au revoir!")      
 
 
