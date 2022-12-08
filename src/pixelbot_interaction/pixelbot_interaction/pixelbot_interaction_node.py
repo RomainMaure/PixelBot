@@ -27,6 +27,9 @@ class Interaction(Node):
         # Create client to make PixelBot speak
         self.speak_cli = self.create_client(SetSpeech, 'speak')
 
+        # Create client to make PixelBot play a happy sound
+        self.play_happy_sound_cli = self.create_client(Empty, 'play_happy_sound')
+
         # Create client to perform arm walking movement
         self.walking_movement_cli = self.create_client(Empty, 'walking_movement')
 
@@ -38,8 +41,9 @@ class Interaction(Node):
 
         # Wait for the clients to be ready
         for client in [self.display_emotion_cli, self.display_location_cli, \
-                       self.speak_cli, self.walking_movement_cli, \
-                       self.hand_waving_cli, self.emotion_antennae_movement_cli]:
+                       self.speak_cli, self.play_happy_sound_cli, \
+                       self.walking_movement_cli, self.hand_waving_cli, \
+                       self.emotion_antennae_movement_cli]:
             while not client.wait_for_service(timeout_sec=1.0):
                 self.get_logger().info(f'{client.srv_name} service not available, waiting again...')
 
@@ -92,6 +96,18 @@ class Interaction(Node):
         self.future = self.speak_cli.call_async(self.request)
         rclpy.spin_until_future_complete(self, self.future)
         
+        return self.future.result()
+
+    def send_play_happy_sound_request(self):
+        """
+        Send a request to the play_happy_sound service server.
+        """
+
+        self.request = Empty.Request()
+
+        self.future = self.play_happy_sound_cli.call_async(self.request)
+        rclpy.spin_until_future_complete(self, self.future)
+
         return self.future.result()
 
     def send_walking_movement_request(self):
@@ -154,11 +170,11 @@ class Interaction(Node):
         Main interaction.
         """
 
-        # CHECK CALL OR CALL ASYNC and see if need _
-        _ = self.wait_for_buttons_to_be_pressed() 
+        # CHECK CALL OR CALL ASYNC and see if need _ 
 
         # Wait for one of the buttons to be pressed to start the activity
-        
+        _ = self.wait_for_buttons_to_be_pressed()
+
         # Sentence 0
         _ = self.send_speak_request("Bonjour, je suis un robot et je m’appelle PixelBote.")
 
@@ -204,7 +220,7 @@ class Interaction(Node):
         # Happy emotion
         _ = self.send_display_emotion_request("happy")
         _ = self.send_emotion_antennae_movement_request("happy")
-        # congrat song !!!!!!!!!!
+        _ = self.send_play_happy_sound_request()
    
         # Sentence 8
         _ = self.send_speak_request("Après ma visite chez Hugo et Alice, j’ai décidé de partir à la station de ski la plus proche.")
@@ -235,7 +251,7 @@ class Interaction(Node):
         # Happy emotion
         _ = self.send_display_emotion_request("happy")
         _ = self.send_emotion_antennae_movement_request("happy")
-        # congrat song !!!!!!!!!!
+        _ = self.send_play_happy_sound_request()
 
         # Sentence 14
         _ = self.send_speak_request("Après mon passage à la station de ski, j’ai découvert qu’une agence spatiale, affiliée à la NASA, se trouvait près de la ville. Je suis donc allé la visiter.")
@@ -270,7 +286,7 @@ class Interaction(Node):
         # Happy emotion
         _ = self.send_display_emotion_request("happy")
         _ = self.send_emotion_antennae_movement_request("happy")
-        # congrat song !!!!!!!!!!
+        _ = self.send_play_happy_sound_request()
 
         # Sentence 20
         _ = self.send_speak_request("Pour finir, je suis retourné voir le juge pour lui faire un résumé de ce que j’ai découvert à propos des inégalités entre hommes et femmes dans la ville.")
@@ -288,7 +304,7 @@ class Interaction(Node):
         # Happy emotion
         _ = self.send_display_emotion_request("happy")
         _ = self.send_emotion_antennae_movement_request("happy") 
-        # congrat song
+        _ = self.send_play_happy_sound_request()
 
         # Sentence 23
         _ = self.send_speak_request("Au revoir!")      
