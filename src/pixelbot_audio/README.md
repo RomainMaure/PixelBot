@@ -98,6 +98,13 @@ Allows PixelBot to speak.
 	ros2 service call /change_language pixelbot_msgs/SetLanguage "language: 'french'"
     ```
 
+* **`play_happy_sound`** ([std_srvs/Empty](http://docs.ros.org/en/noetic/api/std_srvs/html/srv/Empty.html))
+
+	Allows PixelBot to play a happy sound:
+    ```
+	ros2 service call /play_happy_sound std_srvs/srv/Empty
+    ```
+
 ## Troubleshooting
 
 - [gTTS](https://pypi.org/project/gTTS/) is a Python library and CLI tool to interface with Google Translate's text-to-speech API. Internet connectivity is thus required to make it work, as opposed to [Pyttsx3](https://pypi.org/project/pyttsx3/) which can work offline.

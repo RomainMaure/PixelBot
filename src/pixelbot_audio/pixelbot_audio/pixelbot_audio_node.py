@@ -1,6 +1,8 @@
 import rclpy
 from rclpy.node import Node
 
+from std_srvs.srv import Empty
+
 from pixelbot_msgs.srv import SetVoiceAlteration
 from pixelbot_msgs.srv import SetSpeech
 from pixelbot_msgs.srv import SetLanguage
@@ -11,6 +13,8 @@ import scipy.io.wavfile as sc
 from gtts import gTTS
 from pydub import AudioSegment
 from playsound import playsound
+
+from ament_index_python import get_package_share_directory
 
 
 class Audio(Node):
@@ -26,6 +30,9 @@ class Audio(Node):
 
         # Service allowing to change the language to be spoken
         self.language_srv = self.create_service(SetLanguage, 'change_language', self.change_language_callback)
+
+        # Service allowing PixelBot to play a happy sound
+        self.play_happy_sound_srv = self.create_service(Empty, 'play_happy_sound', self.play_happy_sound_callback)
 
         # Create the pyttsx3 object and perform initial configuration
         self.tts_engine = pyttsx3.init()
@@ -153,6 +160,19 @@ class Audio(Node):
             if request.language == "english":
                 self.language = "en"
                 self.tts_engine.setProperty('voice', "english")
+
+        return response
+
+    def play_happy_sound_callback(self, request, response):
+        """
+        Service handler allowing to play a happy sound.
+
+        :param request: See Empty service definition.
+        :param response: See Empty service definition.
+        """
+
+        sound_path = get_package_share_directory('pixelbot_audio') + "/sound/happy.mp3"
+        playsound(sound_path)
 
         return response
 
