@@ -6,7 +6,7 @@ This repository contains the work undertaken during my master thesis at the Comp
 
 The main contribution of my thesis is PixelBot: a low-cost and open source social robot which has been co-designed with and for children with the aim to teach them gender equality and respect.
 
-https://user-images.githubusercontent.com/63020507/179622875-ae744261-0706-4ae6-9525-2d4f46e056e4.mp4
+<img src="./imgs/robot_mechanical.jpg" width=756 height=1008>
 
 ## What you will find inside this repository
 
