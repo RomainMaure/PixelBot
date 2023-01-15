@@ -15,22 +15,6 @@
 | [A4988 driver](https://www.amazon.fr/gp/product/B07MXXL2KW/ref=ppx_yo_dt_b_asin_title_o01_s01?ie=UTF8&psc=1)    |        2        |
 | [Capacitor (100 uF)](https://www.lcsc.com/product-detail/Aluminum-Electrolytic-Capacitors-Leaded_LCSC-100uF-35V-6-3-11_C45076.html)    |        2        |
 
-## Circuit schematic (using a breadboard)
+## Circuit schematic
 
 ![Wiring diagram](../imgs/wiring_diagram.png)
-
-## Circuit schematic (using the PixelBot pcb)
-
-To avoid all the wiring, it is also possible to use the Raspberry pi hat specifically designed for PixelBot. I personally used JLCPCB to manufacture it from the [gerber file](https://github.com/RomainMaure/PixelBot/blob/main/electronic/Gerber_pixel_bot_pi_hat_V1_0). The following additional components will be needed for the pcb soldering:
-
-| Component       |    Quantity     |
-| :-------------: | :-------------: |
-| [Power Jack 6.3mm](https://www.lcsc.com/product-detail/AC-DC-Power-Connectors_SOFNG-DC005-T20_C111567.html)  |        1        |
-| [20-pin female header, P=2.54mm](https://www.lcsc.com/product-detail/Female-Headers_ZHOURI-2-54-2-20_C2977589.html)  |        1        |
-| [4-pin male header, P=2.54mm](https://www.lcsc.com/product-detail/Pin-Headers_JST-Sales-America-RE-H042TD-1190-LF-SN_C265319.html)  |        2        |
-
-![PixelBot pi hat pcb](../imgs/PixelBot_pi_hat_pcb.png)
-
-## Motor driver setting
-
-Before powering the motors for the first time, the current limit of the drivers needs to be adjusted. Use the potentiometer of the driver for this purpose. You can follow this nice [tutorial](https://www.youtube.com/watch?v=7spK_BkMJys&t=735s) to see how it can be achieved. In my case, I set a reference voltage of 0.7V on both drivers.
