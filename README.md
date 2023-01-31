@@ -11,9 +11,9 @@ The main contribution of my thesis is PixelBot: a low-cost and open source socia
 ## What you will find inside this repository
 
 - **[stl](https://github.com/RomainMaure/PixelBot/tree/main/stl)**: This folder contains all the parts to be 3D printed as well as a list of all the screws, nuts and other components required to build the robot.
-- **[electronic](https://github.com/RomainMaure/PixelBot/tree/main/electronic)**: This folder contains all the informations related to the electronic of the robot, mainly, the circuit schematics and the list of the electronic components.
+- **[elec](https://github.com/RomainMaure/PixelBot/tree/main/electronic)**: This folder contains all the informations related to the electronic of the robot, mainly, the circuit schematics and the list of the electronic components.
 - **[src](https://github.com/RomainMaure/PixelBot/tree/main/src)**: This folder contains guidelines to setup the software of the robot as well as scripts to test individually each of its feature and the main source code used to run the learning interaction between the robot and the children.
-- **[pdf](https://github.com/RomainMaure/PixelBot/tree/main/pdf)**: This folder contains the several pdf files such as my master thesis report and the participatory design toolkit.
+- **[pdf](https://github.com/RomainMaure/PixelBot/tree/main/pdf)**: This folder contains several pdf files such as my master thesis report and the participatory design toolkit.
 - **[imgs](https://github.com/RomainMaure/PixelBot/tree/main/imgs)**: This folder contains the images used in the different README of this repository.
 
 ## Note
