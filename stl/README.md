@@ -23,17 +23,17 @@ All parts can be printed in PLA.
 
 | Component       |    Quantity     |
 | :-------------: | :-------------: |
-| M2x6 screw    |        4        |
-| M2x8 screw    |        4        |
-| M2x20 screw    |        8        |
-| M3x8 screw    |        15        |
-| M3x12 screw    |        8        |
-| M3x30 screw    |        6        |
-| M2 nut    |        8        |
-| M3 nut    |        22        |
-| M2 12+6mm spacer    |        2        |
-| M2x4x3.5 insert    |        4        |
-| M3x6x5 insert    |        3        |
+| [M2x6 screw](https://www.amazon.fr/gp/product/B073SS7D8J/ref=ppx_yo_dt_b_asin_title_o01_s00?ie=UTF8&psc=1)    |        4        |
+| [M2x8 screw](https://www.amazon.fr/gp/product/B073SS7D8J/ref=ppx_yo_dt_b_asin_title_o01_s00?ie=UTF8&psc=1)    |        4        |
+| [M2x20 screw](https://www.amazon.fr/gp/product/B073SS7D8J/ref=ppx_yo_dt_b_asin_title_o01_s00?ie=UTF8&psc=1)    |        8        |
+| [M3x8 screw](https://www.amazon.fr/gp/product/B073SS7D8J/ref=ppx_yo_dt_b_asin_title_o01_s00?ie=UTF8&psc=1)    |        15        |
+| [M3x12 screw](https://www.amazon.fr/gp/product/B073SS7D8J/ref=ppx_yo_dt_b_asin_title_o01_s00?ie=UTF8&psc=1)    |        8        |
+| [M3x30 screw](https://www.amazon.fr/gp/product/B073SS7D8J/ref=ppx_yo_dt_b_asin_title_o01_s00?ie=UTF8&psc=1)    |        6        |
+| [M2 nut](https://www.amazon.fr/gp/product/B073SS7D8J/ref=ppx_yo_dt_b_asin_title_o01_s00?ie=UTF8&psc=1)    |        8        |
+| [M3 nut](https://www.amazon.fr/gp/product/B073SS7D8J/ref=ppx_yo_dt_b_asin_title_o01_s00?ie=UTF8&psc=1)    |        22        |
+| [M2 12+6mm spacer](https://www.amazon.fr/gp/product/B07CJGT93C/ref=ppx_yo_dt_b_asin_title_o08_s02?ie=UTF8&psc=1)    |        2        |
+| [M2x4x3.5 insert](https://www.amazon.fr/gp/product/B07CPRHP2X/ref=ppx_yo_dt_b_asin_title_o08_s02?ie=UTF8&psc=1)    |        4        |
+| [M3x6x5 insert](https://www.amazon.fr/gp/product/B07CPRHP2X/ref=ppx_yo_dt_b_asin_title_o08_s02?ie=UTF8&psc=1)    |        3        |
 
 ## Assembly
 
