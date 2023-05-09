@@ -1,6 +1,6 @@
 # PixelBot
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: GPL-3.0](https://img.shields.io/badge/license-GPLv3-blue)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 
 This repository contains the work undertaken during my master thesis at the Computer Human Interaction for Learning and Instruction (CHILI) laboratory, EPFL.
 
@@ -22,4 +22,4 @@ Author: Romain Maure
 
 Supervisors: Barbara Bruno, Pierre Dillenbourg
 
-License: MIT License
+License: GPL-3.0
