@@ -30,10 +30,20 @@ sudo apt install terminator
 
 echo "===Installing dependencies==="
 sudo apt install python3-pip
+sudo apt install ros-humble-ament-index-python
+sudo apt install python3-pygame
 sudo apt install python3-pyaudio
 sudo apt install espeak
+sudo apt install ffmpeg
 sudo apt-get install flac
+sudo apt-get install python3-scipy
+sudo pip3 install numpy
 sudo pip3 install pyttsx3
+sudo pip3 install gTTS
+sudo pip3 install playsound
+sudo pip3 install pydub
+sudo pip3 install adafruit-circuitpython-servokit
+sudo pip3 install gpiozero
 
 # tester si besoin de modifier file audio
 # chmod +x necessary ?
