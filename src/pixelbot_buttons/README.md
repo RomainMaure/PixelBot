@@ -8,9 +8,9 @@ This package allows to publish the state of PixelBot's buttons.
 
 ### License
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: GPL-3.0](https://img.shields.io/badge/license-GPLv3-blue)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 
-The whole package is under MIT License, see [LICENSE](https://github.com/RomainMaure/PixelBot/blob/main/LICENSE).
+The whole package is under GPL-3.0 License, see [LICENSE](https://github.com/RomainMaure/PixelBot/blob/main/LICENSE).
 
 **Author: Romain Maure<br />
 Affiliation: [CHILI Lab, EPFL](https://www.epfl.ch/labs/chili/)<br />
