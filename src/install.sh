@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 echo "===Installing ROS2 Humble==="
+cd
 sudo apt update && sudo apt install locales
 sudo locale-gen en_US en_US.UTF-8
 sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
@@ -14,23 +15,13 @@ sudo apt update
 sudo apt upgrade
 sudo apt install ros-humble-desktop
 
-echo "===Setting up a ROS2 workspace==="
-source /opt/ros/humble/setup.bash
-mkdir -p ~/ros2_ws/src
-cd ~/ros2_ws
-colcon build --symlink-install
-cd
-
-echo "===Automating sourcing of ROS2 and the previously created workspace==="
-echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
-echo "source /home/pixelbot/ros2_ws/install/setup.bash" >> ~/.bashrc
-
 echo "===Installing utilities==="
 sudo apt install terminator
 
 echo "===Installing dependencies==="
 sudo apt install python3-pip
 sudo apt install ros-humble-ament-index-python
+sudo apt install python3-colcon-common-extensions
 sudo apt install python3-pygame
 sudo apt install python3-pyaudio
 sudo apt install espeak
@@ -45,5 +36,22 @@ sudo pip3 install pydub
 sudo pip3 install adafruit-circuitpython-servokit
 sudo pip3 install gpiozero
 
-# tester si besoin de modifier file audio
-# chmod +x necessary ?
+echo "===Creating a ROS2 workspace==="
+mkdir -p ~/ros2_ws/src
+
+echo "===Copying PixelBot packages to ROS2 workspace==="
+cp -a ~/PixelBot/src/pixelbot_msgs ~/ros2_ws/src/
+cp -a ~/PixelBot/src/pixelbot_audio ~/ros2_ws/src/
+cp -a ~/PixelBot/src/pixelbot_motors ~/ros2_ws/src/
+cp -a ~/PixelBot/src/pixelbot_buttons ~/ros2_ws/src/
+cp -a ~/PixelBot/src/pixelbot_display ~/ros2_ws/src/
+cp -a ~/PixelBot/src/pixelbot_interaction ~/ros2_ws/src/
+
+echo "===Building PixelBot packages==="
+cd ~/ros2_ws
+source /opt/ros/humble/setup.bash
+colcon build --symlink-install
+
+echo "===Automating sourcing of ROS2 and the previously created workspace==="
+echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
+echo "source ~/ros2_ws/install/setup.bash" >> ~/.bashrc
