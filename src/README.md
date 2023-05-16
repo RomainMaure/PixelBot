@@ -4,24 +4,9 @@
 
 To setup the Raspberry Pi, you will need a microSD card (32 GB recommended) and an SD card reader. To flash the operating system on the microSD card, the use of [Raspberry Pi Imager](https://www.raspberrypi.com/software/) is advised.
 
-### Installation using the PixelBot custom image
+### Installation
 
-You can setup the Raspberry Pi by using the custom image made for PixelBot. In this image, all the required dependencies are already installed.
-
-To do so, first download the image file (TODO: link to image file).
-To save space, the image has been shrinked using [PiSrink](https://github.com/Drewsif/PiShrink) and then compressed using [Gzip](https://www.gzip.org/). You will thus need to unzip the file. If you are using linux, you can use the following command:
-```
-gzip -dk rpi_setup_shrinked.img.gz
-```
-On windows you can use softwares to decompress the file such as [7zip](https://www.7-zip.org/).
-
-Then, on Raspberry Pi imager, select the *Use custom* option. Choose the previously downloaded and uncompressed image, select your storage device and click on *Write*. After the writing operation, you can plug the microSD card on your Raspberry Pi and you are ready to go.
-
-### Installation from scratch
-
-You can also install all the dependencies and required software by yourself.
-
-To do so, on Raspberry Pi imager, select the *Other general-purpose OS (other)* option. Then choose *Ubuntu* and select *Ubuntu Desktop 22.04.2 LTS (64-bit)* and write it on your microSD card. After the writing operation, you can plug the microSD card on your Raspberry Pi and turn it on. 
+On Raspberry Pi imager, select the *Other general-purpose OS (other)* option. Then choose *Ubuntu* and select *Ubuntu Desktop 22.04.2 LTS (64-bit)* and write it on your microSD card. After the writing operation, you can plug the microSD card on your Raspberry Pi and turn it on. 
 
 After the setup process of Ubuntu, you will have to download the dependencies required to run the activity. To do so, you will first have to download the [PixelBot repository](https://github.com/RomainMaure/PixelBot) eitheir using git or by downloading the zip version of the repository. It is important that the PixelBot folder is located in your *home* directory. You can then install the required dependencies by using the script [install.sh](https://github.com/RomainMaure/PixelBot/blob/main/src/install.sh). To do so, open a terminal in the PixelBot/src/ folder and run:
 
@@ -30,7 +15,7 @@ chmod +x install.sh
 ./install.sh
 ```
 
-### Additional steps
+### Possible additional steps
 
 - You might have to rotate the screen on the LCD display, to do so, you can open a terminal and run one of the following commands:
     ```
