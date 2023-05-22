@@ -108,7 +108,6 @@ Allows PixelBot to speak.
 ## Troubleshooting
 
 - [gTTS](https://pypi.org/project/gTTS/) is a Python library and CLI tool to interface with Google Translate's text-to-speech API. Internet connectivity is thus required to make it work, as opposed to [Pyttsx3](https://pypi.org/project/pyttsx3/) which can work offline.
-- The speaker needs to turned on manually when starting the activity and turned off after the activity. It also needs to be recharged regurlarly.
 
 ## Bugs & Feature Requests
 
