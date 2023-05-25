@@ -16,7 +16,7 @@ The whole package is under GPL-3.0 License, see [LICENSE](https://github.com/Rom
 
 **Author: Romain Maure<br />
 Affiliation: [CHILI Lab, EPFL](https://www.epfl.ch/labs/chili/)<br />
-Maintainer: Romain Maure, romain.maure@epfl.ch**
+Maintainer: Romain Maure, romain.maure21@gmail.com**
 
 The [pixelbot_display](https://github.com/RomainMaure/PixelBot/tree/main/src/pixelbot_display) package has been tested under [ROS2 Humble](https://docs.ros.org/en/humble/index.html) on Ubuntu 22.04.
 This is research code, expect that it changes often and any fitness for a particular purpose is disclaimed.
