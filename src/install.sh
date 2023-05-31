@@ -35,6 +35,7 @@ sudo pip3 install playsound
 sudo pip3 install pydub
 sudo pip3 install adafruit-circuitpython-servokit
 sudo pip3 install gpiozero
+sudo apt-get install python3-rpi.gpio
 
 echo "===Creating a ROS2 workspace==="
 mkdir -p ~/ros2_ws/src

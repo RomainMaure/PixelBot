@@ -37,10 +37,10 @@ chmod +x install.sh
 
 Before running the robot interaction, make sure that each part of the robot is working properly (motors, speaker, LCD, buttons).
 
-To do so, you can run individually each script located in the [test scripts](https://github.com/RomainMaure/PixelBot/tree/main/src/test_scripts) folder:
+To do so, you can run individually each script located in the [test scripts](https://github.com/RomainMaure/PixelBot/tree/main/src/test_scripts) folder. Open a terminal in this folder and run:
 
 ```
-python3 <python_script_name>
+sudo python3 <python_script_name>
 ```
 
 ## ROS2 packages

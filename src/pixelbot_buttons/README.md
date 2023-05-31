@@ -60,6 +60,16 @@ Publish the state of PixelBot's buttons.
 
 	List containing the state of each button of PixelBot ([right_button.is_pressed, left_button.is_pressed])
 
+## Troubleshooting    
+
+- In case of the following error:
+    ```
+    `/usr/local/lib/python3.10/dist-packages/gpiozero/devices.py:288: PinFactoryFallback: Falling back from rpigpio: No module named 'RPi'`
+    ```
+    Run in a terminal:
+    ```
+    sudo apt-get install python3-rpi.gpio
+    ```
 
 ## Bugs & Feature Requests
 
