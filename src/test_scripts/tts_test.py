@@ -83,12 +83,5 @@ def diodeRingModulator(intputFileName):
     return 'alteredVoice.wav'
 
 
-# With Pyttsx3
-engine = pyttsx3.init()
-engine.setProperty('volume', 1.0)
-engine.setProperty('rate', 125)
-engine.setProperty('voice', "french") 
-speak("Bonjour, ceci est un test.")
-
 # With gtts and then modified to sound more robotic like
 speak("Bonjour, ceci est un test.", alteredVoice=True)
