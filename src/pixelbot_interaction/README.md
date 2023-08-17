@@ -27,9 +27,6 @@ This is research code, expect that it changes often and any fitness for a partic
 
 - [Robot Operating System (ROS2)](https://docs.ros.org/en/humble/index.html) (middleware for robotics).
 - [pixelbot_msgs](https://github.com/RomainMaure/PixelBot/tree/main/src/pixelbot_msgs) for the custom ROS2 headers.
-- [pixelbot_audio](https://github.com/RomainMaure/PixelBot/tree/main/src/pixelbot_audio) to allow the robot to speak and play sounds.
-- [pixelbot_display](https://github.com/RomainMaure/PixelBot/tree/main/src/pixelbot_display) to allow to perform facial expressions on PixelBot's LCD.
-- [pixelbot_motors](https://github.com/RomainMaure/PixelBot/tree/main/src/pixelbot_motors) to control the motors of the robot.
 
 #### Building
 
@@ -52,7 +49,7 @@ ros2 launch pixelbot_interaction pixelbot_interaction.launch.py
 
 ### pixelbot_interaction_node
 
-This node depends on the other PixelBot packages and implements the main learning activity aiming at raising awareness of gender inequality among children.
+This node uses the other PixelBot packages and implements the main learning activity aiming at raising awareness of gender inequality among children.
 
 ## Bugs & Feature Requests
 
