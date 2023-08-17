@@ -45,16 +45,29 @@ sudo python3 <python_script_name>
 
 ## ROS2 packages
 
-TODO
+- [pixelbot_msgs](https://github.com/RomainMaure/PixelBot/tree/main/src/pixelbot_msgs): Custom message and service headers used by the packages of PixelBot.
+- [pixelbot_audio](https://github.com/RomainMaure/PixelBot/tree/main/src/pixelbot_audio): Allows the robot to speak and play sounds.
+- [pixelbot_buttons](https://github.com/RomainMaure/PixelBot/tree/main/src/pixelbot_buttons): Allows to get the state of the robot's buttons.
+- [pixelbot_display](https://github.com/RomainMaure/PixelBot/tree/main/src/pixelbot_display): Allows the robot to perform facial expressions using the LCD.
+- [pixelbot_motors](https://github.com/RomainMaure/PixelBot/tree/main/src/pixelbot_motors): Allows to control the motors of the robot.
+- [pixelbot_interaction](https://github.com/RomainMaure/PixelBot/tree/main/src/pixelbot_interaction): Uses the other PixelBot packages and implements the main learning activity aiming at raising awareness of gender inequality among children.
 
 ## Build
 
-TODO
+1) Copy all the packages in your ROS2 workspace (e.g. `~/ros2_ws/src`).
+
+2) Build the packages with colcon:
+```
+cd ~/ros2_ws
+source /opt/ros/humble/setup.bash
+colcon build --symlink-install
+```
 
 ## Run
 
-TODO
+To run the robot-based learning activity aiming at raising awareness of gender inequality among children, run:
+```
+ros2 launch pixelbot_interaction pixelbot_interaction.launch.py
+```
 
-## Troubleshooting
-
-TODO
+You can also use the packages available to create your own activity with the robot.
