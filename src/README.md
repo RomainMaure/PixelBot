@@ -54,6 +54,8 @@ sudo python3 <python_script_name>
 
 ## Build
 
+In case you used the `install.sh` script, all the packages should already be built and you can skip this step. Otherwise, follow the instructions described below:
+
 1) Copy all the packages in your ROS2 workspace (e.g. `~/ros2_ws/src`).
 
 2) Build the packages with colcon:
