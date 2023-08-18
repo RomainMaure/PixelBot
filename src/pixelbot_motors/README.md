@@ -108,7 +108,7 @@ Allows to control the motors of PixelBot.
 
     However this is temporary and will be lost at next boot. To fix it permanently, you can run this command in a terminal and then reboot:
     ```
-    sudo adduser pixelbot dialout
+    sudo adduser $USER dialout
     ```
 
 
