@@ -13,6 +13,7 @@ After the setup process of Ubuntu, you will have to download the dependencies re
 ```
 chmod +x install.sh
 ./install.sh
+sudo reboot
 ```
 
 ### Possible additional steps
@@ -73,3 +74,11 @@ ros2 launch pixelbot_interaction pixelbot_interaction.launch.py
 ```
 
 You can also use the packages available to create your own activity with the robot.
+
+## Troubleshooting
+
+Please refer to the Troubleshooting section included in the README of each PixelBot ROS2 package.
+    
+## Bugs & Feature Requests
+
+Please report bugs and request features using the [Issue Tracker](https://github.com/RomainMaure/PixelBot/issues).
