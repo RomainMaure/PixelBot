@@ -56,3 +56,6 @@ colcon build --symlink-install
 echo "===Automating sourcing of ROS2 and the previously created workspace==="
 echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
 echo "source ~/ros2_ws/install/setup.bash" >> ~/.bashrc
+
+echo "===PixelBot motors troubleshooting==="
+sudo adduser $USER dialout
