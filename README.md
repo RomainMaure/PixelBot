@@ -16,10 +16,22 @@ The main contribution of my thesis is PixelBot: a low-cost and open source socia
 - **[pdf](https://github.com/RomainMaure/PixelBot/tree/main/pdf)**: This folder contains all additional material used in this research work such as the different iterations of the participatory design toolkits, the transcriptions of the final experiment etc.
 - **[imgs](https://github.com/RomainMaure/PixelBot/tree/main/imgs)**: This folder contains the images used in the different README of this repository.
 
-## Note
+## Publications
 
-Author: Romain Maure
+If you use this work in an academic context, please cite the following publication:
 
-Supervisors: Barbara Bruno, Pierre Dillenbourg
+* Maure, R. & Bruno, B. (2023). **Participatory design of a social robot and robot-mediated storytelling activity to raise awareness of gender inequality among children.** 2023 32nd IEEE International Conference on Robot & Human Interactive Communication (RO-MAN).
 
-License: GPL-3.0
+        @INPROCEEDINGS{10309391,
+          author={Maure, Romain and Bruno, Barbara},
+          booktitle={2023 32nd IEEE International Conference on Robot and Human Interactive Communication (RO-MAN)}, 
+          title={Participatory design of a social robot and robot-mediated storytelling activity to raise awareness of gender inequality among children}, 
+          year={2023},
+          volume={},
+          number={},
+          pages={974-981},
+          doi={10.1109/RO-MAN57019.2023.10309391}}
+
+## License
+
+The whole repository is under [GPL-3.0](https://github.com/RomainMaure/PixelBot/blob/main/LICENSE) license.
