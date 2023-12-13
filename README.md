@@ -18,7 +18,7 @@ The main contribution of my thesis is PixelBot: a low-cost and open source socia
 
 ## Publications
 
-If you use this work in an academic context, please cite the following publication:
+If you use this work in an academic context, please cite the [following publication](https://ieeexplore.ieee.org/document/10309391):
 
 * Maure, R. & Bruno, B. (2023). **Participatory design of a social robot and robot-mediated storytelling activity to raise awareness of gender inequality among children.** 2023 32nd IEEE International Conference on Robot & Human Interactive Communication (RO-MAN).
 
