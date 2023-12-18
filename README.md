@@ -20,17 +20,15 @@ The main contribution of my thesis is PixelBot: a low-cost and open source socia
 
 If you use this work in an academic context, please cite the [following publication](https://ieeexplore.ieee.org/document/10309391):
 
-* Maure, R. & Bruno, B. (2023). **Participatory design of a social robot and robot-mediated storytelling activity to raise awareness of gender inequality among children.** 2023 32nd IEEE International Conference on Robot & Human Interactive Communication (RO-MAN).
+* Maure, Romain, and Barbara Bruno. **"Participatory design of a social robot and robot-mediated storytelling activity to raise awareness of gender inequality among children."** 2023 32nd IEEE International Conference on Robot and Human Interactive Communication (RO-MAN). IEEE, 2023.
 
-        @INPROCEEDINGS{10309391,
+        @inproceedings{maure2023participatory,
+          title={Participatory design of a social robot and robot-mediated storytelling activity to raise awareness of gender inequality among children},
           author={Maure, Romain and Bruno, Barbara},
-          booktitle={2023 32nd IEEE International Conference on Robot and Human Interactive Communication (RO-MAN)}, 
-          title={Participatory design of a social robot and robot-mediated storytelling activity to raise awareness of gender inequality among children}, 
+          booktitle={2023 32nd IEEE International Conference on Robot and Human Interactive Communication (RO-MAN)},
+          pages={974--981},
           year={2023},
-          volume={},
-          number={},
-          pages={974-981},
-          doi={10.1109/RO-MAN57019.2023.10309391}}
+          organization={IEEE}}
 
 ## License
 
