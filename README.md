@@ -2,9 +2,9 @@
 
 [![License: GPL-3.0](https://img.shields.io/badge/license-GPLv3-blue)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 
-This repository contains the work undertaken during my master thesis at the Computer Human Interaction for Learning and Instruction (CHILI) laboratory, EPFL.
+This repository contains the work undertaken during my master's thesis at the Computer Human Interaction for Learning and Instruction (CHILI) laboratory, EPFL.
 
-The main contribution of my thesis is PixelBot: a low-cost and open source social robot which has been co-designed with and for children with the aim to teach them gender equality and respect.
+The main contribution of my thesis is PixelBot: a low-cost and open-source social robot, co-designed with and for children, and an associated robot-mediated storytelling activity aiming at raising children's awareness of existing gender inequality issues.
 
 <img src="./imgs/robot_mechanical.jpg" width=756 height=1008>
 
