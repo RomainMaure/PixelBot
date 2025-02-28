@@ -4,7 +4,7 @@
 
 This repository contains the work undertaken during my master's thesis at the Computer Human Interaction for Learning and Instruction (CHILI) laboratory, EPFL.
 
-The main contribution of my thesis is PixelBot: a low-cost and open-source social robot, co-designed with and for children, and an associated robot-mediated storytelling activity aiming at raising children's awareness of existing gender inequality issues.
+The main contribution of my thesis is PixelBot: a low-cost (≈300€) and open-source social robot, co-designed with and for children, and an associated robot-mediated storytelling activity aiming at raising children's awareness of existing gender inequality issues.
 
 <img src="./imgs/robot_mechanical.jpg" width=756 height=1008>
 
