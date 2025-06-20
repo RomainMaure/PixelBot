@@ -6,6 +6,8 @@ This repository contains the work undertaken during my master's thesis at the Co
 
 The main contribution of my thesis is PixelBot: a low-cost (≈300€), open-source, and DIY social robot, co-designed with and for children, and an associated robot-mediated storytelling activity aiming at raising children's awareness of existing gender inequality issues.
 
+**An updated version of Pixelbot is available on the [pixelbot_v2 branch](https://github.com/RomainMaure/PixelBot/tree/pixelbot_v2). Please consider checking this branch for more information.**
+
 <img src="./imgs/robot_mechanical.jpg" width=756 height=1008>
 
 ## What you will find inside this repository
