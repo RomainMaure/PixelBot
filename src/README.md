@@ -8,7 +8,7 @@ To setup the Raspberry Pi, you will need a microSD card (32 GB recommended) and 
 
 On Raspberry Pi imager, select the *Other general-purpose OS (other)* option. Then choose *Ubuntu* and select *Ubuntu Desktop 22.04.2 LTS (64-bit)* and write it on your microSD card. After the writing operation, you can plug the microSD card on your Raspberry Pi and turn it on. 
 
-After the setup process of Ubuntu, you will have to download the dependencies required to run the activity. To do so, you will first have to download the [PixelBot repository](https://github.com/RomainMaure/PixelBot) eitheir using git or by downloading the zip version of the repository. It is important that the PixelBot folder is located in your *home* directory. You can then install the required dependencies by using the script [install.sh](https://github.com/RomainMaure/PixelBot/blob/main/src/install.sh). To do so, open a terminal in the PixelBot/src/ folder and run:
+After the setup process of Ubuntu, you will have to download the dependencies required to run the activity. To do so, you will first have to download the [PixelBot repository](https://github.com/RomainMaure/PixelBot/tree/pixelbot_v2) eitheir using git or by downloading the zip version of the repository. It is important that the PixelBot folder is located in your *home* directory. You can then install the required dependencies by using the script [install.sh](https://github.com/RomainMaure/PixelBot/blob/pixelbot_v2/src/install.sh). To do so, open a terminal in the PixelBot/src/ folder and run:
 
 ```
 chmod +x install.sh
@@ -38,7 +38,7 @@ sudo reboot
 
 Before running the robot interaction, make sure that each part of the robot is working properly (motors, speaker, LCD, buttons).
 
-To do so, you can run individually each script located in the [test scripts](https://github.com/RomainMaure/PixelBot/tree/main/src/test_scripts) folder. Open a terminal in this folder and run:
+To do so, you can run individually each script located in the [test scripts](https://github.com/RomainMaure/PixelBot/tree/pixelbot_v2/src/test_scripts) folder. Open a terminal in this folder and run:
 
 ```
 sudo python3 <python_script_name>
@@ -46,12 +46,12 @@ sudo python3 <python_script_name>
 
 ## ROS2 packages
 
-- [pixelbot_msgs](https://github.com/RomainMaure/PixelBot/tree/main/src/pixelbot_msgs): Custom message and service headers used by the packages of PixelBot.
-- [pixelbot_audio](https://github.com/RomainMaure/PixelBot/tree/main/src/pixelbot_audio): Allows the robot to speak and play sounds.
-- [pixelbot_buttons](https://github.com/RomainMaure/PixelBot/tree/main/src/pixelbot_buttons): Allows to get the state of the robot's buttons.
-- [pixelbot_display](https://github.com/RomainMaure/PixelBot/tree/main/src/pixelbot_display): Allows the robot to perform facial expressions using the LCD.
-- [pixelbot_motors](https://github.com/RomainMaure/PixelBot/tree/main/src/pixelbot_motors): Allows to control the motors of the robot.
-- [pixelbot_interaction](https://github.com/RomainMaure/PixelBot/tree/main/src/pixelbot_interaction): Uses the other PixelBot packages and implements the main learning activity aiming at raising awareness of gender inequality among children.
+- [pixelbot_msgs](https://github.com/RomainMaure/PixelBot/tree/pixelbot_v2/src/pixelbot_msgs): Custom message and service headers used by the packages of PixelBot.
+- [pixelbot_audio](https://github.com/RomainMaure/PixelBot/tree/pixelbot_v2/src/pixelbot_audio): Allows the robot to speak and play sounds.
+- [pixelbot_buttons](https://github.com/RomainMaure/PixelBot/tree/pixelbot_v2/src/pixelbot_buttons): Allows to get the state of the robot's buttons.
+- [pixelbot_display](https://github.com/RomainMaure/PixelBot/tree/pixelbot_v2/src/pixelbot_display): Allows the robot to perform facial expressions using the LCD.
+- [pixelbot_motors](https://github.com/RomainMaure/PixelBot/tree/pixelbot_v2/src/pixelbot_motors): Allows to control the motors of the robot.
+- [pixelbot_interaction](https://github.com/RomainMaure/PixelBot/tree/pixelbot_v2/src/pixelbot_interaction): Uses the other PixelBot packages and implements the main learning activity aiming at raising awareness of gender inequality among children.
 
 ## Build
 

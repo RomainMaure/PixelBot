@@ -12,13 +12,13 @@ This package allows to perform facial animations on PixelBot's LCD.
 
 [![License: GPL-3.0](https://img.shields.io/badge/license-GPLv3-blue)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 
-The whole package is under GPL-3.0 License, see [LICENSE](https://github.com/RomainMaure/PixelBot/blob/main/LICENSE).
+The whole package is under GPL-3.0 License, see [LICENSE](https://github.com/RomainMaure/PixelBot/blob/pixelbot_v2/LICENSE).
 
 **Author: Romain Maure<br />
 Affiliation: [CHILI Lab, EPFL](https://www.epfl.ch/labs/chili/)<br />
 Maintainer: Romain Maure, romain.maure21@gmail.com**
 
-The [pixelbot_display](https://github.com/RomainMaure/PixelBot/tree/main/src/pixelbot_display) package has been tested under [ROS2 Humble](https://docs.ros.org/en/humble/index.html) on Ubuntu 22.04.
+The [pixelbot_display](https://github.com/RomainMaure/PixelBot/tree/pixelbot_v2/src/pixelbot_display) package has been tested under [ROS2 Humble](https://docs.ros.org/en/humble/index.html) on Ubuntu 22.04.
 This is research code, expect that it changes often and any fitness for a particular purpose is disclaimed.
 
 ## Installation
@@ -28,7 +28,7 @@ This is research code, expect that it changes often and any fitness for a partic
 #### Dependencies
 
 - [Robot Operating System (ROS2)](https://docs.ros.org/en/humble/index.html) (middleware for robotics).
-- [pixelbot_msgs](https://github.com/RomainMaure/PixelBot/tree/main/src/pixelbot_msgs) for the custom ROS2 headers.
+- [pixelbot_msgs](https://github.com/RomainMaure/PixelBot/tree/pixelbot_v2/src/pixelbot_msgs) for the custom ROS2 headers.
 - [Pygame](https://www.pygame.org/news) (Python game developping library) for the visual animation of the robot's emotions on its LCD.
     ```
 	sudo apt install python3-pygame
@@ -59,7 +59,7 @@ Display facial animations on the robot's LCD.
 
 #### Services
 
-* **`display_emotion`** ([pixelbot_msgs/DisplayEmotion](https://github.com/RomainMaure/PixelBot/blob/main/src/pixelbot_msgs/srv/DisplayEmotion.srv))
+* **`display_emotion`** ([pixelbot_msgs/DisplayEmotion](https://github.com/RomainMaure/PixelBot/blob/pixelbot_v2/src/pixelbot_msgs/srv/DisplayEmotion.srv))
 
 	Perform the desired emotion on PixelBot's LCD. For example:
     ```
@@ -68,7 +68,7 @@ Display facial animations on the robot's LCD.
 
     Available emotions: "happy", "angry", "sad", "surprise".
 
-* **`display_location`** ([pixelbot_msgs/DisplayLocation](https://github.com/RomainMaure/PixelBot/blob/main/src/pixelbot_msgs/srv/DisplayLocation.srv))
+* **`display_location`** ([pixelbot_msgs/DisplayLocation](https://github.com/RomainMaure/PixelBot/blob/pixelbot_v2/src/pixelbot_msgs/srv/DisplayLocation.srv))
 
 	Display the desired location on PixelBot's LCD. For example:
     ```

@@ -1,4 +1,4 @@
-# PixelBot
+# PixelBot V2
 
 [![License: GPL-3.0](https://img.shields.io/badge/license-GPLv3-blue)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 
@@ -6,15 +6,17 @@ This repository contains the work undertaken during my master's thesis at the Co
 
 The main contribution of my thesis is PixelBot: a low-cost (≈300€), open-source, and DIY social robot, co-designed with and for children, and an associated robot-mediated storytelling activity aiming at raising children's awareness of existing gender inequality issues.
 
+**This branch contains an updated version of PixelBot. With respect to the hardware, PixelBot V2 is based on a Raspberry Pi 5 instead of a Raspberry Pi 4, relies on a USB speaker instead of an audio-jack speaker, and is overall easier to build compared to PixelBot V1. With respect to the software, PixelBot V2 is based on Ubuntu 24 instead of ubuntu 22, and on ROS2 Jazzy instead of ROS2 Humble. Some of the ROS2 packages are also updated.**
+
 <img src="./imgs/robot_mechanical.jpg" width=756 height=1008>
 
 ## What you will find inside this repository
 
-- **[3d_parts](https://github.com/RomainMaure/PixelBot/tree/main/3d_parts)**: This folder contains all the parts to be 3D printed as well as a list of all the screws, nuts and other components required to build the robot.
-- **[elec](https://github.com/RomainMaure/PixelBot/tree/main/elec)**: This folder contains all the informations related to the electronic of the robot, mainly, the circuit schematics and the list of the electronic components.
-- **[src](https://github.com/RomainMaure/PixelBot/tree/main/src)**: This folder contains guidelines to setup the software of the robot as well as the main source code used to run the learning interaction between the robot and the children.
-- **[pdf](https://github.com/RomainMaure/PixelBot/tree/main/pdf)**: This folder contains all additional material used in this research work. The participatory design toolkit is available both in French and English and both as a pdf or as a pptx. This folder also contains the data that has been collected during the two iterations of our final experiment, mainly the anonymized transcription of the discussion.
-- **[imgs](https://github.com/RomainMaure/PixelBot/tree/main/imgs)**: This folder contains the images used in the different README of this repository.
+- **[3d_parts](https://github.com/RomainMaure/PixelBot/tree/pixelbot_v2/3d_parts)**: This folder contains all the parts to be 3D printed as well as a list of all the screws, nuts and other components required to build the robot.
+- **[elec](https://github.com/RomainMaure/PixelBot/tree/pixelbot_v2/elec)**: This folder contains all the informations related to the electronic of the robot, mainly, the circuit schematics and the list of the electronic components.
+- **[src](https://github.com/RomainMaure/PixelBot/tree/pixelbot_v2/src)**: This folder contains guidelines to setup the software of the robot as well as the main source code used to run the learning interaction between the robot and the children.
+- **[pdf](https://github.com/RomainMaure/PixelBot/tree/pixelbot_v2/pdf)**: This folder contains all additional material used in this research work. The participatory design toolkit is available both in French and English and both as a pdf or as a pptx. This folder also contains the data that has been collected during the two iterations of our final experiment, mainly the anonymized transcription of the discussion.
+- **[imgs](https://github.com/RomainMaure/PixelBot/tree/pixelbot_v2/imgs)**: This folder contains the images used in the different README of this repository.
 
 ## Publications
 

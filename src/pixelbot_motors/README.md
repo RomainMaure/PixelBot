@@ -10,13 +10,13 @@ This package allows to control the motors of PixelBot.
 
 [![License: GPL-3.0](https://img.shields.io/badge/license-GPLv3-blue)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 
-The whole package is under GPL-3.0 License, see [LICENSE](https://github.com/RomainMaure/PixelBot/blob/main/LICENSE).
+The whole package is under GPL-3.0 License, see [LICENSE](https://github.com/RomainMaure/PixelBot/blob/pixelbot_v2/LICENSE).
 
 **Author: Romain Maure<br />
 Affiliation: [CHILI Lab, EPFL](https://www.epfl.ch/labs/chili/)<br />
 Maintainer: Romain Maure, romain.maure21@gmail.com**
 
-The [pixelbot_motors](https://github.com/RomainMaure/PixelBot/tree/main/src/pixelbot_motors) package has been tested under [ROS2 Humble](https://docs.ros.org/en/humble/index.html) on Ubuntu 22.04.
+The [pixelbot_motors](https://github.com/RomainMaure/PixelBot/tree/pixelbot_v2/src/pixelbot_motors) package has been tested under [ROS2 Humble](https://docs.ros.org/en/humble/index.html) on Ubuntu 22.04.
 This is research code, expect that it changes often and any fitness for a particular purpose is disclaimed.
 
 ## Installation
@@ -26,7 +26,7 @@ This is research code, expect that it changes often and any fitness for a partic
 #### Dependencies
 
 - [Robot Operating System (ROS2)](https://docs.ros.org/en/humble/index.html) (middleware for robotics).
-- [pixelbot_msgs](https://github.com/RomainMaure/PixelBot/tree/main/src/pixelbot_msgs) for the custom ROS2 headers.
+- [pixelbot_msgs](https://github.com/RomainMaure/PixelBot/tree/pixelbot_v2/src/pixelbot_msgs) for the custom ROS2 headers.
 - [adafruit_servokit](https://pypi.org/project/adafruit-circuitpython-servokit/) to control multiple servo motors through a PCA9865.
     ```
 	sudo pip3 install adafruit-circuitpython-servokit
@@ -57,7 +57,7 @@ Allows to control the motors of PixelBot.
 
 #### Services
 
-* **`motors_movement`** ([pixelbot_msgs/MotorsMovement](https://github.com/RomainMaure/PixelBot/blob/main/src/pixelbot_msgs/srv/MotorsMovement.srv))
+* **`motors_movement`** ([pixelbot_msgs/MotorsMovement](https://github.com/RomainMaure/PixelBot/blob/pixelbot_v2/src/pixelbot_msgs/srv/MotorsMovement.srv))
 
 	Move the motors of your choice to a given angle. For example:
     ```
@@ -85,7 +85,7 @@ Allows to control the motors of PixelBot.
 	ros2 service call /hand_waving std_srvs/srv/Empty 
     ```
 
-* **`emotion_antennae_movement`** ([pixelbot_msgs/DisplayEmotion](https://github.com/RomainMaure/PixelBot/blob/main/src/pixelbot_msgs/srv/DisplayEmotion.srv))
+* **`emotion_antennae_movement`** ([pixelbot_msgs/DisplayEmotion](https://github.com/RomainMaure/PixelBot/blob/pixelbot_v2/src/pixelbot_msgs/srv/DisplayEmotion.srv))
 
 	Perform antennae movements to show emotions. For example:
     ```

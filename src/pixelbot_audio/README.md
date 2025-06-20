@@ -10,13 +10,13 @@ This package allows PixelBot to speak.
 
 [![License: GPL-3.0](https://img.shields.io/badge/license-GPLv3-blue)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 
-The whole package is under GPL-3.0 License, see [LICENSE](https://github.com/RomainMaure/PixelBot/blob/main/LICENSE).
+The whole package is under GPL-3.0 License, see [LICENSE](https://github.com/RomainMaure/PixelBot/blob/pixelbot_v2/LICENSE).
 
 **Author: Romain Maure<br />
 Affiliation: [CHILI Lab, EPFL](https://www.epfl.ch/labs/chili/)<br />
 Maintainer: Romain Maure, romain.maure21@gmail.com**
 
-The [pixelbot_audio](https://github.com/RomainMaure/PixelBot/tree/main/src/pixelbot_audio) package has been tested under [ROS2 Humble](https://docs.ros.org/en/humble/index.html) on Ubuntu 22.04.
+The [pixelbot_audio](https://github.com/RomainMaure/PixelBot/tree/pixelbot_v2/src/pixelbot_audio) package has been tested under [ROS2 Humble](https://docs.ros.org/en/humble/index.html) on Ubuntu 22.04.
 This is research code, expect that it changes often and any fitness for a particular purpose is disclaimed.
 
 ## Installation
@@ -26,7 +26,7 @@ This is research code, expect that it changes often and any fitness for a partic
 #### Dependencies
 
 - [Robot Operating System (ROS2)](https://docs.ros.org/en/humble/index.html) (middleware for robotics).
-- [pixelbot_msgs](https://github.com/RomainMaure/PixelBot/tree/main/src/pixelbot_msgs) for the custom ROS2 headers.
+- [pixelbot_msgs](https://github.com/RomainMaure/PixelBot/tree/pixelbot_v2/src/pixelbot_msgs) for the custom ROS2 headers.
 - [Pyttsx3](https://pypi.org/project/pyttsx3/) and [gTTS](https://pypi.org/project/gTTS/): two text to speech libraries for Python.
     ```
 	sudo pip3 install pyttsx3
@@ -67,14 +67,14 @@ Allows PixelBot to speak.
 
 #### Services
 
-* **`speak`** ([pixelbot_msgs/SetSpeech](https://github.com/RomainMaure/PixelBot/blob/main/src/pixelbot_msgs/srv/SetSpeech.srv))
+* **`speak`** ([pixelbot_msgs/SetSpeech](https://github.com/RomainMaure/PixelBot/blob/pixelbot_v2/src/pixelbot_msgs/srv/SetSpeech.srv))
 
 	Make PixelBot speak:
     ```
 	ros2 service call /speak pixelbot_msgs/SetSpeech "message: 'Bonjour, je suis PixelBot.'"
     ```
 
-* **`change_voice_alteration`** ([pixelbot_msgs/SetVoiceAlteration](https://github.com/RomainMaure/PixelBot/blob/main/src/pixelbot_msgs/srv/SetVoiceAlteration.srv))
+* **`change_voice_alteration`** ([pixelbot_msgs/SetVoiceAlteration](https://github.com/RomainMaure/PixelBot/blob/pixelbot_v2/src/pixelbot_msgs/srv/SetVoiceAlteration.srv))
 
 	Allows to enable or disable voice alteration (robotic like voice):
     ```
@@ -86,7 +86,7 @@ Allows PixelBot to speak.
 	ros2 service call /change_voice_alteration pixelbot_msgs/SetVoiceAlteration "is_voice_altered: false"
     ```
 
-* **`change_language`** ([pixelbot_msgs/SetLanguage](https://github.com/RomainMaure/PixelBot/blob/main/src/pixelbot_msgs/srv/SetLanguage.srv))
+* **`change_language`** ([pixelbot_msgs/SetLanguage](https://github.com/RomainMaure/PixelBot/blob/pixelbot_v2/src/pixelbot_msgs/srv/SetLanguage.srv))
 
 	Allows to specify the language to be spoken (french or english):
     ```
