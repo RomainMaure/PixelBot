@@ -6,16 +6,16 @@
 
 | Component       |    Quantity     |
 | :-------------: | :-------------: |
-| [Bottom plate](https://github.com/RomainMaure/PixelBot/blob/main/stl/bottom_plate.stl) |        1        |
-| [Leg](https://github.com/RomainMaure/PixelBot/blob/main/stl/leg.stl) |        2        |
-| [Enclosure](https://github.com/RomainMaure/PixelBot/blob/main/stl/enclosure.stl) |        1        |
-| [Speaker holder](https://github.com/RomainMaure/PixelBot/blob/main/stl/speaker_holder.stl)    |        1        |
-| [Servo holder](https://github.com/RomainMaure/PixelBot/blob/main/stl/servo_holder.stl) |        4        |
-| [Arm](https://github.com/RomainMaure/PixelBot/blob/main/stl/arm.stl)    |        2        |
-| [Enclosure top](https://github.com/RomainMaure/PixelBot/blob/main/stl/enclosure_top.stl)    |        1        |
-| [Front head](https://github.com/RomainMaure/PixelBot/blob/main/stl/front_head.stl)    |        1        |
-| [Back head](https://github.com/RomainMaure/PixelBot/blob/main/stl/back_head.stl)    |        1        |
-| [Antenna](https://github.com/RomainMaure/PixelBot/blob/main/stl/antenna.stl)    |        2        |
+| [Bottom plate](https://github.com/RomainMaure/PixelBot/blob/main/3d_parts/stl/bottom_plate.stl) |        1        |
+| [Leg](https://github.com/RomainMaure/PixelBot/blob/main/3d_parts/stl/leg.stl) |        2        |
+| [Enclosure](https://github.com/RomainMaure/PixelBot/blob/main/3d_parts/stl/enclosure.stl) |        1        |
+| [Speaker holder](https://github.com/RomainMaure/PixelBot/blob/main/3d_parts/stl/speaker_holder.stl)    |        1        |
+| [Servo holder](https://github.com/RomainMaure/PixelBot/blob/main/3d_parts/stl/servo_holder.stl) |        4        |
+| [Arm](https://github.com/RomainMaure/PixelBot/blob/main/3d_parts/stl/arm.stl)    |        2        |
+| [Enclosure top](https://github.com/RomainMaure/PixelBot/blob/main/3d_parts/stl/enclosure_top.stl)    |        1        |
+| [Front head](https://github.com/RomainMaure/PixelBot/blob/main/3d_parts/stl/front_head.stl)    |        1        |
+| [Back head](https://github.com/RomainMaure/PixelBot/blob/main/3d_parts/stl/back_head.stl)    |        1        |
+| [Antenna](https://github.com/RomainMaure/PixelBot/blob/main/3d_parts/stl/antenna.stl)    |        2        |
 
 All parts can be printed in PLA.
 
