@@ -6,7 +6,15 @@ This repository contains the work undertaken during my master's thesis at the Co
 
 The main contribution of my thesis is PixelBot: a low-cost (≈300€), open-source, and DIY social robot, co-designed with and for children, and an associated robot-mediated storytelling activity aiming at raising children's awareness of existing gender inequality issues.
 
-**This branch contains an updated version of PixelBot. With respect to the hardware, PixelBot V2 is based on a Raspberry Pi 5 instead of a Raspberry Pi 4, relies on a USB speaker instead of an audio-jack speaker, and is overall easier to build compared to PixelBot V1. With respect to the software, PixelBot V2 is based on Ubuntu 24 instead of ubuntu 22, and on ROS2 Jazzy instead of ROS2 Humble. Some of the ROS2 packages are also updated.**
+**This branch contains an updated version of PixelBot:**
+- Hardware modification:
+  - Raspberry Pi 5 instead of Raspberry Pi 4.
+  - USB speaker instead of audio-jack speaker.
+  - Easier to build compared to PixelBot V1. 
+- Software modification:
+  - Ubuntu 24 instead of Ubuntu 22.
+  - ROS2 Jazzy instead of ROS2 Humble. 
+  - Some of the ROS2 packages are updated.
 
 <img src="./imgs/robot_mechanical.jpg" width=756 height=1008>
 
