@@ -4,7 +4,7 @@
 
 ### 3D prints
 
-The table below describes the parts to be 3D printed to build the robot. All parts can be printed using PLA. The 3D printing surface should be of at least 180 x 180 mm. The [gcode folder](https://github.com/RomainMaure/PixelBot/tree/pixelbot_v2/3d_parts/gcode) contains printing configurations for all the parts and for a PRUSA MK4. The [stl folder](https://github.com/RomainMaure/PixelBot/tree/pixelbot_v2/3d_parts/stl) contains all the parts to be printed in stl format. The [step folder](https://github.com/RomainMaure/PixelBot/tree/pixelbot_v2/3d_parts/step) contains all the parts in step format, in case you would like to modify some of PixelBot's parts according to your specific use case.
+The table below describes the parts to be 3D printed to build the robot. All parts can be printed using PLA. A single [1Kg spool of 1.75mm filament](https://www.conrad.de/de/p/renkforce-rf-4511190-filament-pla-1-75-mm-1000-g-weiss-1-st-2255595.html) (≈30 EUR) is enough to print all the parts necessary to build the robot. The 3D printing surface should be of at least 180 x 180 mm. The [gcode folder](https://github.com/RomainMaure/PixelBot/tree/pixelbot_v2/3d_parts/gcode) contains printing configurations for all the parts and for a PRUSA MK4. The [stl folder](https://github.com/RomainMaure/PixelBot/tree/pixelbot_v2/3d_parts/stl) contains all the parts to be printed in stl format. The [step folder](https://github.com/RomainMaure/PixelBot/tree/pixelbot_v2/3d_parts/step) contains all the parts in step format, in case you would like to modify some of PixelBot's parts according to your specific use case.
 
 | Component       |    Quantity     |
 | :-------------: | :-------------: |
