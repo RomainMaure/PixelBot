@@ -4,7 +4,7 @@
 
 ### 3D prints
 
-The table below describes the parts to be 3D printed to build the robot (all parts can be printed using PLA):
+The table below describes the parts to be 3D printed to build the robot. All parts can be printed using PLA. The 3D printing surface should be of at least 180 x 180 mm. The [gcode folder](https://github.com/RomainMaure/PixelBot/tree/pixelbot_v2/3d_parts/gcode) contains printing configurations for all the parts and for a PRUSA MK4. The [stl folder](https://github.com/RomainMaure/PixelBot/tree/pixelbot_v2/3d_parts/stl) contains all the parts to be printed in stl format. The [step folder](https://github.com/RomainMaure/PixelBot/tree/pixelbot_v2/3d_parts/step) contains all the parts in step format, in case you would like to modify some of PixelBot's parts according to your specific use case.
 
 | Component       |    Quantity     |
 | :-------------: | :-------------: |
