@@ -18,7 +18,7 @@ The main contribution of this repository is PixelBot: a low-cost (<300€), open
   - Some of the ROS2 packages are updated.
 - Guidelines for the robot assembly.
 
-<img src="./imgs/robot_mechanical.jpg" width=756 height=1008>
+<img src="./imgs/pixelbot_v2.png" width=756 height=1008>
 
 ## What you will find inside this repository
 
