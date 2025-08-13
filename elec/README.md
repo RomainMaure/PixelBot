@@ -2,22 +2,100 @@
 
 ## Bill of materials
 
-| Component       |    Quantity     |
-| :-------------: | :-------------: |
-| Raspberry Pi 5 (8GB)  |        1        |
-| [Raspberry Pi 5 power supply](https://www.conrad.de/de/p/raspberry-pi-raspberry-pi-steckernetzteil-festspannung-passend-fuer-entwicklungskits-raspberry-pi-ausgangsstrom-ma-2987283.html)  |        1        |
-| [Raspberry Pi 5 Active Cooler](https://www.pi-shop.ch/raspberry-pi-active-cooler)  |        1        |
-| [SD card (32GB)](https://www.amazon.fr/SanDisk-M%C3%A9moire-microSDHC-Adaptateur-homologu%C3%A9e/dp/B08GY9NYRM/ref=sr_1_6?keywords=sd+card+32gb&qid=1675702913&sr=8-6)  |        1        |
-| [Micro SD card adaptor](https://www.amazon.fr/Vanja-Adaptateur-Connecteur-Notebooks-Smartphones/dp/B00W02VHM6/ref=sr_1_5?__mk_fr_FR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=DXPTPPN8AI8&keywords=adaptateur+carte+micro+sd&qid=1685008098&sprefix=adaptateur+carte+micro+s%2Caps%2C79&sr=8-5)  |        1        |
-| [Speaker](https://www.berrybase.de/externer-usb-mini-lautsprecher-schwarz)  |        1        |
-| [5" HDMI LCD](https://www.amazon.fr/dp/B096ZSZFC8?psc=1&ref=ppx_yo2ov_dt_b_product_details) |        1        |
-| [Motor power supply (5V - 2A)](https://www.amazon.fr/Alimentation-Zolt-Transformateur-Universel-Electronique/dp/B0B1M9SFHC/ref=sr_1_37?__mk_fr_FR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=5TPLDRYMSQ4Z&keywords=Adaptateur+Secteur+5V+2A+Chargeur+d%27alimentation&qid=1675177497&sprefix=adaptateur+secteur+5v+2a+chargeur+d%27alimentation%2Caps%2C70&sr=8-37) |        1        |
-| [PCA9685](https://www.amazon.fr/gp/product/B07RG9ZTMD/ref=ppx_yo_dt_b_asin_title_o00_s02?ie=UTF8&psc=1)  |        1        |
-| [SG90 servo motor](https://www.amazon.fr/gp/product/B07Q1GJJZS/ref=ppx_yo_dt_b_asin_title_o01_s00?ie=UTF8&psc=1)  |        4        |
-| [Push pull button](https://www.amazon.fr/Larcele-Momentan%C3%A9-Bouton-Poussoir-Bricolage-Bouton-poussoir/dp/B06XCSB9N3/ref=sr_1_103?__mk_fr_FR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=3RSI6R6IKA8PC&keywords=push+pull+button&qid=1675177887&sprefix=push+pull+button%2Caps%2C83&sr=8-103)  |        2        |
-| [Male to Male wire](https://www.amazon.fr/120pcs-femelle-Arduino-Raspberry-breadboard/dp/B01BKN8UX4/ref=sr_1_5?keywords=cable+arduino+femelle+femelle&qid=1685008355&sprefix=cable+arduino%2Caps%2C80&sr=8-5)  |        2        |
-| [Female to Female wire](https://www.amazon.fr/120pcs-femelle-Arduino-Raspberry-breadboard/dp/B01BKN8UX4/ref=sr_1_5?keywords=cable+arduino+femelle+femelle&qid=1685008355&sprefix=cable+arduino%2Caps%2C80&sr=8-5)  |        4        |
-| [Male to Female wire](https://www.amazon.fr/120pcs-femelle-Arduino-Raspberry-breadboard/dp/B01BKN8UX4/ref=sr_1_5?keywords=cable+arduino+femelle+femelle&qid=1685008355&sprefix=cable+arduino%2Caps%2C80&sr=8-5)  |        4        |
+<table>
+    <thead>
+        <tr>
+            <th style='text-align:center; vertical-align:middle'>Component</th>
+            <th style='text-align:center; vertical-align:middle'>Quantity</th>
+            <th style='text-align:center; vertical-align:middle'>Price (EUR)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style='text-align:center; vertical-align:middle'> <a href="https://www.berrybase.de/en/detail/018ea8d227c773658291fb9496fa612f">Raspberry Pi 5 (8GB)</a> </td>
+            <td style='text-align:center; vertical-align:middle'>1</td>
+            <td style='text-align:center; vertical-align:middle'>83,50</td>
+        </tr>
+        <tr>
+            <td style='text-align:center; vertical-align:middle'> <a href="https://www.berrybase.de/en/detail/019234a5bfb57193899acec14a1eebd6">Raspberry Pi 5 power supply (27W)</a> </td>
+            <td style='text-align:center; vertical-align:middle'>1</td>
+            <td style='text-align:center; vertical-align:middle'>12,40</td>
+        </tr>
+        <tr>
+            <td style='text-align:center; vertical-align:middle'> <a href="https://www.berrybase.de/en/raspberry-pi-active-cooler-fan-for-raspberry-pi-5">Raspberry Pi 5 Active Cooler</a> </td>
+            <td style='text-align:center; vertical-align:middle'>1</td>
+            <td style='text-align:center; vertical-align:middle'>5,80</td>
+        </tr>
+        <tr>
+            <td style='text-align:center; vertical-align:middle'> <a href="https://www.conrad.de/de/p/intenso-64gb-microsdxc-performance-microsd-karte-64-gb-class-10-uhs-i-wasserdicht-2859941.html">Micro SD card (64GB)</a> </td>
+            <td style='text-align:center; vertical-align:middle'>1</td>
+            <td style='text-align:center; vertical-align:middle'>5,99</td>
+        </tr>
+        <tr>
+            <td style='text-align:center; vertical-align:middle'> <a href="https://www.conrad.de/de/p/hama-00124022-usb-3-0-multi-kartenleser-sd-microsd-cf-schwarz-1416360.html">Micro SD card adaptor (optional, if you don't have an SD card reader)</a> </td>
+            <td style='text-align:center; vertical-align:middle'>1</td>
+            <td style='text-align:center; vertical-align:middle'>12,99</td>
+        </tr>
+        <tr>
+            <td style='text-align:center; vertical-align:middle'> <a href="https://www.berrybase.de/externer-usb-mini-lautsprecher-schwarz">Speaker</a> </td>
+            <td style='text-align:center; vertical-align:middle'>1</td>
+            <td style='text-align:center; vertical-align:middle'>6,80</td>
+        </tr>
+        <tr>
+            <td style='text-align:center; vertical-align:middle'> <a href="https://www.waveshare.com/product/displays/5inch-hdmi-lcd-h-v4.htm">5" HDMI LCD</a> </td>
+            <td style='text-align:center; vertical-align:middle'>1</td>
+            <td style='text-align:center; vertical-align:middle'>43,99</td>
+        </tr>
+        <tr>
+            <td style='text-align:center; vertical-align:middle'> <a href="https://www.amazon.de/-/en/RIIEYOCA-Degree-Right-48Gbps-Supports/dp/B0CNBZYKHJ?crid=1L04SVAZH7BQP&dib=eyJ2IjoiMSJ9.rT1rzN_bPqQnemecZ43PQmk0Kw4tawvmwqymVECIpzf6cfftYvvj0vpQxMRVw2G8bS7-mM_fj4QI88yFiuQVEgNAcqmA-PUmE0YJAAY4_G1tiOdt5um-jqlyNID4ohe1XMix7H7YkiSCTDVEc3wJ4bKehEsM6zl30nBCGIe6oZ89ibZ7zKCONGJi9KGAZpFoiKUuYqXdFdDJuMXg65lCQKeNn69KZ6gQONXCBgGiICzspMB1ItgUBsfq63j9On_L3c5GbTx9KShroldLGNMzULf68syT6O0On3LBE4kMxiw.27CHApUCApwcDw5kkyNJSvG7VmWonKvAg_k-TzuMIkQ&dib_tag=se&keywords=riieyoca%2B90%2Bgrad&qid=1755075493&sprefix=RIIEYOCA%2B90%2Caps%2C161&sr=8-17&th=1">HDMI to micro HDMI cable (50cm, 90° right)</a> </td>
+            <td style='text-align:center; vertical-align:middle'>1</td>
+            <td style='text-align:center; vertical-align:middle'>11,99</td>
+        </tr>
+        <tr>
+            <td style='text-align:center; vertical-align:middle'> <a href="https://www.reichelt.com/de/en/shop/product/universal_power_supply_unit_with_usb_port_3_-_12_v_24_w-348764">Motor power supply (5V - 2A)</a> </td>
+            <td style='text-align:center; vertical-align:middle'>1</td>
+            <td style='text-align:center; vertical-align:middle'>11,60</td>
+        </tr>
+        <tr>
+            <td style='text-align:center; vertical-align:middle'> <a href="https://www.roboter-bausatz.de/p/16-kanal-pwm-servomotortreiber-fuer-arduino-raspberry-pi">PCA9685</a> </td>
+            <td style='text-align:center; vertical-align:middle'>1</td>
+            <td style='text-align:center; vertical-align:middle'>5,29</td>
+        </tr>
+        <tr>
+            <td style='text-align:center; vertical-align:middle'> <a href="https://www.roboter-bausatz.de/p/sg90-9g-micro-servomotor">SG90 servo motor</a> </td>
+            <td style='text-align:center; vertical-align:middle'>4</td>
+            <td style='text-align:center; vertical-align:middle'>7,40</td>
+        </tr>
+        <tr>
+            <td style='text-align:center; vertical-align:middle'> <a href="https://www.roboter-bausatz.de/p/drucktaster-button-schalter-gruen-12mm-250v-1a">Push pull button (green)</a> </td>
+            <td style='text-align:center; vertical-align:middle'>1</td>
+            <td style='text-align:center; vertical-align:middle'>0,85</td>
+        </tr>
+        <tr>
+            <td style='text-align:center; vertical-align:middle'> <a href="https://www.roboter-bausatz.de/p/drucktaster-button-schalter-blau-12mm-250v-1a">Push pull button (blue)</a> </td>
+            <td style='text-align:center; vertical-align:middle'>1</td>
+            <td style='text-align:center; vertical-align:middle'>0,75</td>
+        </tr>
+        <tr>
+            <td style='text-align:center; vertical-align:middle'> <a href="https://www.berrybase.de/en/40pin-jumper-dupont-cable-set-1x-f-f-m-m-f-m-each-20cm">Male to Male wire</a> </td>
+            <td style='text-align:center; vertical-align:middle'>2</td>
+            <td style='text-align:center; vertical-align:middle' rowspan="3">4,90</td>
+        </tr>
+        <tr>
+            <td style='text-align:center; vertical-align:middle'> <a href="https://www.berrybase.de/en/40pin-jumper-dupont-cable-set-1x-f-f-m-m-f-m-each-20cm">Female to Female wire</a> </td>
+            <td style='text-align:center; vertical-align:middle'>4</td>
+        </tr>
+        <tr>
+            <td style='text-align:center; vertical-align:middle'> <a href="https://www.berrybase.de/en/40pin-jumper-dupont-cable-set-1x-f-f-m-m-f-m-each-20cm">Male to Female wire</a> </td>
+            <td style='text-align:center; vertical-align:middle'>4</td>
+        </tr>
+        <tr>
+            <td style='text-align:center; vertical-align:middle'> <b>Total</b> </td>
+            <td style='text-align:center; vertical-align:middle'>  </td>
+            <td style='text-align:center; vertical-align:middle'> <b>214,25</b></td>
+        </tr>
+    </tbody>
+</table>
 
 ## Circuit schematic
 
