@@ -27,7 +27,7 @@ The main contribution of this repository is PixelBot: a low-cost (<300€), open
 - **[pdf](https://github.com/RomainMaure/PixelBot/tree/pixelbot_v2/pdf)**: This folder contains all additional material used in this research work. The participatory design toolkit is available both in French and English and both as a pdf or as a pptx. This folder also contains the data that has been collected during the two iterations of our final experiment, mainly the anonymized transcription of the discussion.
 - **[imgs](https://github.com/RomainMaure/PixelBot/tree/pixelbot_v2/imgs)**: This folder contains the images used in the different README of this repository.
 
-## Publications
+## Publication
 
 If you use this work in an academic context, please cite the [following publication](https://ieeexplore.ieee.org/document/10309391):
 
@@ -40,6 +40,12 @@ If you use this work in an academic context, please cite the [following publicat
           pages={974--981},
           year={2023},
           organization={IEEE}}
+
+## Collaboration
+
+If you would like to collaborate, please contact me at the following email address: romain.maure21@gmail.com.
+
+In case you use this work in an academic or personal context, feel free to use the above email address to share about your experience with PixelBot, the use case in which it was employed, etc... I would be most pleased! ;)
 
 ## License
 
