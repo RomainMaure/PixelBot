@@ -45,7 +45,7 @@ If you use this work in an academic context, please cite the [following publicat
 
 If you would like to collaborate, please contact me at the following email address: romain.maure21@gmail.com.
 
-In case you use this work in an academic or personal context, feel free to use the above email address to share about your experience with PixelBot, the use case in which it was employed, etc... I would be most pleased! ;)
+In case you use this work in an academic or personal context, feel free to use the above email address to share your experience with PixelBot, the use case in which it was employed, etc... I would be most pleased! ;)
 
 ## License
 
