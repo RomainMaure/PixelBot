@@ -167,6 +167,8 @@ The table below describes the parts to be 3D printed to build the robot. All par
 
 ## Assembly
 
+**The full assembly file is accessible on Onshape using the following [link](https://cad.onshape.com/documents/0097e1f04b722767a8e25ee0/w/35b2e9c861b5b79ef63a54c7/e/1c438358a0c7ac472798fb65?renderMode=0&uiState=68cae9d92fc7ca1f5e5d7300). You can make use of this link to help you with the assembly, or to create a copy of PixelBot and modify it according to your own needs.**
+
 The table below describes the order in which the robot is assembled and how each part is connected to the others:
 
 | Parts connexion       |    Needed to connect the parts    |
