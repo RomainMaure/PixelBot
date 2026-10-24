@@ -131,3 +131,5 @@ dmypy.json
 # Specific to the project
 *.pxo
 *.wav
+
+*.vscode/

@@ -2,153 +2,232 @@ import rclpy
 from rclpy.node import Node
 
 from pixelbot_msgs.srv import DisplayEmotion
-from pixelbot_msgs.srv import DisplayLocation
-
-from ament_index_python import get_package_share_directory
 
 import time
 import pygame
 from pygame.locals import *
+import numpy as np
+import random
+
+from ament_index_python import get_package_share_directory
 
 
 class Display(Node):
 
-    # Defines
-    BLINK_NUMBER_IMAGES = 5
-    HAPPY_NUMBER_IMAGES = 6
-    ANGRY_NUMBER_IMAGES = 5
-    SAD_NUMBER_IMAGES = 5
-    SURPRISE_NUMBER_IMAGES = 6
-    LOCATIONS_NUMBER_IMAGES = 4
-    BLINKING, FORWARD, BACKWARD = 0, 1, 2
-    AVAILABLE_EMOTIONS = ["happy", "angry", "sad", "surprise"]
-    STRING_LOCATIONS_TO_IDX = {"flat": 0, "ski": 1, "nasa": 2, "judge": 3}
-    COUNT_CHANGE_IMAGE_OF_SEQUENCE = 2
-    COUNT_TRIGGER_BLINKING_SEQUENCE = 180
+    # DEFINE
+    WHITE = (255, 255, 255)
 
     def __init__(self):
         super().__init__('pixelbot_display_node')
 
-        # Timer callback for the display
-        timer_period = 1.0 / 30.0 # 30 fps
-        self.timer = self.create_timer(timer_period, self.timer_callback)
-
-        # Service to perform desired emotion
-        self.emotion_srv = self.create_service(DisplayEmotion, 'display_emotion', self.emotion_callback)
-
-        # Service to display desired location
-        self.location_srv = self.create_service(DisplayLocation, 'display_location', self.location_callback)
-
         # Initialize Pygame
         pygame.init()
 
-        # Create window
+        # Create Pygame window
         self.window = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
 
         # Do not show computer mouse
         pygame.mouse.set_visible(False)
 
-        # Get screen size
-        infoObject = pygame.display.Info()
-        dimensions = (infoObject.current_w, infoObject.current_h)
+        # Defines
+        # TODO: There is no service for displaying locations !!!!!!!
+        self.FPS = 60.0
+        self.ANIMATION_INTERVAL = 3
+        self.WIDTH, self.HEIGHT = self.window.get_size()
+        self.RIGHT_EYE_CENTER_X = 0.25*self.WIDTH
+        self.LEFT_EYE_CENTER_X = 0.75*self.WIDTH
+        self.EYES_CENTER_Y = 0.5*self.HEIGHT
+        self.RIGHT_EYE_CENTER = (self.RIGHT_EYE_CENTER_X, self.EYES_CENTER_Y)
+        self.LEFT_EYE_CENTER = (self.LEFT_EYE_CENTER_X, self.EYES_CENTER_Y)
+        self.EYE_RADIUS = 0.75*self.HEIGHT
+        self.PROCESSING_STATE_INTERVAL = 2
 
-        # Load blinking image sequence
-        self.blink_sequence = self.load_sequence("blink", self.BLINK_NUMBER_IMAGES, dimensions)
-        self.blink_sequence += reversed(self.blink_sequence)
-        self.blink_sequence.remove(self.blink_sequence[len(self.blink_sequence)//2])
+        self.BLINKING_ANIMATION_EYES_HEIGHT = np.concatenate((np.linspace(self.EYE_RADIUS, 0, num=10),
+                                                              np.linspace(0, self.EYE_RADIUS, num=10)))
 
-        # Load happy image sequences
-        self.happy_forward_sequence = self.load_sequence("happy", self.HAPPY_NUMBER_IMAGES, dimensions)
-        self.happy_backward_sequence = list(reversed(self.happy_forward_sequence))
+        self.SURPRISED_ANIMATION_EYES_RADIUS = np.concatenate((np.linspace(self.EYE_RADIUS, 0.45*self.HEIGHT, num=10),
+                                                               np.linspace(0.45*self.HEIGHT, 0.85*self.HEIGHT, num=10),
+                                                               np.full(150, 0.85*self.HEIGHT),
+                                                               np.linspace(0.85*self.HEIGHT, self.EYE_RADIUS, num=30)))
 
-        # Load angry image sequences
-        self.angry_forward_sequence = self.load_sequence("angry", self.ANGRY_NUMBER_IMAGES, dimensions)
-        self.angry_backward_sequence = list(reversed(self.angry_forward_sequence))
+        self.SLIDING_ELLIPSE_POSITION = np.concatenate((np.linspace(-0.1*self.HEIGHT, 0.3*self.HEIGHT, num=30),
+                                                        np.full(150, 0.3*self.HEIGHT),
+                                                        np.linspace(0.3*self.HEIGHT, -0.1*self.HEIGHT, num=30)))
 
-        # Load sad image sequences
-        self.sad_forward_sequence = self.load_sequence("sad", self.SAD_NUMBER_IMAGES, dimensions)
-        self.sad_backward_sequence = list(reversed(self.sad_forward_sequence))
+        self.SLIDING_RECT_POSITION = np.concatenate((np.linspace(-0.2*self.HEIGHT, 0.2*self.HEIGHT, num=20),
+                                                     np.full(150, 0.2*self.HEIGHT),
+                                                     np.linspace(0.2*self.HEIGHT, -0.2*self.HEIGHT, num=30)))
 
-        # Load surprise image sequences
-        self.surprise_forward_sequence = self.load_sequence("surprise", self.SURPRISE_NUMBER_IMAGES, dimensions)
-        self.surprise_backward_sequence = list(reversed(self.surprise_forward_sequence))
-
-        # Load location images
-        self.location_sequence = self.load_sequence("locations", self.LOCATIONS_NUMBER_IMAGES, dimensions)
-
-        # Initial image on window
-        self.window.blit(self.blink_sequence[0], (0, 0))
+        self.ANIMATION_LENGTHS = {"blinking": len(self.BLINKING_ANIMATION_EYES_HEIGHT), 
+                                  "surprise": len(self.SURPRISED_ANIMATION_EYES_RADIUS), 
+                                  "happy": len(self.SLIDING_ELLIPSE_POSITION),
+                                  "sad": len(self.SLIDING_ELLIPSE_POSITION), 
+                                  "angry": len(self.SLIDING_RECT_POSITION)}
+        
+        self.AVAILABLE_EMOTIONS = ["surprise", "happy", "sad", "angry"]
 
         # General purpose variables
         self.should_display = True
+        self.animation_running = False
         self.current_emotion = "blinking"
-        self.previous_emotion = "blinking"
-        self.next_emotion = None
-        self.emotion_type = self.BLINKING
-        self.previous_emotion_type = self.BLINKING
-        self.current_sequence = self.blink_sequence
-        self.counter_change_image_of_sequence = 0
-        self.emotion_sequence_idx = 0
-        self.is_performing_emotion = False
-        self.counter_trigger_blinking_sequence = 0
-        self.start_time = time.time()
-        self.desired_location = None
+        self.desired_emotion = "blinking"
+        self.counter_animation_frame = 0
+        self.start_time_animation = time.time()
 
-        self.current_emotion_to_emotion_sequence = {("happy", self.FORWARD): self.happy_forward_sequence,
-                                                    ("happy", self.BACKWARD): self.happy_backward_sequence,
-                                                    ("angry", self.FORWARD): self.angry_forward_sequence,
-                                                    ("angry", self.BACKWARD): self.angry_backward_sequence,
-                                                    ("sad", self.FORWARD): self.sad_forward_sequence,
-                                                    ("sad", self.BACKWARD): self.sad_backward_sequence,
-                                                    ("surprise", self.FORWARD): self.surprise_forward_sequence,
-                                                    ("surprise", self.BACKWARD): self.surprise_backward_sequence,}
+        # Timer callback for the display
+        timer_period = 1.0 / self.FPS # 60 fps
+        self.timer = self.create_timer(timer_period, self.timer_callback)
 
-    def load_sequence(self, sequence_name, number_images, dim):
+        # Service to perform desired emotion
+        self.emotion_srv = self.create_service(DisplayEmotion, 'display_emotion', self.emotion_callback)
+
+        # Initial image on window
+        self.window.fill("white")
+    
+        self.right_eye = pygame.Rect(0, 0, 0, 0)
+        self.left_eye = pygame.Rect(0, 0, 0, 0)
+        
+        self.right_eye.size = (self.EYE_RADIUS, self.EYE_RADIUS)
+        self.left_eye.size = (self.EYE_RADIUS, self.EYE_RADIUS)
+        
+        self.right_eye.center = self.RIGHT_EYE_CENTER
+        self.left_eye.center = self.LEFT_EYE_CENTER
+        
+        pygame.draw.ellipse(self.window, "black", self.right_eye)
+        pygame.draw.ellipse(self.window, "black", self.left_eye)
+
+        pygame.display.flip()
+
+    def time_until_next_blink_refractory(self, mean_interval_s=4.0, t_min=0.25):
         """
-        Allow to load the sequence of images composing a facial animation
-        (blinking animation, smilling animation etc). The images are scaled
-        to the screen size.
-
-        :param sequence_name: String indicating the facial animation to load.
-        :param number_images: Integer representing the number of images in 
-                              the desired sequence.
-        :param dim: Integer tuple containing the screen height and width.
-        :return: List of scaled images composing a facial animation.
-        """
-
-        sequence = []
-        images_path = get_package_share_directory('pixelbot_display') + "/imgs/"
-
-        for i in range(number_images):
-            sequence.append(pygame.image.load(images_path + sequence_name + str(i) + ".png").convert_alpha())
-
-        sequence = [pygame.transform.scale(img, dim) for img in sequence]
-
-        return sequence
-
-    def play_sequence(self, emotion_sequence):
-        """
-        Do the transition between two images of a sequence.
-
-        :param emotion_sequence: List of images composing an emotion sequence.
+        Returns the time (in seconds) until the next blink.
+        Ensures a minimum spacing t_min (physiological refractory period).
+        The remaining time is exponential with adjusted mean.
         """
 
-        self.counter_change_image_of_sequence += 1
+        # Adjust rate so that mean total interval = mean_interval_s
+        lam = 1.0 / max((mean_interval_s - t_min), 0.001)
 
-        if self.counter_change_image_of_sequence == self.COUNT_CHANGE_IMAGE_OF_SEQUENCE and \
-        self.emotion_sequence_idx < len(emotion_sequence) - 1:
+        return t_min + random.expovariate(lam)
 
-            self.emotion_sequence_idx += 1
-            self.counter_change_image_of_sequence = 0
-
-            self.window.blit(emotion_sequence[self.emotion_sequence_idx], (0, 0))
-
-    def stop_pygame(self):
+    def blinking(self):
         """
-        Stop Pygame.
+        Blinking animation.
+
+        :param window: The Pygame window to draw on.
+        :param counter_animation_frame: Counter keeping track of the animation frame.
+        :param right_eye: Pygame Rect object representing the right eye.
+        :param left_eye: Pygame Rect object representing the left eye.
         """
 
-        pygame.quit()
+        self.right_eye.size = self.EYE_RADIUS, self.BLINKING_ANIMATION_EYES_HEIGHT[self.counter_animation_frame]
+        self.left_eye.size = self.EYE_RADIUS, self.BLINKING_ANIMATION_EYES_HEIGHT[self.counter_animation_frame]
+
+        self.right_eye.center = self.RIGHT_EYE_CENTER
+        self.left_eye.center = self.LEFT_EYE_CENTER
+
+        pygame.draw.ellipse(self.window, "black", self.right_eye)
+        pygame.draw.ellipse(self.window, "black", self.left_eye)
+
+    def surprised(self):
+        """
+        Surprised animation.
+
+        :param window: The Pygame window to draw on.
+        :param counter_animation_frame: Counter keeping track of the animation frame.
+        :param right_eye: Pygame Rect object representing the right eye.
+        :param left_eye: Pygame Rect object representing the left eye.
+        """
+
+        self.right_eye.size = self.SURPRISED_ANIMATION_EYES_RADIUS[self.counter_animation_frame], self.SURPRISED_ANIMATION_EYES_RADIUS[self.counter_animation_frame]
+        self.left_eye.size = self.SURPRISED_ANIMATION_EYES_RADIUS[self.counter_animation_frame], self.SURPRISED_ANIMATION_EYES_RADIUS[self.counter_animation_frame]
+
+        self.right_eye.center = self.RIGHT_EYE_CENTER
+        self.left_eye.center = self.LEFT_EYE_CENTER
+
+        pygame.draw.ellipse(self.window, "black", self.right_eye)
+        pygame.draw.ellipse(self.window, "black", self.left_eye)
+
+    def happy_sad(self, sadness=True):
+        """
+        Happiness/Sadness animation.
+
+        :param window: The Pygame window to draw on.
+        :param counter_animation_frame: Counter keeping track of the animation frame.
+        :param right_eye: Pygame Rect object representing the right eye.
+        :param left_eye: Pygame Rect object representing the left eye.
+        :param sadness: Boolean to choose between the sadness or happiness emotion.
+        """
+
+        # Draw round eyes
+        self.right_eye.size = (self.EYE_RADIUS, self.EYE_RADIUS)
+        self.left_eye.size = (self.EYE_RADIUS, self.EYE_RADIUS)
+
+        self.right_eye.center = self.RIGHT_EYE_CENTER
+        self.left_eye.center = self.LEFT_EYE_CENTER
+
+        pygame.draw.ellipse(self.window, "black", self.right_eye)
+        pygame.draw.ellipse(self.window, "black", self.left_eye)
+
+        # Draw the sliding white ellipse over the round eyes
+        right_ellipse = pygame.Rect(0, 0, 0, 0)
+        left_ellipse = pygame.Rect(0, 0, 0, 0)
+
+        right_ellipse.size = (0.85*self.HEIGHT, 0.35*self.HEIGHT)
+        left_ellipse.size = (0.85*self.HEIGHT, 0.35*self.HEIGHT)
+        
+        if sadness:
+            right_ellipse.center = (self.RIGHT_EYE_CENTER_X, self.SLIDING_ELLIPSE_POSITION[self.counter_animation_frame])
+            left_ellipse.center = (self.LEFT_EYE_CENTER_X, self.SLIDING_ELLIPSE_POSITION[self.counter_animation_frame])
+        else:
+            right_ellipse.center = (self.RIGHT_EYE_CENTER_X, self.HEIGHT - self.SLIDING_ELLIPSE_POSITION[self.counter_animation_frame])
+            left_ellipse.center = (self.LEFT_EYE_CENTER_X, self.HEIGHT - self.SLIDING_ELLIPSE_POSITION[self.counter_animation_frame])
+
+        pygame.draw.ellipse(self.window, "white", right_ellipse)
+        pygame.draw.ellipse(self.window, "white", left_ellipse)
+
+    def anger(self):
+        """
+        Anger animation.
+
+        :param window: The Pygame window to draw on.
+        :param counter_animation_frame: Counter keeping track of the animation frame.
+        :param right_eye: Pygame Rect object representing the right eye.
+        :param left_eye: Pygame Rect object representing the left eye.
+        """
+
+        # Draw round eyes
+        self.right_eye.size = (self.EYE_RADIUS, self.EYE_RADIUS)
+        self.left_eye.size = (self.EYE_RADIUS, self.EYE_RADIUS)
+
+        self.right_eye.center = self.RIGHT_EYE_CENTER
+        self.left_eye.center = self.LEFT_EYE_CENTER
+
+        pygame.draw.ellipse(self.window, "black", self.right_eye)
+        pygame.draw.ellipse(self.window, "black", self.left_eye)
+
+        # Draw the sliding rotated white rectangle
+        # Define a rectangular surface, its transparent colorkey and its color
+        rect_surface = pygame.Surface((self.HEIGHT, 0.4*self.HEIGHT))
+        rect_surface.set_colorkey("black")
+        rect_surface.fill("white")
+
+        # Rotate the rectangular surface
+        rotation_angle = 20.0
+        right_eye_rectangular_surface = pygame.transform.rotate(rect_surface, -rotation_angle)
+        left_eye_rectangular_surface = pygame.transform.rotate(rect_surface, rotation_angle)
+
+        # Define the center of the sliding rotated rectangular surfaces
+        right_eye_rect = right_eye_rectangular_surface.get_rect()
+        left_eye_rect = left_eye_rectangular_surface.get_rect()
+
+        right_eye_rect.center = self.RIGHT_EYE_CENTER_X, self.SLIDING_RECT_POSITION[self.counter_animation_frame]
+        left_eye_rect.center = self.LEFT_EYE_CENTER_X, self.SLIDING_RECT_POSITION[self.counter_animation_frame]
+
+        # Draw the sliding rotated rectangular surfaces over the round eyes
+        self.window.blit(right_eye_rectangular_surface, right_eye_rect)
+        self.window.blit(left_eye_rectangular_surface, left_eye_rect)
+
 
     def timer_callback(self):
         """
@@ -159,62 +238,46 @@ class Display(Node):
         for event in pygame.event.get():
             if event.type == KEYDOWN and event.key == K_ESCAPE:
                 self.should_display = False
+    
+        # Delay between each emotion animation:
+        # Either time based or button request based
+        if self.animation_running == False and (time.time() - self.start_time_animation > self.ANIMATION_INTERVAL or self.desired_emotion != "blinking"):
+            self.ANIMATION_INTERVAL = self.time_until_next_blink_refractory()
+            self.animation_running = True
+            self.current_emotion = self.desired_emotion
+            self.desired_emotion = "blinking"
+        
+        # Animation drawing
+        if self.animation_running:
+            # Fill the window with a white background
+            self.window.fill("white")
+    
+            # Draw the eyes with the desired emotion
+            if self.current_emotion == "blinking":
+                self.blinking()
+            elif self.current_emotion == "surprise":
+                self.surprised()
+            elif self.current_emotion == "happy":
+                self.happy_sad(sadness=False)
+            elif self.current_emotion == "sad":
+                self.happy_sad(sadness=True)
+            elif self.current_emotion == "angry":
+                self.anger()
+    
+            # Update the frame counter and check for end of animation
+            self.counter_animation_frame += 1
+            animation_lenght = self.ANIMATION_LENGTHS[self.current_emotion]
+            if self.counter_animation_frame == animation_lenght:
+                self.counter_animation_frame = 0
+                self.animation_running = False
 
-        # Reset variables for emotion display
-        if self.previous_emotion != self.current_emotion or self.previous_emotion_type != self.emotion_type:
-            self.counter_change_image_of_sequence = 0
-            self.emotion_sequence_idx = 0
-            self.previous_emotion = self.current_emotion
-            self.previous_emotion_type = self.emotion_type
+                # If no emotion request since the last request, go back to blinking
+                # If emotion request since the last request, next emotion is the new requested emotion
+                self.current_emotion = self.desired_emotion
 
-        # Location display
-        if self.desired_location is not None:
-            if time.time() - self.start_time > 8:
-                self.desired_location = None
-                self.counter_trigger_blinking_sequence = 0
-                self.window.blit(self.blink_sequence[0], (0, 0))
+                self.start_time_animation = time.time()
 
-        # Emotions display 
-        elif self.emotion_type == self.BLINKING:
-            self.counter_trigger_blinking_sequence += 1
-
-            if self.counter_trigger_blinking_sequence == self.COUNT_TRIGGER_BLINKING_SEQUENCE:
-                self.is_performing_emotion = True
-
-            if self.is_performing_emotion:
-                self.play_sequence(self.blink_sequence)
-
-                if self.emotion_sequence_idx == len(self.blink_sequence) - 1:
-                    self.counter_trigger_blinking_sequence = 0
-                    self.emotion_sequence_idx = 0
-                    self.is_performing_emotion = False
-
-        elif self.emotion_type == self.FORWARD:
-            self.current_sequence = self.current_emotion_to_emotion_sequence[(self.current_emotion, self.FORWARD)]
-            if self.counter_change_image_of_sequence == 0 and self.emotion_sequence_idx == 0:
-                self.start_time = time.time()
-
-            self.play_sequence(self.current_sequence)
-
-            if time.time() - self.start_time > 3:
-                self.emotion_type = self.BACKWARD
-
-        elif self.emotion_type == self.BACKWARD:
-            self.current_sequence = self.current_emotion_to_emotion_sequence[(self.current_emotion, self.BACKWARD)]
-            self.play_sequence(self.current_sequence)
-
-            if self.emotion_sequence_idx == len(self.current_sequence) - 1:
-                self.emotion_type = self.BLINKING
-                self.is_performing_emotion = False
-
-        # Emotion requests handling
-        if self.next_emotion is not None and not self.is_performing_emotion:
-            self.is_performing_emotion = True
-            self.emotion_type = self.FORWARD
-            self.current_emotion = self.next_emotion
-            self.next_emotion = None
-
-        pygame.display.flip()
+            pygame.display.flip()
 
     def emotion_callback(self, request, response):
         """
@@ -225,7 +288,7 @@ class Display(Node):
         """
 
         if request.desired_emotion in self.AVAILABLE_EMOTIONS:
-            self.next_emotion = request.desired_emotion
+            self.desired_emotion = request.desired_emotion
             response.success = True
         else:
             self.get_logger().info("Error: requested emotion does not exist!")
@@ -233,24 +296,12 @@ class Display(Node):
 
         return response
 
-    def location_callback(self, request, response):
+    def stop_pygame(self):
         """
-        Service handler allowing to display the desired location.
-
-        :param request: See DisplayLocation service definition.
-        :param response: See DisplayLocation service definition.
+        Stop Pygame.
         """
 
-        if request.desired_location in self.STRING_LOCATIONS_TO_IDX.keys():
-            self.desired_location = request.desired_location
-            self.window.blit(self.location_sequence[self.STRING_LOCATIONS_TO_IDX[self.desired_location]], (0, 0))
-            self.start_time = time.time()
-            response.success = True
-        else:
-            self.get_logger().info("Error: requested location does not exist!")
-            response.success = False
-
-        return response
+        pygame.quit()
 
 
 def main(args=None):
