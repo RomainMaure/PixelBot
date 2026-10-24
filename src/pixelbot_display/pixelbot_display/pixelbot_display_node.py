@@ -30,7 +30,6 @@ class Display(Node):
         pygame.mouse.set_visible(False)
 
         # Defines
-        # TODO: There is no service for displaying locations !!!!!!!
         self.FPS = 60.0
         self.ANIMATION_INTERVAL = 3
         self.WIDTH, self.HEIGHT = self.window.get_size()
@@ -240,7 +239,7 @@ class Display(Node):
                 self.should_display = False
     
         # Delay between each emotion animation:
-        # Either time based or button request based
+        # Either time based or request based
         if self.animation_running == False and (time.time() - self.start_time_animation > self.ANIMATION_INTERVAL or self.desired_emotion != "blinking"):
             self.ANIMATION_INTERVAL = self.time_until_next_blink_refractory()
             self.animation_running = True

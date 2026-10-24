@@ -18,7 +18,7 @@ The whole package is under GPL-3.0 License, see [LICENSE](https://github.com/Rom
 Affiliation: [CHILI Lab, EPFL](https://www.epfl.ch/labs/chili/)<br />
 Maintainer: Romain Maure, romain.maure21@gmail.com**
 
-The [pixelbot_display](https://github.com/RomainMaure/PixelBot/tree/pixelbot_v2/src/pixelbot_display) package has been tested under [ROS2 Humble](https://docs.ros.org/en/humble/index.html) on Ubuntu 22.04.
+The [pixelbot_display](https://github.com/RomainMaure/PixelBot/tree/pixelbot_v2/src/pixelbot_display) package has been tested under [ROS2 Jazzy](https://docs.ros.org/en/humble/index.html) on Ubuntu 24.
 This is research code, expect that it changes often and any fitness for a particular purpose is disclaimed.
 
 ## Installation
@@ -68,14 +68,6 @@ Display facial animations on the robot's LCD.
 
     Available emotions: "happy", "angry", "sad", "surprise".
 
-* **`display_location`** ([pixelbot_msgs/DisplayLocation](https://github.com/RomainMaure/PixelBot/blob/pixelbot_v2/src/pixelbot_msgs/srv/DisplayLocation.srv))
-
-	Display the desired location on PixelBot's LCD. For example:
-    ```
-	ros2 service call /display_location pixelbot_msgs/DisplayLocation "desired_location: 'ski'"
-    ```
-
-    Available locations: "flat", "ski", "nasa", "judge".
 
 ## Bugs & Feature Requests
 
