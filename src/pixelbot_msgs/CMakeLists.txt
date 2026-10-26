@@ -14,7 +14,6 @@ find_package(rosidl_default_generators REQUIRED)
 
 rosidl_generate_interfaces(${PROJECT_NAME}
   "srv/DisplayEmotion.srv"
-  "srv/DisplayLocation.srv"
   "srv/MotorsMovement.srv"
   "srv/SetLanguage.srv"
   "srv/SetSpeech.srv"
