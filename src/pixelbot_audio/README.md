@@ -34,6 +34,7 @@ This is research code, expect that it changes often and any fitness for a partic
     ```
     sudo pip3 install playsound
     sudo pip3 install pydub
+    sudo pip3 install sounddevice
     sudo apt install python3-pyaudio
     sudo apt install ffmpeg
     sudo apt install espeak
