@@ -2,9 +2,7 @@
 
 ## Overview
 
-This package allows to launch the robot-based learning activity aiming at raising awareness of gender inequality among children. 
-
-**Keywords:**  human-robot interaction, robot-mediated storytelling activity, gender equality.
+This package shows a demo of PixelBot capabilities. 
 
 ### License
 
@@ -16,7 +14,7 @@ The whole package is under GPL-3.0 License, see [LICENSE](https://github.com/Rom
 Affiliation: [CHILI Lab, EPFL](https://www.epfl.ch/labs/chili/)<br />
 Maintainer: Romain Maure, romain.maure21@gmail.com**
 
-The [pixelbot_interaction](https://github.com/RomainMaure/PixelBot/tree/pixelbot_v2/src/pixelbot_interaction) package has been tested under [ROS2 Humble](https://docs.ros.org/en/humble/index.html) on Ubuntu 22.04.
+The [pixelbot_interaction](https://github.com/RomainMaure/PixelBot/tree/pixelbot_v2/src/pixelbot_interaction) package has been tested under [ROS2 Jazzy](https://docs.ros.org/en/humble/index.html) on Ubuntu 24.
 This is research code, expect that it changes often and any fitness for a particular purpose is disclaimed.
 
 ## Installation
@@ -49,7 +47,7 @@ ros2 launch pixelbot_interaction pixelbot_interaction.launch.py
 
 ### pixelbot_interaction_node
 
-This node uses the other PixelBot packages and implements the main learning activity aiming at raising awareness of gender inequality among children.
+This node uses the other PixelBot packages and shows a demo of PixelBot capabilities.
 
 ## Bugs & Feature Requests
 

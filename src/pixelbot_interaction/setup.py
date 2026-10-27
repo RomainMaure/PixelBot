@@ -17,8 +17,8 @@ setup(
     install_requires=['setuptools'],
     zip_safe=True,
     maintainer='maure',
-    maintainer_email='romain.maure@epfl.ch',
-    description='Package taking care of the educative interaction',
+    maintainer_email='romain.maure21@gmail.com',
+    description='Package doing a demo of PixelBot capabilities',
     license='MIT',
     tests_require=['pytest'],
     entry_points={
