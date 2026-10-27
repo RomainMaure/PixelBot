@@ -1,191 +1,127 @@
 import rclpy
 from rclpy.node import Node
 
-from std_srvs.srv import Empty
+from std_msgs.msg import Bool, String
 
-from pixelbot_msgs.srv import SetVoiceAlteration
-from pixelbot_msgs.srv import SetSpeech
-from pixelbot_msgs.srv import SetLanguage
+from pixelbot_msgs.srv import SetLanguage, PlaySound
 
-import pyttsx3
-import numpy as np
-import scipy.io.wavfile as sc
-from gtts import gTTS
-from pydub import AudioSegment
+from piper import PiperVoice, SynthesisConfig
+import sounddevice as sd
 from playsound import playsound
+import numpy as np
 
 from ament_index_python import get_package_share_directory
 
 
-class Audio(Node):
+class TTS_Playsound(Node):
 
     def __init__(self):
         super().__init__('pixelbot_audio_node')
 
-        # Service allowing PixelBot to speak
-        self.speak_srv = self.create_service(SetSpeech, 'speak', self.speak_callback)
+        # Subscription to verbalize what is said on the tts_input topic
+        self.speak_subscriber = self.create_subscription(String, 'tts_input', self.topic_speak_callback, 10)
 
-        # Service to specify if the voice should be altered or not
-        self.voice_alteration_srv = self.create_service(SetVoiceAlteration, 'change_voice_alteration', self.change_voice_alteration_callback)
+        # Publisher to enable speech recognition after speaking is finished
+        self.recognizer_state_publisher = self.create_publisher(Bool, 'recognizer_is_active', 10)
 
         # Service allowing to change the language to be spoken
         self.language_srv = self.create_service(SetLanguage, 'change_language', self.change_language_callback)
 
-        # Service allowing PixelBot to play a happy sound
-        self.play_happy_sound_srv = self.create_service(Empty, 'play_happy_sound', self.play_happy_sound_callback)
+        # Service allowing PixelBot to play a desired sound file
+        self.play_sound_srv = self.create_service(PlaySound, 'play_sound', self.play_sound_callback)
 
-        # Create the pyttsx3 object and perform initial configuration
-        self.tts_engine = pyttsx3.init()
-        self.tts_engine.setProperty('volume', 1.0)
-        self.tts_engine.setProperty('rate', 125)
-        self.tts_engine.setProperty('voice', "english")
+        # Load Piper voice
+        self.english_voice_path = get_package_share_directory('pixelbot_audio') + "/voices/en_US-bryce-medium.onnx"
+        self.french_voice_path = get_package_share_directory('pixelbot_audio') + "/voices/fr_FR-upmc-medium.onnx"
+        self.german_voice_path = get_package_share_directory('pixelbot_audio') + "/voices/de_DE-thorsten_emotional-medium.onnx"
+        self.voice = PiperVoice.load(self.english_voice_path)
+        self.syn_config = SynthesisConfig(volume=1.0,       # default volume
+                                     length_scale=1.0,      # normal pace
+                                     noise_scale=0.667,     # default audio variation
+                                     noise_w_scale=0.8,     # default speaking variation
+                                     normalize_audio=False, # use raw audio from voice
+                                     )
 
-        # If the voice should sound robotic like
-        self.altered_voice = False
+    def speak(self, message):
+        '''TODO:documentation'''
 
-        # Language to use
-        self.language = 'en'
+        stream = None
 
-    def speak_callback(self, request, response):
-        """
-        Service handler allowing PixelBot to speak.
+        try:
+            for chunk in self.voice.synthesize(message, syn_config=self.syn_config):
+                if stream is None:
+                    stream = sd.OutputStream(
+                        samplerate=chunk.sample_rate,
+                        channels=chunk.sample_channels,
+                        dtype='int16'
+                    )
+                    stream.start()
 
-        :param request: See SetSpeech service definition.
-        """
-        
-        if self.altered_voice:
-            # Create an audio file containing the speech to alter
-            tts = gTTS(request.message, lang=self.language)
-            tts.save('voiceToAlter.mp3')
-            sound = AudioSegment.from_mp3('voiceToAlter.mp3')
-            sound.export('voiceToAlter.wav', format='wav')
+                # Convert the raw bytes to a NumPy array for sounddevice
+                audio_array = np.frombuffer(chunk.audio_int16_bytes, dtype=np.int16)
+                stream.write(audio_array)
 
-            # Alter the previously created audio file
-            self.diodeRingModulator('voiceToAlter.wav')
+        finally:
+            if stream:
+                stream.stop()
+                stream.close()
 
-            # Play the altered audio file
-            sound = AudioSegment.from_wav("alteredVoice.wav")
-            sound.export("alteredVoice.mp3", format='mp3')
-            playsound("alteredVoice.mp3")
+    def topic_speak_callback(self, msg):
+        '''TODO:documentation'''
 
-        else:
-            self.tts_engine.say(request.message)
-            self.tts_engine.runAndWait()
+        # Deactivate speech recognizer
+        recognizer_state_msg = Bool()
+        recognizer_state_msg.data = False
+        self.recognizer_state_publisher.publish(recognizer_state_msg)
 
-        return response
+        self.speak(msg.data)
 
-    def diode(self, signalArray):
-        """
-        Apply an approximation of the diode non linearity model.
-        The approximation of the diode is described by:
-
-               { 0           , if x <= 0
-        f(x) = |
-               { 0.1*x^(1.7) , if x > 0
-
-        :param signalArray: The signal to be altered.
-        :return: The signal altered by the diode non linearity.
-        """
-
-        diodeArray = [0.1*(x**1.7) if x > 0 else 0.0 for x in signalArray]
-
-        return np.array(diodeArray)
-
-    def diodeRingModulator(self, intputFileName):
-        """
-        Simulate a diode ring modulator electrical circuit.
-        Alter the audio file containing the text to be said to make it sounds
-        more robotic like.
-
-        :param intputFileName: Name of the audio file containing the voice to
-                                be altered.
-        """
-
-        # Read the audio file
-        [_, data] = sc.read(intputFileName)
-
-        # Get maximum absolute value of input signal
-        maxVal = max(abs(data))
-
-        # Scale down the input signal
-        scaledData = data/maxVal
-
-        # Create carrier signal
-        fCarrier = 500
-        t = np.linspace(0, len(scaledData), len(scaledData))
-        carrier = np.sin(2*np.pi*fCarrier*t)
-
-        # Compute output of the ring modulator circuit
-        topFirst = carrier + 0.5*scaledData
-        top = self.diode(topFirst) + self.diode(-topFirst)
-
-        bottomFirst = carrier - 0.5*scaledData
-        bottom = self.diode(bottomFirst) + self.diode(-bottomFirst)
-
-        output = top - bottom
-
-        # Scale back
-        output = 5*maxVal*output
-
-        # Save the signal
-        sc.write('alteredVoice.wav', 22050, np.int16(output))
-
-    def change_voice_alteration_callback(self, request, response):
-        """
-        Service handler to specify if the voice should be altered or not
-
-        :param request: See SetVoiceAlteration service definition.
-        :param response: See SetVoiceAlteration service definition.
-        """
-
-        self.altered_voice = request.is_voice_altered
-
-        return response
+        # Reactivate speech recognizer
+        recognizer_state_msg = Bool()
+        recognizer_state_msg.data = True
+        self.recognizer_state_publisher.publish(recognizer_state_msg)
 
     def change_language_callback(self, request, response):
         """
         Service handler allowing to change the language to be spoken.
 
-        :param request: See SetLanguage service definition.
+        :param request: See SetLanguage message definition.
         :param response: See SetLanguage service definition.
         """
 
-        if request.language not in ["french", "english"]:
+        if request.language not in ["french", "english", "german"]:
             response.success = False
+            self.get_logger().info("Requested language not available.")
         else:
             response.success = True
             if request.language == "french":
-                self.language = "fr"
-                self.tts_engine.setProperty('voice', "french")
+                self.voice = PiperVoice.load(self.french_voice_path)
             if request.language == "english":
-                self.language = "en"
-                self.tts_engine.setProperty('voice', "english")
+                self.voice = PiperVoice.load(self.english_voice_path)
+            if request.language == "german":
+                self.voice = PiperVoice.load(self.german_voice_path)
 
         return response
 
-    def play_happy_sound_callback(self, request, response):
+    def play_sound_callback(self, request):
         """
-        Service handler allowing to play a happy sound.
+        Service handler allowing to play a sound.
 
-        :param request: See Empty service definition.
-        :param response: See Empty service definition.
+        :param request: See PlaySound message definition.
         """
 
-        sound_path = get_package_share_directory('pixelbot_audio') + "/sound/happy.mp3"
+        sound_path = get_package_share_directory('pixelbot_audio') + "/sounds/" + request.sound_name
         playsound(sound_path)
-
-        return response
 
 
 def main(args=None):
     rclpy.init(args=args)
 
-    audio_node = Audio()
+    tts_playsound_node = TTS_Playsound()
 
-    rclpy.spin(audio_node)
+    rclpy.spin(tts_playsound_node)
 
-    audio_node.tts_engine.stop()
-    audio_node.destroy_node()
+    tts_playsound_node.destroy_node()
     rclpy.shutdown()
 
 
