@@ -86,7 +86,7 @@ def main(args=None):
 
     interaction_node = Interaction()
 
-    interaction_node.interaction()
+    rclpy.spin(interaction_node)
 
     interaction_node.destroy_node()
     rclpy.shutdown()
